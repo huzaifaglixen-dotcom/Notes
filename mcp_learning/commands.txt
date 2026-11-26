@@ -1,0 +1,5 @@
+pip install mcp
+pip install "mcp[cli]"
+mcp dev server.py
+Roo code - extension download
+taskkill /F /IM python.exe

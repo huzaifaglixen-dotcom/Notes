@@ -1,0 +1,39 @@
+site_name: AI Engineer Notes
+site_url: https://huzaifaAhmad9.github.io/AI-Engineer/
+docs_dir: notes
+
+repo_name: huzaifaAhmad9/AI-Engineer
+repo_url: https://github.com/huzaifaAhmad9/AI-Engineer
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.top           # Lambe notes par top par jane ka button
+    - content.code.copy        # Code blocks par copy button
+    - navigation.expand        # Sidebar ko clean list banayega
+    - toc.follow               # Scroll track karega
+    # Note: Yahan se 'navigation.tabs' ko bilkul remove kar diya hai taake top bar clean ho jaye.
+
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+# Niche se "Made with Material for MkDocs" footer ko remove karne ke liye
+extra:
+  generator: false
+
+plugins:
+  - search

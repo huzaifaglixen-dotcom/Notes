@@ -1,0 +1,14 @@
+python --version
+python -m venv .venv
+.venv\Scripts\activate
+deactivate
+pip freeze > requirements.txt
+pip install -r requirements.txt
+python -m pip install --upgrade pip
+pip install package_name
+pip uninstall package_name
+pip show package_name
+pip list
+
+
+
