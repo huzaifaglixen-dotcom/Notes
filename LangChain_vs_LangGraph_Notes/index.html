@@ -1,0 +1,2470 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/LangChain_vs_LangGraph_Notes/">
+      
+      
+        <link rel="prev" href="../LLM_Evaluation_Guardrails_Notes/">
+      
+      
+        <link rel="next" href="../LangGraph_Complete_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>LangChain vs LangGraph — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#langchain-vs-langgraph-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LangChain vs LangGraph — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-one-line-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple One-Line Difference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is LangChain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is LangChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts-in-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts in LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-langchain-works-simple-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How LangChain Works (Simple Flow)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-of-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros of LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons-of-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons of LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-is-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What is LangGraph
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. What is LangGraph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts-in-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts in LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-langgraph-works-simple-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How LangGraph Works (Simple Flow)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-conceptual_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-of-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros of LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons-of-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons of LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-do-they-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Do They Work Together?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-real-world-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Real-World Analogy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-simple-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Simple Decision Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-one-line-memory-trick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. One-Line Memory Trick
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-one-line-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple One-Line Difference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is LangChain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is LangChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts-in-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts in LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-langchain-works-simple-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How LangChain Works (Simple Flow)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-of-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros of LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons-of-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons of LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-is-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What is LangGraph
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. What is LangGraph">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-concepts-in-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Concepts in LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-langgraph-works-simple-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How LangGraph Works (Simple Flow)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-conceptual_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-of-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros of LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons-of-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons of LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-do-they-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Do They Work Together?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-real-world-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Real-World Analogy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-simple-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Simple Decision Guide
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-one-line-memory-trick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. One-Line Memory Trick
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="langchain-vs-langgraph-complete-notes">LangChain vs LangGraph — Complete Notes</h1>
+<blockquote>
+<p>Dono hi <strong>same company (LangChain Inc.)</strong> ke products hain, aur LangGraph <strong>LangChain ke ecosystem ka hi part</strong> hai — competitor nahi hai. Lekin dono <strong>alag purpose</strong> solve karte hain.</p>
+</blockquote>
+<hr />
+<h2 id="simple-one-line-difference">Simple One-Line Difference</h2>
+<blockquote>
+<p><strong>LangChain</strong> = LLM applications banane ka <strong>general toolkit</strong> (chains, prompts, tools, memory, integrations).
+<strong>LangGraph</strong> = Complex, <strong>stateful, multi-step AI agents</strong> banane ka framework — jahan control flow (loops, branches, conditions) ki zaroorat ho.</p>
+</blockquote>
+<hr />
+<h2 id="1-what-is-langchain">1. What is LangChain</h2>
+<p><strong>Simple Meaning:</strong> LangChain ek <strong>framework/library</strong> hai jo LLM-based applications banane ke liye zaroori building blocks deta hai — prompts, models, tools, memory, document loaders, vector stores, sab kuch ek jagah.</p>
+<h3 id="core-concepts-in-langchain">Core Concepts in LangChain</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Kya Karta Hai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>Prompt templates banana aur manage karna</td>
+</tr>
+<tr>
+<td><strong>Chains</strong></td>
+<td>Multiple steps ko sequence me jodna (e.g., prompt → LLM → output parser)</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>External functions/APIs jo LLM call kar sake (search, calculator, etc.)</td>
+</tr>
+<tr>
+<td><strong>Agents</strong></td>
+<td>LLM khud decide kare ki kaunsa tool kab use karna hai</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>Conversation history ya state ko yaad rakhna</td>
+</tr>
+<tr>
+<td><strong>Document Loaders</strong></td>
+<td>PDFs, websites, databases se data load karna</td>
+</tr>
+<tr>
+<td><strong>Vector Stores</strong></td>
+<td>Embeddings store aur search karna (RAG ke liye)</td>
+</tr>
+<tr>
+<td><strong>Retrievers</strong></td>
+<td>Relevant documents/chunks fetch karna</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-langchain-works-simple-flow">How LangChain Works (Simple Flow)</h3>
+<pre><code>Input → Prompt Template → LLM Call → Output Parser → Final Output
+</code></pre>
+<p>Chains <strong>linear (mostly sequential)</strong> hoti hain — ek step ke baad doosra step, seedhe order me.</p>
+<h3 id="example-conceptual">Example (Conceptual)</h3>
+<pre><code class="language-python">prompt = PromptTemplate(&quot;Summarize this: {text}&quot;)
+chain = prompt | llm | output_parser
+result = chain.invoke({&quot;text&quot;: &quot;long article...&quot;})
+</code></pre>
+<h3 id="pros-of-langchain">Pros of LangChain</h3>
+<ul>
+<li>✅ Bahut saare <strong>pre-built integrations</strong> (100+ LLMs, vector DBs, tools, APIs)</li>
+<li>✅ RAG pipelines banane ke liye bahut convenient</li>
+<li>✅ Simple, linear workflows ke liye fast to build</li>
+<li>✅ Bada community aur documentation</li>
+</ul>
+<h3 id="cons-of-langchain">Cons of LangChain</h3>
+<ul>
+<li>❌ <strong>Complex control flow</strong> (loops, conditional branching, retries) handle karna mushkil ho jata hai</li>
+<li>❌ Agents ka behavior kabhi-kabhi unpredictable/hard to debug hota hai</li>
+<li>❌ Multi-agent ya long-running stateful workflows ke liye designed nahi hai originally</li>
+</ul>
+<h3 id="when-to-use-langchain">When to Use LangChain</h3>
+<ul>
+<li>Simple to moderately complex LLM apps</li>
+<li>RAG-based Q&amp;A systems</li>
+<li>Basic chatbots</li>
+<li>Straightforward chains: retrieve → generate, summarize → translate, etc.</li>
+</ul>
+<hr />
+<h2 id="2-what-is-langgraph">2. What is LangGraph</h2>
+<p><strong>Simple Meaning:</strong> LangGraph ek framework hai jo LLM applications ko <strong>graph ki tarah design</strong> karne deta hai — jahan har step ek "node" hai, aur unke beech <strong>edges (connections)</strong> define karte hain ki flow kaise aage badhega (including loops aur conditions).</p>
+<blockquote>
+<p>Socho ek <strong>flowchart</strong> — jahan boxes (nodes) hain aur arrows (edges) unhe connect karte hain, kabhi-kabhi arrow wapas peeche bhi ja sakta hai (loop) — yehi LangGraph ka core idea hai.</p>
+</blockquote>
+<h3 id="core-concepts-in-langgraph">Core Concepts in LangGraph</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Kya Karta Hai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>Individual steps/functions (e.g., "call LLM", "call tool", "check condition")</td>
+</tr>
+<tr>
+<td><strong>Edges</strong></td>
+<td>Nodes ke beech connections — decide karte hain agla step kya hoga</td>
+</tr>
+<tr>
+<td><strong>Conditional Edges</strong></td>
+<td>Based on output/state, alag-alag path le sakte ho (if/else jaisa)</td>
+</tr>
+<tr>
+<td><strong>State</strong></td>
+<td>Ek shared object jo poore graph me carry hota hai — har node isse read/update kar sakta hai</td>
+</tr>
+<tr>
+<td><strong>Cycles/Loops</strong></td>
+<td>Ek node se wapas pichle node pe ja sakte ho (e.g., "retry until correct")</td>
+</tr>
+<tr>
+<td><strong>Checkpointing</strong></td>
+<td>State ko save karna, taaki beech me pause/resume kiya ja sake</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-langgraph-works-simple-flow">How LangGraph Works (Simple Flow)</h3>
+<pre><code>        ┌─────────────┐
+        │   Start     │
+        └──────┬──────┘
+               ▼
+        ┌─────────────┐
+        │  Node: LLM  │────┐
+        └──────┬──────┘    │ (loop back if needed)
+               ▼           │
+     ┌───────────────────┐ │
+     │ Conditional Check │─┘
+     └─────────┬─────────┘
+               ▼
+        ┌─────────────┐
+        │     End     │
+        └─────────────┘
+</code></pre>
+<p>Graph structure ki wajah se <strong>non-linear workflows</strong> possible hain — loops, branches, retries, multiple agents ka coordination.</p>
+<h3 id="example-conceptual_1">Example (Conceptual)</h3>
+<pre><code class="language-python">graph = StateGraph()
+graph.add_node(&quot;generate&quot;, generate_answer)
+graph.add_node(&quot;check&quot;, check_quality)
+graph.add_conditional_edge(&quot;check&quot;, 
+    condition=lambda state: &quot;retry&quot; if state[&quot;quality&quot;] == &quot;bad&quot; else &quot;end&quot;)
+graph.add_edge(&quot;generate&quot;, &quot;check&quot;)
+graph.add_edge(&quot;check&quot;, &quot;generate&quot;)  # loop back if quality bad
+</code></pre>
+<h3 id="pros-of-langgraph">Pros of LangGraph</h3>
+<ul>
+<li>✅ <strong>Complex, multi-step agent workflows</strong> ko handle karna aasan</li>
+<li>✅ <strong>Loops aur retries</strong> naturally support hote hain (e.g., "jab tak answer accurate na ho, retry karo")</li>
+<li>✅ <strong>State management</strong> built-in hai — poore workflow me data pass karna easy</li>
+<li>✅ <strong>Multi-agent systems</strong> banana aasan (multiple LLMs/agents ek doosre se coordinate kar sakte hain)</li>
+<li>✅ Debugging aasan hai kyunki flow <strong>visually graph ki tarah</strong> dikhta hai</li>
+<li>✅ <strong>Human-in-the-loop</strong> support (beech me pause karke human approval lena)</li>
+</ul>
+<h3 id="cons-of-langgraph">Cons of LangGraph</h3>
+<ul>
+<li>❌ Simple tasks ke liye <strong>overkill</strong> ho sakta hai (unnecessary complexity)</li>
+<li>❌ Learning curve thoda zyada hai LangChain ke comparison me</li>
+<li>❌ Graph design karne me thoda zyada planning/thought chahiye hota hai</li>
+</ul>
+<h3 id="when-to-use-langgraph">When to Use LangGraph</h3>
+<ul>
+<li><strong>Multi-step agents</strong> jo decide karte hain kya karna hai next (dynamic decision-making)</li>
+<li>Jab <strong>retry/loop logic</strong> chahiye (e.g., "answer generate karo, check karo, agar galat hai toh phir se try karo")</li>
+<li><strong>Multi-agent systems</strong> (multiple specialized agents ek task pe collaborate karte hain)</li>
+<li>Jab <strong>long-running workflows</strong> ho jisme beech me pause/resume/human-approval chahiye</li>
+<li>Complex customer support bots, autonomous research agents, coding agents, etc.</li>
+</ul>
+<hr />
+<h2 id="3-side-by-side-comparison">3. Side-by-Side Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>LangChain</th>
+<th>LangGraph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primary Purpose</strong></td>
+<td>Building LLM apps with chains/tools/RAG</td>
+<td>Building stateful, multi-step agent workflows</td>
+</tr>
+<tr>
+<td><strong>Flow Structure</strong></td>
+<td>Mostly linear (sequential chains)</td>
+<td>Graph-based (nodes + edges, supports loops/branches)</td>
+</tr>
+<tr>
+<td><strong>Control Flow</strong></td>
+<td>Limited (basic conditionals via agents)</td>
+<td>Full control — loops, conditions, retries, parallel paths</td>
+</tr>
+<tr>
+<td><strong>State Management</strong></td>
+<td>Basic memory modules</td>
+<td>Explicit, robust state object passed through graph</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>RAG pipelines, simple chatbots, straightforward chains</td>
+<td>Complex agents, multi-agent systems, long-running workflows</td>
+</tr>
+<tr>
+<td><strong>Debugging</strong></td>
+<td>Can get messy with complex agents</td>
+<td>Easier to visualize and debug (graph structure)</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Easier to start with</td>
+<td>Steeper, but more powerful for complex use cases</td>
+</tr>
+<tr>
+<td><strong>Human-in-the-loop</strong></td>
+<td>Not natively strong</td>
+<td>Built-in support for pausing and resuming with human input</td>
+</tr>
+<tr>
+<td><strong>Relationship</strong></td>
+<td>Foundational library (LLM, prompt, tool integrations)</td>
+<td>Built ON TOP of LangChain's ecosystem (uses same components)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-do-they-work-together">4. Do They Work Together?</h2>
+<p><strong>Haan, bilkul!</strong> LangGraph, LangChain ke concepts (LLM wrappers, tools, prompts, retrievers) ko <strong>use karta hai</strong> — bas unko ek <strong>graph structure</strong> me organize karta hai.</p>
+<blockquote>
+<p>Simple relation:
+<strong>LangChain = Building blocks (LEGO pieces)</strong>
+<strong>LangGraph = Structure/blueprint jisme un blocks ko arrange karke complex machine banayi jaye</strong></p>
+</blockquote>
+<p>Ek typical project me:
+- <strong>LangChain</strong> se: LLM connect karna, prompts banana, tools define karna, retriever setup karna
+- <strong>LangGraph</strong> se: Un sab pieces ko ek <strong>workflow/graph</strong> me organize karna jisme decision-making, loops, aur multi-agent coordination ho</p>
+<hr />
+<h2 id="5-real-world-analogy">5. Real-World Analogy</h2>
+<blockquote>
+<p>Socho ek restaurant kitchen:
+- <strong>LangChain</strong> = Individual kitchen tools (knife, oven, mixer) aur basic recipes (chain: chop → cook → plate)
+- <strong>LangGraph</strong> = Poore kitchen ka <strong>workflow/process chart</strong> — jisme decide hota hai ki agar dish sahi nahi bani toh dobara banao (loop), agar customer allergy bataye toh alag recipe use karo (conditional branch), aur multiple chefs (agents) kaise coordinate karenge</p>
+</blockquote>
+<hr />
+<h2 id="6-simple-decision-guide">6. Simple Decision Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Your Situation</th>
+<th>Use This</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple RAG chatbot (retrieve → answer)</td>
+<td><strong>LangChain</strong></td>
+</tr>
+<tr>
+<td>Basic summarization/translation pipeline</td>
+<td><strong>LangChain</strong></td>
+</tr>
+<tr>
+<td>Need agent to decide "which tool to use next" dynamically</td>
+<td><strong>LangGraph</strong></td>
+</tr>
+<tr>
+<td>Need retry logic (e.g., "check answer quality, redo if bad")</td>
+<td><strong>LangGraph</strong></td>
+</tr>
+<tr>
+<td>Multiple agents working together (e.g., researcher + writer + reviewer)</td>
+<td><strong>LangGraph</strong></td>
+</tr>
+<tr>
+<td>Need to pause workflow for human approval mid-process</td>
+<td><strong>LangGraph</strong></td>
+</tr>
+<tr>
+<td>Quick prototype, straightforward task</td>
+<td><strong>LangChain</strong></td>
+</tr>
+<tr>
+<td>Production-grade complex autonomous agent</td>
+<td><strong>LangGraph</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-one-line-memory-trick">7. One-Line Memory Trick</h2>
+<blockquote>
+<p><strong>LangChain = "Seedhi line me steps jodo"</strong>
+<strong>LangGraph = "Graph banao — loops, branches, multiple agents sab control karo"</strong></p>
+</blockquote>
+<ul>
+<li><strong>LangChain</strong> → Chains (Step 1 → Step 2 → Step 3)</li>
+<li><strong>LangGraph</strong> → Graphs (Step 1 → Step 2 → check → wapas Step 1 ya aage badho)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

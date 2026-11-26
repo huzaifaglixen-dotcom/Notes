@@ -1,0 +1,2631 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/MCP_Model_Context_Protocol_Notes/">
+      
+      
+        <link rel="prev" href="../LangGraph_Complete_Notes/">
+      
+      
+        <link rel="next" href="../Machine-Learning-Types/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>MCP (Model Context Protocol) — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mcp-model-context-protocol-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MCP (Model Context Protocol) — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-mcp-was-created-the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why MCP was Created (The Problem)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why MCP was Created (The Problem)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-solution-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: MCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-is-mcp-simple-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What is MCP (Simple Meaning)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-usb-c-for-ai-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The "USB-C for AI" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mcp-architecture-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. MCP Architecture — Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mcp-client-vs-mcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. MCP Client vs MCP Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. MCP Client vs MCP Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp-client-host-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP Client (Host Side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-server-tooldata-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP Server (Tool/Data Side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-an-mcp-server-can-expose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What an MCP Server Can Expose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-how-mcp-communication-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. How MCP Communication Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-transport-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Transport Mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mcp-vs-traditional-functiontool-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. MCP vs Traditional Function/Tool Calling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-real-world-examples-of-mcp-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Real-World Examples of MCP Servers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-building-an-mcp-server-conceptual-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Building an MCP Server (Conceptual Overview)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-mcp-in-the-broader-agent-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. MCP in the Broader Agent Ecosystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-mcp-was-created-the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why MCP was Created (The Problem)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why MCP was Created (The Problem)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-solution-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution: MCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-is-mcp-simple-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What is MCP (Simple Meaning)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-the-usb-c-for-ai-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. The "USB-C for AI" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-mcp-architecture-core-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. MCP Architecture — Core Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mcp-client-vs-mcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. MCP Client vs MCP Server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. MCP Client vs MCP Server">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp-client-host-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP Client (Host Side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-server-tooldata-side" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP Server (Tool/Data Side)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-an-mcp-server-can-expose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What an MCP Server Can Expose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-how-mcp-communication-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. How MCP Communication Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-transport-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Transport Mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mcp-vs-traditional-functiontool-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. MCP vs Traditional Function/Tool Calling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-real-world-examples-of-mcp-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Real-World Examples of MCP Servers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-building-an-mcp-server-conceptual-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Building an MCP Server (Conceptual Overview)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-mcp-in-the-broader-agent-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. MCP in the Broader Agent Ecosystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mcp-model-context-protocol-complete-notes">MCP (Model Context Protocol) — Complete Notes</h1>
+<blockquote>
+<p><strong>MCP</strong> = Ek <strong>open, standardized protocol</strong> (Anthropic ne introduce kiya) jo LLM applications ko <strong>external tools, data sources, aur systems</strong> se connect karne ka ek <strong>common, universal tareeka</strong> deta hai.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why MCP was Created (The Problem)</li>
+<li>What is MCP (Simple Meaning)</li>
+<li>The "USB-C for AI" Analogy</li>
+<li>MCP Architecture — Core Components</li>
+<li>MCP Client vs MCP Server</li>
+<li>What an MCP Server Can Expose</li>
+<li>How MCP Communication Works</li>
+<li>Transport Mechanisms</li>
+<li>MCP vs Traditional Function/Tool Calling</li>
+<li>Real-World Examples of MCP Servers</li>
+<li>Building an MCP Server (Conceptual Overview)</li>
+<li>Security Considerations</li>
+<li>MCP in the Broader Agent Ecosystem</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-mcp-was-created-the-problem">1. Why MCP was Created (The Problem)</h2>
+<p>Before MCP, agar aapko apna LLM app <strong>10 different tools/services</strong> (Google Drive, Slack, GitHub, database, etc.) se connect karna hota, toh:
+- Har service ke liye <strong>alag, custom integration code</strong> likhna padta tha
+- Har developer/company apna <strong>khud ka format</strong> use karta tha tool definitions ke liye
+- Yeh ek <strong>"N × M" problem</strong> ban jata tha — N applications × M tools = bahut saare custom connections banane padte the</p>
+<blockquote>
+<p>Analogy (Before MCP): Socho har device (laptop, phone, camera) ka apna <strong>alag charger/cable</strong> ho — koi standard nahi. Bahut messy aur inefficient.</p>
+</blockquote>
+<h3 id="the-solution-mcp">The Solution: MCP</h3>
+<p>Ek <strong>standard protocol</strong> jisse <strong>koi bhi MCP-compatible client</strong> (Claude, ya koi bhi LLM app), <strong>kisi bhi MCP-compatible server</strong> (tool/data source) se <strong>same tareeke se</strong> connect ho sake — bina custom integration code likhe.</p>
+<hr />
+<h2 id="2-what-is-mcp-simple-meaning">2. What is MCP (Simple Meaning)</h2>
+<p><strong>MCP (Model Context Protocol)</strong> ek <strong>open standard</strong> hai jo define karta hai ki:
+- LLM applications (<strong>clients</strong>) aur external tools/data sources (<strong>servers</strong>) ke beech <strong>communication kaise ho</strong>
+- Tools, resources, aur prompts ko <strong>kaise expose/discover</strong> kiya jaye
+- Data <strong>kaise securely pass</strong> ki jaye dono ke beech</p>
+<blockquote>
+<p>Simple words me: MCP ek <strong>"common language/rulebook"</strong> hai jisse AI models aur external systems ek doosre se <strong>baat kar sakte hain</strong>, bina yeh worry kiye ki dusri taraf kaunsa specific software/framework use ho raha hai.</p>
+</blockquote>
+<hr />
+<h2 id="3-the-usb-c-for-ai-analogy">3. The "USB-C for AI" Analogy</h2>
+<p>MCP ko often <strong>"USB-C for AI applications"</strong> kaha jata hai:</p>
+<table>
+<thead>
+<tr>
+<th>USB-C</th>
+<th>MCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ek hi cable/port standard, jisse phone, laptop, camera — sab connect ho sakte hain</td>
+<td>Ek hi protocol standard, jisse koi bhi AI app, kisi bhi tool/data source se connect ho sakta hai</td>
+</tr>
+<tr>
+<td>Manufacturer ko har device ke liye alag port design nahi karna padta</td>
+<td>Developer ko har tool ke liye alag integration nahi likhni padti</td>
+</tr>
+<tr>
+<td>Universal compatibility</td>
+<td>Universal compatibility (across different AI apps and tools)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Bas ek baar <strong>MCP Server</strong> bana do kisi tool/service ke liye, aur <strong>koi bhi MCP-compatible AI application</strong> (Claude Desktop, Claude Code, ya kisi aur company ka LLM app) usko use kar sakta hai — bina alag se integration likhe.</p>
+</blockquote>
+<hr />
+<h2 id="4-mcp-architecture-core-components">4. MCP Architecture — Core Components</h2>
+<pre><code>┌─────────────┐         MCP Protocol          ┌─────────────┐
+│  MCP Client │ ◄─────────────────────────────► │  MCP Server │
+│ (e.g., Claude│                                 │ (e.g., Slack,│
+│   Desktop)   │                                 │  GitHub,     │
+│              │                                 │  Database)   │
+└─────────────┘                                 └─────────────┘
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Host</strong></td>
+<td>The AI application itself (e.g., Claude Desktop, an IDE, a custom agent app)</td>
+</tr>
+<tr>
+<td><strong>MCP Client</strong></td>
+<td>Component inside the Host that manages the connection to one MCP Server</td>
+</tr>
+<tr>
+<td><strong>MCP Server</strong></td>
+<td>A lightweight program that exposes specific tools/data/capabilities via the MCP standard</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Ek Host (jaise Claude Desktop) ek saath <strong>multiple MCP Servers</strong> se connect ho sakta hai (Slack server, GitHub server, Database server — sab ek saath).</p>
+</blockquote>
+<hr />
+<h2 id="5-mcp-client-vs-mcp-server">5. MCP Client vs MCP Server</h2>
+<h3 id="mcp-client-host-side">MCP Client (Host Side)</h3>
+<ul>
+<li>AI application ke andar rehta hai.</li>
+<li>Server se <strong>connection establish</strong> karta hai.</li>
+<li>Server ke <strong>available capabilities discover</strong> karta hai (kaunse tools/resources available hain).</li>
+<li>User/LLM ki taraf se <strong>requests bhejta hai</strong> server ko.</li>
+</ul>
+<h3 id="mcp-server-tooldata-side">MCP Server (Tool/Data Side)</h3>
+<ul>
+<li>Ek specific service (jaise GitHub, Slack, ek database, ya koi custom internal tool) ko <strong>MCP-compatible bana deta hai</strong>.</li>
+<li><strong>Expose karta hai:</strong></li>
+<li><strong>Tools</strong> (functions LLM call kar sake, jaise "create_issue", "send_message")</li>
+<li><strong>Resources</strong> (data jo LLM read kar sake, jaise files, database records)</li>
+<li><strong>Prompts</strong> (pre-defined prompt templates jo server suggest kar sakta hai)</li>
+</ul>
+<hr />
+<h2 id="6-what-an-mcp-server-can-expose">6. What an MCP Server Can Expose</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Simple Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tools</strong></td>
+<td>Actions/functions that can be called (with side effects)</td>
+<td><code>create_github_issue(title, body)</code>, <code>send_slack_message(channel, text)</code></td>
+</tr>
+<tr>
+<td><strong>Resources</strong></td>
+<td>Read-only data that can be fetched/referenced</td>
+<td>A file's content, a database record, a webpage</td>
+</tr>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>Reusable prompt templates the server suggests for common tasks</td>
+<td>"Summarize this GitHub PR" template</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Yeh teeno concepts humne pehle "Tool Calling" notes me dekhe the (tools), lekin MCP isko ek <strong>standardized, discoverable format</strong> me package karta hai, jisse <strong>koi bhi client</strong> inhe automatically samajh aur use kar sake.</p>
+</blockquote>
+<hr />
+<h2 id="7-how-mcp-communication-works">7. How MCP Communication Works</h2>
+<pre><code>1. Client connects to Server (via stdio, HTTP, etc. — see Transport section)
+2. Client asks Server: &quot;What capabilities do you have?&quot; (discovery/handshake)
+3. Server responds: &quot;I have these tools: [list], these resources: [list]&quot;
+4. LLM (via Client) decides it needs to use a specific tool
+5. Client sends request to Server: &quot;Call tool X with these parameters&quot;
+6. Server executes the action (e.g., actually creates a GitHub issue)
+7. Server sends result back to Client
+8. Client passes result to LLM → LLM generates final response
+</code></pre>
+<blockquote>
+<p>Yeh flow bilkul <strong>Tool Calling</strong> jaisa hi hai (jo humne pichli notes me dekha), bas MCP isko <strong>standardized protocol level</strong> pe define karta hai, taaki yeh flow <strong>kisi bhi tool aur kisi bhi AI app</strong> ke beech consistently kaam kare.</p>
+</blockquote>
+<hr />
+<h2 id="8-transport-mechanisms">8. Transport Mechanisms</h2>
+<p>MCP client aur server <strong>kaise communicate</strong> karte hain, iske liye alag transport options hain:</p>
+<table>
+<thead>
+<tr>
+<th>Transport</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stdio (Standard Input/Output)</strong></td>
+<td>Local tools/servers jo same machine pe chal rahe hain (e.g., local file system access)</td>
+</tr>
+<tr>
+<td><strong>HTTP/SSE (Server-Sent Events)</strong></td>
+<td>Remote servers — jab tool/service kisi doosre server pe hosted ho (e.g., cloud-based service)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>stdio</strong> typically local development/desktop use ke liye use hota hai (fast, simple), <strong>HTTP-based</strong> transport remote/cloud services ke liye zaroori hai.</p>
+</blockquote>
+<hr />
+<h2 id="9-mcp-vs-traditional-functiontool-calling">9. MCP vs Traditional Function/Tool Calling</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Traditional Function Calling</th>
+<th>MCP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Standardization</strong></td>
+<td>Har app/framework apna format define karta hai</td>
+<td>Universal, open standard — sabke liye same</td>
+</tr>
+<tr>
+<td><strong>Reusability</strong></td>
+<td>Ek app ke liye likha gaya tool, doosre app me directly use nahi ho sakta</td>
+<td>Ek MCP Server, kisi bhi MCP-compatible client ke saath use ho sakta hai</td>
+</tr>
+<tr>
+<td><strong>Discovery</strong></td>
+<td>Developer ko manually tools define/register karne padte hain har app me</td>
+<td>Client automatically server se "available capabilities" discover kar leta hai</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Sirf tools (functions)</td>
+<td>Tools + Resources + Prompts — broader scope</td>
+</tr>
+<tr>
+<td><strong>Ecosystem</strong></td>
+<td>Fragmented — har company/framework apna approach</td>
+<td>Growing shared ecosystem — community MCP servers ban rahe hain jo koi bhi use kar sakta hai</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Simple takeaway:</strong> Function/Tool calling ek <strong>concept</strong> hai (LLM tools call kar sakta hai). MCP ek <strong>standardized way</strong> hai us concept ko implement karne ka, taaki reusability aur interoperability mile.</p>
+</blockquote>
+<hr />
+<h2 id="10-real-world-examples-of-mcp-servers">10. Real-World Examples of MCP Servers</h2>
+<table>
+<thead>
+<tr>
+<th>MCP Server</th>
+<th>What It Enables</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub MCP Server</strong></td>
+<td>LLM ko GitHub issues, PRs, repos ke saath interact karne deta hai</td>
+</tr>
+<tr>
+<td><strong>Slack MCP Server</strong></td>
+<td>Messages read/send karna, channels manage karna</td>
+</tr>
+<tr>
+<td><strong>Google Drive MCP Server</strong></td>
+<td>Files search/read karna</td>
+</tr>
+<tr>
+<td><strong>Database MCP Server (e.g., PostgreSQL)</strong></td>
+<td>SQL queries run karna, schema explore karna</td>
+</tr>
+<tr>
+<td><strong>Filesystem MCP Server</strong></td>
+<td>Local files read/write karna</td>
+</tr>
+<tr>
+<td><strong>Browser/Web MCP Server</strong></td>
+<td>Web pages browse karna, actions perform karna (clicks, form fills)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Aapne pichle conversations me dekha hoga ki Claude jaisi applications me "connectors"/"MCP Apps" available hote hain — yeh sab dar-asal MCP Servers hi hain jo different services (Google Drive, Asana, etc.) ko Claude se connect karte hain.</p>
+</blockquote>
+<hr />
+<h2 id="11-building-an-mcp-server-conceptual-overview">11. Building an MCP Server (Conceptual Overview)</h2>
+<p>Ek basic MCP Server banane ka simplified flow (Python SDK jaisa):</p>
+<pre><code class="language-python">from mcp.server import Server
+
+server = Server(&quot;my-custom-tool-server&quot;)
+
+@server.tool()
+def get_customer_info(customer_id: str) -&gt; dict:
+    &quot;&quot;&quot;Fetch customer information from our database.&quot;&quot;&quot;
+    # Your actual logic here
+    return {&quot;name&quot;: &quot;...&quot;, &quot;email&quot;: &quot;...&quot;}
+
+@server.resource(&quot;customers://{customer_id}&quot;)
+def get_customer_resource(customer_id: str) -&gt; str:
+    &quot;&quot;&quot;Expose customer data as a readable resource.&quot;&quot;&quot;
+    return fetch_customer_data(customer_id)
+
+server.run()
+</code></pre>
+<blockquote>
+<p>Iske baad, <strong>koi bhi MCP client</strong> (Claude Desktop, ya koi custom agent app) is server se connect hokar <code>get_customer_info</code> tool ko discover aur call kar sakta hai — bina developer ko us client ke liye alag se kuch likhna pade.</p>
+</blockquote>
+<hr />
+<h2 id="12-security-considerations">12. Security Considerations</h2>
+<p>MCP servers <strong>real actions</strong> perform kar sakte hain (files delete karna, messages bhejna, database modify karna) — isliye security bahut important hai:</p>
+<table>
+<thead>
+<tr>
+<th>Consideration</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authentication</strong></td>
+<td>Server ko verify karna chahiye ki request legitimate client se aa rahi hai</td>
+</tr>
+<tr>
+<td><strong>Authorization/Permissions</strong></td>
+<td>User ko explicitly approve karna chahiye sensitive actions (jaise "delete file") — human-in-the-loop</td>
+</tr>
+<tr>
+<td><strong>Least Privilege</strong></td>
+<td>MCP Server ko sirf utni hi capability deni chahiye jitni zaroori hai, sab kuch expose mat karo</td>
+</tr>
+<tr>
+<td><strong>Input Validation</strong></td>
+<td>Server ko har incoming request/parameter ko validate karna chahiye (LLM galat/malicious input bhi bhej sakta hai)</td>
+</tr>
+<tr>
+<td><strong>Untrusted Content</strong></td>
+<td>Agar MCP resource untrusted source (jaise ek public webpage) se data laata hai, uske andar <strong>hidden/malicious instructions</strong> ho sakti hain (prompt injection risk) — isko carefully handle karna chahiye</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-mcp-in-the-broader-agent-ecosystem">13. MCP in the Broader Agent Ecosystem</h2>
+<p>MCP ka role samajhne ke liye, yeh dekho ki yeh humari pichli notes ke saath kaise fit hota hai:</p>
+<pre><code>┌─────────────────────────────────────────────────────┐
+│                    AI AGENT                          │
+│  (Reasoning, Planning, ReAct loop — pichli notes)     │
+└───────────────────────┬───────────────────────────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │   Tool Calling       │  (Concept: LLM decides
+              │   (Concept)          │   what tool to call)
+              └──────────┬───────────┘
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │   MCP (Protocol)     │  (Standardized way to
+              │                      │   actually connect &amp; call)
+              └──────────┬───────────┘
+                         │
+           ┌─────────────┼─────────────┐
+           ▼             ▼             ▼
+     GitHub Server  Slack Server  DB Server
+</code></pre>
+<blockquote>
+<p>MCP, Agent aur Tool Calling ko <strong>replace nahi karta</strong> — yeh unke <strong>implementation ko standardize</strong> karta hai, taaki ecosystem-wide reusability mile.</p>
+</blockquote>
+<hr />
+<h2 id="14-common-mistakes">14. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exposing too many capabilities in one MCP server</td>
+<td>LLM confuse ho sakta hai, security risk badhta hai</td>
+<td>Keep servers focused — one server per clear domain/service</td>
+</tr>
+<tr>
+<td>No authentication/authorization checks</td>
+<td>Anyone could potentially trigger sensitive actions</td>
+<td>Always implement proper auth before exposing tools</td>
+</tr>
+<tr>
+<td>Trusting all resource content blindly</td>
+<td>Malicious content (e.g., from a webpage) could contain prompt injections</td>
+<td>Treat external resource content as untrusted data, not instructions</td>
+</tr>
+<tr>
+<td>Not testing with real client behavior</td>
+<td>Server might not handle edge cases the client sends</td>
+<td>Test thoroughly with actual MCP clients before deploying</td>
+</tr>
+<tr>
+<td>Building custom integration instead of MCP when reusability matters</td>
+<td>Wastes effort recreating what MCP already standardizes</td>
+<td>Use MCP when building tools meant to work across multiple AI applications</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-cheat-sheet">15. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>MCP</strong> → "USB-C for AI — ek standard jisse AI apps aur tools connect hote hain"</li>
+<li><strong>MCP Client</strong> → "AI application ki taraf se connection manage karta hai"</li>
+<li><strong>MCP Server</strong> → "Tool/data source ko expose karta hai standardized tareeke se"</li>
+<li><strong>Tools, Resources, Prompts</strong> → "Actions, Data, aur Templates jo server deta hai"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>AI App (Host) → MCP Client → [Standard Protocol] → MCP Server → Actual Tool/Service
+                                                            │
+                                                            ▼
+                                                    Result flows back
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"MCP doesn't invent tool calling — it standardizes it, so any AI app can talk to any tool/service without custom, one-off integration code."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

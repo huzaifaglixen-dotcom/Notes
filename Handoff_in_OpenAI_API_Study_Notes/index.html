@@ -1,0 +1,2301 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Handoff_in_OpenAI_API_Study_Notes/">
+      
+      
+        <link rel="prev" href="../Handoff_Asaan_Notes_Roman_Urdu/">
+      
+      
+        <link rel="next" href="../Hybrid_Search_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>🔄 Handoff in OpenAI API — Study Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#handoff-in-openai-api-study-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔄 Handoff in OpenAI API — Study Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-to-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 🧭 Introduction to Handoff
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 🧭 Introduction to Handoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-analogy-the-bank-teller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏦 Real-World Analogy: The Bank Teller
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-it-works-the-technical-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⚙️ How It Works (The Technical Flow)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deep-dive-handoff-vs-agent-as-a-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🔍 Deep Dive: Handoff vs. Agent-as-a-Tool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 🔍 Deep Dive: Handoff vs. Agent-as-a-Tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-handoff-direct-full-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Scenario 1 — Handoff (Direct, Full Transfer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-agent-as-a-tool-indirect-manager-stays-in-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Scenario 2 — Agent-as-a-Tool (Indirect, Manager Stays in Control)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-context-state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 🧠 Context &amp; State Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 🧠 Context &amp; State Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-to-agent-1-after-a-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens to Agent 1 after a handoff?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-handoff-reverse-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 "Back Handoff" (Reverse Transfer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conceptual-code-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 💻 Conceptual Code Blueprint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 💻 Conceptual Code Blueprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-happening-conceptually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 What's happening conceptually:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-back-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 Adding a Back Handoff:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Recap Cheat-Sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-to-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 🧭 Introduction to Handoff
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 🧭 Introduction to Handoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-analogy-the-bank-teller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏦 Real-World Analogy: The Bank Teller
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-it-works-the-technical-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⚙️ How It Works (The Technical Flow)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deep-dive-handoff-vs-agent-as-a-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🔍 Deep Dive: Handoff vs. Agent-as-a-Tool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 🔍 Deep Dive: Handoff vs. Agent-as-a-Tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Definitions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-1-handoff-direct-full-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Scenario 1 — Handoff (Direct, Full Transfer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-2-agent-as-a-tool-indirect-manager-stays-in-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Scenario 2 — Agent-as-a-Tool (Indirect, Manager Stays in Control)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-context-state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 🧠 Context &amp; State Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 🧠 Context &amp; State Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-to-agent-1-after-a-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens to Agent 1 after a handoff?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-handoff-reverse-transfer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 "Back Handoff" (Reverse Transfer)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conceptual-code-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 💻 Conceptual Code Blueprint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 💻 Conceptual Code Blueprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-happening-conceptually" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 What's happening conceptually:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-back-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 Adding a Back Handoff:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Recap Cheat-Sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="handoff-in-openai-api-study-notes">🔄 Handoff in OpenAI API — Study Notes</h1>
+<hr />
+<h2 id="1-introduction-to-handoff">1. 🧭 Introduction to Handoff</h2>
+<p><strong>Handoff</strong> is a core feature of the <strong>OpenAI Agents SDK</strong> (the production successor to the earlier "Swarm" framework) that enables <strong>Multi-Agent Systems</strong>.</p>
+<ul>
+<li>In simple terms: <strong>Handoff = one AI agent transferring an ongoing conversation to another, more specialized agent.</strong></li>
+<li>Once the handoff happens, the <strong>new agent takes full control</strong> of the conversation — the first agent steps away completely.</li>
+<li>It's the SDK's mechanism for <strong>agent-to-agent delegation</strong>, used when a task is better handled by a specialist.</li>
+</ul>
+<h3 id="real-world-analogy-the-bank-teller">🏦 Real-World Analogy: The Bank Teller</h3>
+<p>Imagine you walk into a bank and speak to the <strong>front-desk receptionist (Agent 1 — "Triage Agent")</strong>:
+- You say: <em>"I need help disputing a suspicious transaction."</em>
+- The receptionist realizes this isn't their job — it needs the <strong>Fraud Department (Agent 2 — "Specialist Agent")</strong>.
+- The receptionist <strong>doesn't just give you directions</strong> — they <strong>walk you over and hand you off</strong>, along with your file/case history, to the fraud specialist.
+- From that point on, <strong>you interact directly with the Fraud Department</strong>. The receptionist is no longer part of the conversation.</p>
+<p>✅ That's exactly what Handoff does in code — a <strong>full transfer of ownership + context</strong>, not just a referral.</p>
+<hr />
+<h2 id="2-how-it-works-the-technical-flow">2. ⚙️ How It Works (The Technical Flow)</h2>
+<p>Handoffs are implemented using <strong>function calling</strong> under the hood. Here's the step-by-step flow:</p>
+<ol>
+<li><strong>🧩 Handoffs are registered as tools</strong></li>
+<li>Every agent has a <code>handoffs</code> parameter listing which other agents it can transfer to.</li>
+<li>
+<p>The SDK automatically converts each potential handoff into a <strong>callable function/tool</strong> for the LLM — e.g., a handoff to <code>Refund Agent</code> becomes a tool named <code>transfer_to_refund_agent</code>.</p>
+</li>
+<li>
+<p><strong>🤔 The LLM decides to hand off</strong></p>
+</li>
+<li>During its reasoning, the current agent's underlying LLM decides the user's request matches a specialist's domain.</li>
+<li>
+<p>It "calls" the handoff tool — just like it would call any other function (e.g., <code>get_weather()</code>).</p>
+</li>
+<li>
+<p><strong>📦 The agent "returns" a new Agent object</strong></p>
+</li>
+<li>Instead of returning a normal text/tool response, the function call resolves to <strong>a new Agent object</strong> (the specialist).</li>
+<li>
+<p>This is the key mechanical trick: the framework detects that the return value is <em>another agent</em>, not just data.</p>
+</li>
+<li>
+<p><strong>🔁 The Runner switches control</strong></p>
+</li>
+<li>The SDK's orchestration loop (the "Runner") sees this special return type and <strong>switches execution to the new agent</strong>.</li>
+<li>
+<p>The original agent's turn ends immediately — no further output from it.</p>
+</li>
+<li>
+<p><strong>📜 Context &amp; chat history are passed along</strong></p>
+</li>
+<li>By default, the new agent <strong>inherits the entire prior conversation history</strong> — it's "as though the new agent takes over the conversation" from the start.</li>
+<li>
+<p>Developers can customize this using an <strong><code>input_filter</code></strong> — a function that can trim, summarize, or reshape what history gets passed forward.</p>
+</li>
+<li>
+<p><strong>▶️ The new agent continues the conversation</strong></p>
+</li>
+<li>The specialist agent now responds directly to the user, using its own instructions, tools, and (optionally) its own sub-handoffs.</li>
+</ol>
+<p><strong>Flow Summary:</strong></p>
+<pre><code>User Input → Agent A (Triage) → LLM decides to call transfer_to_agent_B()
+→ Returns Agent B object → Runner detects handoff → switches active agent
+→ Agent B receives full/filtered history → Agent B responds to user
+</code></pre>
+<hr />
+<h2 id="3-deep-dive-handoff-vs-agent-as-a-tool">3. 🔍 Deep Dive: Handoff vs. Agent-as-a-Tool</h2>
+<h3 id="definitions">📖 Definitions</h3>
+<ul>
+<li>
+<p><strong>🤝 Handoff</strong>: A <strong>full transfer of control</strong>. One agent completely delegates the conversation to another. The original agent is "done" — the new agent owns everything going forward, including direct interaction with the user.</p>
+</li>
+<li>
+<p><strong>🛠️ Agent-as-a-Tool</strong>: One agent (usually a <strong>manager/orchestrator</strong>) calls another agent <strong>like a function/tool</strong> — e.g., <code>agent.as_tool(tool_name="refund_expert", ...)</code>. The sub-agent does its job, <strong>returns a result</strong>, and control comes right back to the manager, who stays in charge and crafts the final response.</p>
+</li>
+</ul>
+<h3 id="comparison-table">📊 Comparison Table</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>🤝 Handoff</th>
+<th>🛠️ Agent-as-a-Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control / Ownership</strong></td>
+<td>Full transfer — new agent owns the conversation entirely</td>
+<td>Manager agent retains control throughout; sub-agent is subordinate</td>
+</tr>
+<tr>
+<td><strong>Context Window / Memory Load</strong></td>
+<td>New agent inherits the <strong>entire chat history</strong> (or filtered version) — heavier context load carried forward</td>
+<td>Sub-agent typically only sees the <strong>specific input/parameters</strong> passed to it — lighter, scoped memory footprint</td>
+</tr>
+<tr>
+<td><strong>User Interaction</strong></td>
+<td><strong>Direct</strong> — user now talks straight to the new agent</td>
+<td><strong>Indirect</strong> — user only ever talks to the manager; sub-agent's output is invisible/internal</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>Simpler control-flow per agent, but harder to track "who's in charge" across a long session</td>
+<td>More complex orchestration logic in the manager, but easier to audit/debug (single thread of control)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scenario-1-handoff-direct-full-transfer">💬 Scenario 1 — Handoff (Direct, Full Transfer)</h3>
+<pre><code>User: &quot;I want to dispute a charge on my account.&quot;
+Triage Agent: [internally calls transfer_to_billing_agent()]
+Billing Agent: &quot;Hi, I can see your recent transactions. Which charge would you like to dispute?&quot;
+User: &quot;The $49.99 charge from March 3rd.&quot;
+</code></pre>
+<p>➡️ Notice: the user is now <strong>talking directly to the Billing Agent</strong>. The Triage Agent is completely out of the picture.</p>
+<h3 id="scenario-2-agent-as-a-tool-indirect-manager-stays-in-control">💬 Scenario 2 — Agent-as-a-Tool (Indirect, Manager Stays in Control)</h3>
+<pre><code>User: &quot;Can you summarize this contract and check if it's compliant?&quot;
+Manager Agent: [internally calls compliance_checker_tool(contract_text)]
+   → Compliance Agent (as tool) returns: &quot;3 clauses may violate GDPR.&quot;
+Manager Agent: &quot;I reviewed the contract — it looks solid overall, but 3 clauses 
+                may raise GDPR compliance concerns. Want me to flag them?&quot;
+</code></pre>
+<p>➡️ Notice: the user <strong>never sees or talks to</strong> the Compliance Agent directly — the Manager Agent absorbs the result and replies on its behalf.</p>
+<hr />
+<h2 id="4-context-state-management">4. 🧠 Context &amp; State Management</h2>
+<h3 id="what-happens-to-agent-1-after-a-handoff">What happens to Agent 1 after a handoff?</h3>
+<ul>
+<li><strong>Its turn ends immediately</strong> — it does not process any further input from the user.</li>
+<li>It <strong>loses "the mic"</strong>: it no longer has direct access to the live conversation unless control is explicitly handed back.</li>
+<li>However, it is <strong>not deleted or destroyed</strong> — it's simply not active. Its definition (instructions, tools) still exists in code and can be re-invoked later.</li>
+<li>The conversation <strong>history up to the handoff point</strong> is preserved and passed to Agent 2 by default (full transparency), unless an <code>input_filter</code> trims it.</li>
+</ul>
+<h3 id="back-handoff-reverse-transfer">🔙 "Back Handoff" (Reverse Transfer)</h3>
+<ul>
+<li>A <strong>Back Handoff</strong> occurs when the second (specialist) agent determines the conversation should return to the original agent (or a third agent) — e.g., after resolving its specialized task.</li>
+<li>Mechanically, it works <strong>identically to a forward handoff</strong>:</li>
+<li>Agent 2's LLM calls a handoff tool (e.g., <code>transfer_to_triage_agent</code>).</li>
+<li>It returns the <strong>original Agent object</strong> (or another agent).</li>
+<li>The Runner switches control back.</li>
+<li><strong>Practical use case</strong>: A Billing Agent resolves a refund, then hands back to the Triage Agent in case the user has an unrelated question — mimicking how a bank specialist might send you back to the receptionist.</li>
+<li>⚠️ Key point: For a back handoff to be possible, <strong>Agent 2 must have Agent 1 listed in its own <code>handoffs</code> parameter</strong> — handoff pathways are not automatically bidirectional; they must be explicitly configured in both directions.</li>
+</ul>
+<hr />
+<h2 id="5-conceptual-code-blueprint">5. 💻 Conceptual Code Blueprint</h2>
+<p>A minimal, Swarm/Agents-SDK-style example showing how one agent "returns" another agent to perform a handoff:</p>
+<pre><code class="language-python">from agents import Agent, Runner
+
+# 🧑‍💼 Specialist Agent: Refunds
+refund_agent = Agent(
+    name=&quot;Refund Agent&quot;,
+    instructions=&quot;You handle refund requests. Be empathetic and efficient.&quot;,
+)
+
+# 🧑‍💼 Specialist Agent: Billing
+billing_agent = Agent(
+    name=&quot;Billing Agent&quot;,
+    instructions=&quot;You handle billing disputes and invoice questions.&quot;,
+)
+
+# 🧑‍💻 Triage Agent: The &quot;front desk&quot; — decides where to route the user
+triage_agent = Agent(
+    name=&quot;Triage Agent&quot;,
+    instructions=(
+        &quot;You are the first point of contact. &quot;
+        &quot;If the user wants a refund, hand off to the Refund Agent. &quot;
+        &quot;If the user has a billing dispute, hand off to the Billing Agent.&quot;
+    ),
+    handoffs=[refund_agent, billing_agent],  # 👈 registers possible handoff targets
+)
+
+# ▶️ Running the conversation
+result = Runner.run_sync(
+    triage_agent,
+    &quot;I was double-charged for my last order, I need a refund.&quot;
+)
+
+print(result.final_output)
+</code></pre>
+<h3 id="whats-happening-conceptually">🔑 What's happening conceptually:</h3>
+<ol>
+<li><code>triage_agent</code> is invoked with the user's message.</li>
+<li>Its LLM reasons: <em>"This matches the Refund Agent's job"</em> → internally "calls" <code>transfer_to_refund_agent</code>.</li>
+<li>The SDK resolves this call to <strong>the <code>refund_agent</code> object itself</strong> (not a string, not plain data).</li>
+<li><code>Runner</code> detects an <code>Agent</code> was returned → <strong>switches the active agent</strong> to <code>refund_agent</code>.</li>
+<li><code>refund_agent</code> receives the full conversation history and generates the final reply — becoming the one "talking" to the user from here on.</li>
+</ol>
+<h3 id="adding-a-back-handoff">🔙 Adding a Back Handoff:</h3>
+<pre><code class="language-python">refund_agent = Agent(
+    name=&quot;Refund Agent&quot;,
+    instructions=&quot;Handle refunds. If the issue isn't a refund, hand back to Triage Agent.&quot;,
+    handoffs=[triage_agent],  # 👈 enables reverse transfer
+)
+</code></pre>
+<hr />
+<h2 id="quick-recap-cheat-sheet">📌 Quick Recap Cheat-Sheet</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>One-Line Takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Handoff</td>
+<td>Full control transfer to a specialist agent — like a bank routing you to another department</td>
+</tr>
+<tr>
+<td>Mechanism</td>
+<td>Implemented via function/tool calling; returning an <code>Agent</code> object triggers the switch</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>Entire chat history passed by default (customizable via <code>input_filter</code>)</td>
+</tr>
+<tr>
+<td>Agent-as-Tool</td>
+<td>Orchestrator stays in charge; sub-agent just returns data, no direct user contact</td>
+</tr>
+<tr>
+<td>Back Handoff</td>
+<td>Same mechanism in reverse — must be explicitly configured on the specialist agent</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

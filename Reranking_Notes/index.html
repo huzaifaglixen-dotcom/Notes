@@ -1,0 +1,2508 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Reranking_Notes/">
+      
+      
+        <link rel="prev" href="../RAG_Retrieval_Evaluation_Metrics/">
+      
+      
+        <link rel="next" href="../Tokens-and-Context-Window/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Reranking — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reranking-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reranking — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-reranking-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Reranking is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-two-stage-retrieval-pipeline-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Two-Stage Retrieval Pipeline (Concept)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bi-encoders-vs-cross-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bi-Encoders vs Cross-Encoders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bi-Encoders vs Cross-Encoders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-bi-encoder-jo-normal-vector-search-use-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Bi-Encoder (Jo Normal Vector Search Use Karta Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cross-encoder-jo-reranking-use-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Cross-Encoder (Jo Reranking Use Karta Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-reranking-works-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Reranking Works (Step-by-Step)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Reranking Works (Step-by-Step)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-popular-rerankers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Popular Rerankers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-implementation-example-conceptual-cohere-rerank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Implementation Example (Conceptual — Cohere Rerank)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-reranking-metrics-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Reranking Metrics Impact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-costlatency-tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cost/Latency Tradeoffs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-when-to-use-reranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. When to Use Reranking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-reranking-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Reranking is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-two-stage-retrieval-pipeline-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Two-Stage Retrieval Pipeline (Concept)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bi-encoders-vs-cross-encoders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Bi-Encoders vs Cross-Encoders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Bi-Encoders vs Cross-Encoders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-bi-encoder-jo-normal-vector-search-use-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Bi-Encoder (Jo Normal Vector Search Use Karta Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-cross-encoder-jo-reranking-use-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Cross-Encoder (Jo Reranking Use Karta Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-reranking-works-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Reranking Works (Step-by-Step)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Reranking Works (Step-by-Step)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-popular-rerankers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Popular Rerankers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-implementation-example-conceptual-cohere-rerank" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Implementation Example (Conceptual — Cohere Rerank)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-reranking-metrics-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Reranking Metrics Impact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-costlatency-tradeoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cost/Latency Tradeoffs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-when-to-use-reranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. When to Use Reranking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="reranking-complete-notes">Reranking — Complete Notes</h1>
+<blockquote>
+<p><strong>Reranking</strong> = Retrieval ke <strong>baad</strong> ka ek extra step, jisme initially retrieve kiye gaye chunks ko <strong>ek zyada powerful (lekin slower) model</strong> se dobara score/order kiya jata hai, taaki <strong>sabse relevant chunks top pe</strong> aa jayein.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why Reranking is Needed</li>
+<li>Two-Stage Retrieval Pipeline (Concept)</li>
+<li>Bi-Encoders vs Cross-Encoders</li>
+<li>How Reranking Works (Step-by-Step)</li>
+<li>Popular Rerankers</li>
+<li>Implementation Example</li>
+<li>Reranking Metrics Impact</li>
+<li>Cost/Latency Tradeoffs</li>
+<li>When to Use Reranking</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-reranking-is-needed">1. Why Reranking is Needed</h2>
+<p>Vector search / hybrid search <strong>fast</strong> hote hain, lekin unki similarity calculation thodi <strong>"approximate/rough"</strong> hoti hai — kyunki wo speed ke liye optimize kiye gaye hote hain (millions of documents me se milliseconds me search karna hai).</p>
+<p><strong>Problem:</strong> Top-K retrieval (jaise top-20 chunks) me se, <strong>hamesha sabse relevant chunk #1 position pe nahi hota</strong> — kabhi wo #5 ya #10 pe hota hai, aur kam relevant chunk upar aa jata hai.</p>
+<p><strong>Solution:</strong> Reranking — ek <strong>zyada accurate lekin slower model</strong> use karo, sirf un <strong>thoda thoda chunks (jaise top-20)</strong> pe — taaki unhe <strong>precisely dobara order</strong> kiya ja sake.</p>
+<blockquote>
+<p>Analogy: Socho ek <strong>job interview process</strong>:
+- <strong>Stage 1 (Retrieval):</strong> Resume screening — jaldi se 1000 applications me se 20 shortlist karna (rough filter, fast)
+- <strong>Stage 2 (Reranking):</strong> In-depth interview — un 20 shortlisted logon ko <strong>detail se evaluate</strong> karke best 3 choose karna (slow, precise)</p>
+</blockquote>
+<hr />
+<h2 id="2-two-stage-retrieval-pipeline-concept">2. Two-Stage Retrieval Pipeline (Concept)</h2>
+<pre><code>Stage 1: Initial Retrieval (Fast, Approximate)
+   Vector Search / Hybrid Search / BM25
+   → Millions of documents → Top 20-50 candidates
+              │
+              ▼
+Stage 2: Reranking (Slow, Precise)
+   Cross-Encoder / Rerank Model
+   → Top 20-50 candidates → Re-scored → Top 3-5 final results
+              │
+              ▼
+   Final Results → Passed to LLM for Generation
+</code></pre>
+<blockquote>
+<p><strong>Key Idea:</strong> Reranking <strong>replace nahi karta</strong> initial retrieval ko — yeh usko <strong>refine/improve</strong> karta hai. Pehle bahut sare documents me se fast filter karo, phir un chhote se set ko accurately re-order karo.</p>
+</blockquote>
+<hr />
+<h2 id="3-bi-encoders-vs-cross-encoders">3. Bi-Encoders vs Cross-Encoders</h2>
+<p>Yeh concept samajhna reranking ke liye sabse zaroori hai.</p>
+<h3 id="31-bi-encoder-jo-normal-vector-search-use-karta-hai">3.1 Bi-Encoder (Jo Normal Vector Search Use Karta Hai)</h3>
+<p><strong>Simple Meaning:</strong> Query aur Document <strong>alag-alag, independently</strong> embed kiye jate hain. Phir unke embeddings ke beech similarity (cosine, etc.) calculate ki jati hai.</p>
+<pre><code>Query    → Embedding Model → Vector A
+Document → Embedding Model → Vector B
+
+Similarity = cosine(Vector A, Vector B)
+</code></pre>
+<ul>
+<li>✅ <strong>Fast</strong> — documents ke embeddings pehle se precompute karke store kiye ja sakte hain.</li>
+<li>❌ Query aur document <strong>ek doosre ko "dekhe" bina</strong> independently process hote hain — isliye subtle relevance nuances miss ho sakte hain.</li>
+</ul>
+<h3 id="32-cross-encoder-jo-reranking-use-karta-hai">3.2 Cross-Encoder (Jo Reranking Use Karta Hai)</h3>
+<p><strong>Simple Meaning:</strong> Query aur Document ko <strong>saath me, ek hi input ki tarah</strong> model ko diya jata hai — model dono ko <strong>ek saath dekhkar</strong> ek direct relevance score deta hai.</p>
+<pre><code>Input: [Query + Document] together → Cross-Encoder Model → Relevance Score (0 to 1)
+</code></pre>
+<ul>
+<li>✅ <strong>Bahut zyada accurate</strong> — kyunki model query aur document ke beech ka <strong>actual interaction/relationship</strong> deep level pe samajhta hai.</li>
+<li>❌ <strong>Slow</strong> — har query-document pair ke liye alag se model run karna padta hai (precompute/cache nahi kar sakte, kyunki query har baar naya hota hai).</li>
+</ul>
+<h3 id="side-by-side-comparison">Side-by-Side Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Bi-Encoder</th>
+<th>Cross-Encoder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processing</td>
+<td>Query &amp; Document alag-alag</td>
+<td>Query &amp; Document saath me</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>✅ Very Fast</td>
+<td>❌ Slow</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Good, but approximate</td>
+<td>✅ Much more accurate</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>✅ Millions of docs easily</td>
+<td>❌ Only feasible on small candidate sets</td>
+</tr>
+<tr>
+<td>Use Case</td>
+<td>Initial/Stage-1 Retrieval</td>
+<td>Stage-2 Reranking</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Isiliye pipeline <strong>dono ko combine</strong> karta hai — Bi-Encoder se fast initial filter, Cross-Encoder se precise final reranking.</p>
+</blockquote>
+<hr />
+<h2 id="4-how-reranking-works-step-by-step">4. How Reranking Works (Step-by-Step)</h2>
+<ol>
+<li>User query aati hai.</li>
+<li><strong>Stage 1:</strong> Vector/Hybrid search se top-20 (ya top-50) candidate chunks retrieve kiye jate hain (Bi-Encoder based, fast).</li>
+<li><strong>Stage 2:</strong> Har candidate chunk ko query ke saath <strong>pair</strong> banakar Cross-Encoder/Rerank model ko diya jata hai.</li>
+<li>Rerank model har pair ko ek <strong>relevance score</strong> deta hai.</li>
+<li>Chunks ko is <strong>naye score</strong> ke hisaab se <strong>re-sort</strong> kiya jata hai.</li>
+<li>Top 3-5 (final) chunks LLM ko generation ke liye diye jate hain.</li>
+</ol>
+<h3 id="example">Example</h3>
+<p><strong>Query:</strong> "What are the side effects of ibuprofen?"</p>
+<p><strong>Initial Retrieval (Vector Search) — Top 5, unordered by true relevance:</strong></p>
+<pre><code>1. General info about pain relievers (medium relevance)
+2. Ibuprofen dosage instructions (medium relevance)
+3. Ibuprofen side effects and warnings (HIGH relevance) ← should be #1!
+4. History of NSAIDs (low relevance)
+5. Ibuprofen vs Acetaminophen comparison (medium relevance)
+</code></pre>
+<p><strong>After Reranking (Cross-Encoder re-scores each):</strong></p>
+<pre><code>1. Ibuprofen side effects and warnings (HIGH relevance) ✅ now correctly #1
+2. Ibuprofen vs Acetaminophen comparison
+3. Ibuprofen dosage instructions
+4. General info about pain relievers
+5. History of NSAIDs
+</code></pre>
+<blockquote>
+<p>Reranking ne sabse relevant chunk ko <strong>top pe</strong> move kar diya — jo pehle #3 pe tha.</p>
+</blockquote>
+<hr />
+<h2 id="5-popular-rerankers">5. Popular Rerankers</h2>
+<table>
+<thead>
+<tr>
+<th>Reranker</th>
+<th>Provider</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cohere Rerank (rerank-3)</strong></td>
+<td>Cohere</td>
+<td>Very popular, API-based, easy to integrate, strong performance</td>
+</tr>
+<tr>
+<td><strong>Voyage Rerank</strong></td>
+<td>Voyage AI</td>
+<td>High quality, works well with Claude-based RAG apps</td>
+</tr>
+<tr>
+<td><strong>BGE Reranker</strong></td>
+<td>BAAI (open-source)</td>
+<td>Free, self-hostable</td>
+</tr>
+<tr>
+<td><strong>ms-marco Cross-Encoders (sentence-transformers)</strong></td>
+<td>Open-source</td>
+<td>Lightweight, good for self-hosted setups</td>
+</tr>
+<tr>
+<td><strong>Jina Reranker</strong></td>
+<td>Jina AI</td>
+<td>Supports long documents, multilingual</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-implementation-example-conceptual-cohere-rerank">6. Implementation Example (Conceptual — Cohere Rerank)</h2>
+<pre><code class="language-python">import cohere
+
+co = cohere.Client(&quot;API_KEY&quot;)
+
+candidates = [
+    &quot;Ibuprofen dosage instructions...&quot;,
+    &quot;Ibuprofen side effects and warnings...&quot;,
+    &quot;History of NSAIDs...&quot;,
+    # ... more retrieved chunks
+]
+
+response = co.rerank(
+    query=&quot;What are the side effects of ibuprofen?&quot;,
+    documents=candidates,
+    top_n=3,
+    model=&quot;rerank-english-v3.0&quot;
+)
+
+for result in response.results:
+    print(result.index, result.relevance_score)
+</code></pre>
+<hr />
+<h2 id="7-reranking-metrics-impact">7. Reranking Metrics Impact</h2>
+<p>Reranking directly improves the retrieval metrics aapne pehle seekhe the:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Reranking ka Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Precision@K</strong></td>
+<td>✅ Improves — kyunki top positions me ab zyada relevant chunks hain</td>
+</tr>
+<tr>
+<td><strong>NDCG</strong></td>
+<td>✅ Significantly improves — kyunki ranking order ab true relevance ke zyada close hai</td>
+</tr>
+<tr>
+<td><strong>MRR</strong></td>
+<td>✅ Improves — sabse relevant chunk aksar #1 rank pe aa jata hai reranking ke baad</td>
+</tr>
+<tr>
+<td><strong>Recall</strong></td>
+<td>⚪ No change — reranking sirf <strong>order</strong> badalta hai, initial retrieval already jo chunks laaya tha, usi set me se choose karta hai. Agar relevant chunk stage-1 me hi miss ho gaya, reranking usko wapas nahi la sakta.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Important:</strong> Reranking <strong>Recall improve nahi karta</strong> — agar Stage-1 retrieval ne relevant chunk ko bilkul miss kar diya (top-20 me bhi nahi laya), toh reranking uska kuch nahi kar sakta. Isliye Stage-1 (initial retrieval) ko bhi accha rakhna zaroori hai.</p>
+</blockquote>
+<hr />
+<h2 id="8-costlatency-tradeoffs">8. Cost/Latency Tradeoffs</h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Without Reranking</th>
+<th>With Reranking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency</td>
+<td>Fast (single vector search)</td>
+<td>Thoda slower (extra API/model call)</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Lower</td>
+<td>Higher (extra compute/API cost per query)</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Good</td>
+<td>Better</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Practical Tip:</strong> Reranking sirf <strong>top-K candidates</strong> (jaise 20-50) pe hoti hai, poore database pe nahi — isliye extra latency <strong>manageable</strong> hoti hai (usually 100-300ms extra), jo accuracy improvement ke liye worth hota hai production systems me.</p>
+</blockquote>
+<hr />
+<h2 id="9-when-to-use-reranking">9. When to Use Reranking</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High-stakes accuracy needed (legal, medical, finance)</td>
+<td>✅ Definitely use reranking</td>
+</tr>
+<tr>
+<td>Simple FAQ bot with small document set</td>
+<td>⚪ Optional — initial retrieval might already be good enough</td>
+</tr>
+<tr>
+<td>Large-scale production RAG system</td>
+<td>✅ Almost always recommended</td>
+</tr>
+<tr>
+<td>Extremely latency-sensitive application (real-time, &lt;100ms)</td>
+<td>⚠️ Consider carefully — reranking adds latency</td>
+</tr>
+<tr>
+<td>Budget-constrained project</td>
+<td>⚠️ Weigh cost vs accuracy improvement</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-common-mistakes">10. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reranking too many candidates (e.g., 500)</td>
+<td>Very slow, defeats the purpose</td>
+<td>Keep candidate set small (top 20-50) before reranking</td>
+</tr>
+<tr>
+<td>Expecting reranking to fix bad initial retrieval</td>
+<td>Reranking can't recover chunks that were never retrieved</td>
+<td>Ensure Stage-1 retrieval (embeddings/hybrid search) is solid first</td>
+</tr>
+<tr>
+<td>Not measuring before/after impact</td>
+<td>Don't know if reranking actually helped</td>
+<td>A/B test with metrics like NDCG/Precision before deploying</td>
+</tr>
+<tr>
+<td>Using reranking on every single query regardless of need</td>
+<td>Unnecessary cost/latency for simple queries</td>
+<td>Consider conditional reranking (only for complex/ambiguous queries)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-cheat-sheet">11. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Reranking</strong> → "Pehle jaldi filter karo, phir dhyan se dobara order karo"</li>
+<li><strong>Bi-Encoder</strong> → "Query aur Doc alag-alag dekhta hai — fast"</li>
+<li><strong>Cross-Encoder</strong> → "Query aur Doc saath me dekhta hai — accurate but slow"</li>
+<li><strong>Reranking improves</strong> → Precision, NDCG, MRR</li>
+<li><strong>Reranking does NOT improve</strong> → Recall (can't fix what Stage-1 missed)</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>Query
+  │
+  ▼
+Stage 1: Fast Retrieval (Bi-Encoder / Vector or Hybrid Search)
+  → Top 20-50 candidates
+  │
+  ▼
+Stage 2: Reranking (Cross-Encoder — Cohere/Voyage/BGE Rerank)
+  → Precisely re-scored and re-ordered
+  │
+  ▼
+Top 3-5 Final Chunks → Sent to LLM for Answer Generation
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"Retrieval finds the candidates fast; Reranking finds the truth precisely — use both together for best RAG accuracy."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2787 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Hybrid_Search_Notes/">
+      
+      
+        <link rel="prev" href="../Handoff_in_OpenAI_API_Study_Notes/">
+      
+      
+        <link rel="next" href="../LLM_Evaluation_Guardrails_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Hybrid Search — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#hybrid-search-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hybrid Search — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-hybrid-search-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Hybrid Search is Needed
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why Hybrid Search is Needed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-problem-with-pure-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Problem with Pure Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-problem-with-pure-bm25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Problem with Pure BM25
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-recap-bm25-vs-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Recap: BM25 vs Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-what-is-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What is Hybrid Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-hybrid-search-works-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Hybrid Search Works (Architecture)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Hybrid Search Works (Architecture)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-score-combination-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Score Combination Techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Score Combination Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-simple-weighted-sum-normalize-combine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Simple Weighted Sum (Normalize + Combine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-reciprocal-rank-fusion-rrf-most-popular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Reciprocal Rank Fusion (RRF) — Most Popular
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-alpha-weighting-weaviate-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Alpha Weighting (Weaviate Style)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-reciprocal-rank-fusion-rrf-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Reciprocal Rank Fusion (RRF) — Deep Dive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Reciprocal Rank Fusion (RRF) — Deep Dive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-rrf-is-popular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why RRF is Popular
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-alpha-weighting-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Alpha Weighting Method
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Alpha Weighting Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-adjust-alpha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Adjust Alpha
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-implementation-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Implementation Approaches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Implementation Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-using-langchain-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Using LangChain (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-using-weaviate-built-in-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Using Weaviate (Built-in Hybrid Search)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-popular-toolsdatabases-supporting-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Popular Tools/Databases Supporting Hybrid Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-when-to-use-hybrid-search-vs-pure-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. When to Use Hybrid Search vs Pure Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-hybrid-search-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Hybrid Search is Needed
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Why Hybrid Search is Needed">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-problem-with-pure-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Problem with Pure Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-problem-with-pure-bm25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Problem with Pure BM25
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-recap-bm25-vs-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Recap: BM25 vs Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-what-is-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What is Hybrid Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-how-hybrid-search-works-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Hybrid Search Works (Architecture)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Hybrid Search Works (Architecture)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-score-combination-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Score Combination Techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Score Combination Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-simple-weighted-sum-normalize-combine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Simple Weighted Sum (Normalize + Combine)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-reciprocal-rank-fusion-rrf-most-popular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Reciprocal Rank Fusion (RRF) — Most Popular
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-alpha-weighting-weaviate-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Alpha Weighting (Weaviate Style)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-reciprocal-rank-fusion-rrf-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Reciprocal Rank Fusion (RRF) — Deep Dive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Reciprocal Rank Fusion (RRF) — Deep Dive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-rrf-is-popular" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why RRF is Popular
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-alpha-weighting-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Alpha Weighting Method
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Alpha Weighting Method">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-adjust-alpha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Adjust Alpha
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-implementation-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Implementation Approaches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Implementation Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-using-langchain-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Using LangChain (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-using-weaviate-built-in-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Using Weaviate (Built-in Hybrid Search)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-popular-toolsdatabases-supporting-hybrid-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Popular Tools/Databases Supporting Hybrid Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-when-to-use-hybrid-search-vs-pure-vector-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. When to Use Hybrid Search vs Pure Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="hybrid-search-complete-notes">Hybrid Search — Complete Notes</h1>
+<blockquote>
+<p><strong>Hybrid Search</strong> = <strong>Keyword-based search (BM25)</strong> + <strong>Semantic/Vector search (Embeddings)</strong> dono ko <strong>combine</strong> karna, taaki dono ke strengths mil jayein aur weaknesses cancel ho jayein.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why Hybrid Search is Needed</li>
+<li>Recap: BM25 vs Vector Search</li>
+<li>What is Hybrid Search</li>
+<li>How Hybrid Search Works (Architecture)</li>
+<li>Score Combination Techniques</li>
+<li>Reciprocal Rank Fusion (RRF) — Deep Dive</li>
+<li>Alpha Weighting Method</li>
+<li>Implementation Approaches</li>
+<li>Popular Tools/Databases Supporting Hybrid Search</li>
+<li>When to Use Hybrid Search vs Pure Vector Search</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-hybrid-search-is-needed">1. Why Hybrid Search is Needed</h2>
+<p>Har search method ka apna ek <strong>blind spot</strong> hota hai:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Strength</th>
+<th>Weakness</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BM25 (Keyword Search)</strong></td>
+<td>Exact matches, names, IDs, technical codes</td>
+<td>Synonyms/meaning samajh nahi paata</td>
+</tr>
+<tr>
+<td><strong>Vector Search (Semantic)</strong></td>
+<td>Meaning/context samajhta hai, synonyms handle karta hai</td>
+<td>Exact keywords/rare terms/codes miss kar sakta hai</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-problem-with-pure-vector-search">Example — Problem with Pure Vector Search</h3>
+<pre><code>Query: &quot;Error code XJ-4471&quot;
+</code></pre>
+<ul>
+<li>Vector search yeh soch sakta hai "error code" ka <strong>general meaning</strong> similar hai kisi aur error se, aur galat document retrieve kar de — kyunki "XJ-4471" jaisa <strong>exact/rare identifier</strong> embeddings me utna sharp represent nahi hota.</li>
+<li>BM25 iss case me <strong>perfect</strong> match karega, kyunki yeh exact keyword "XJ-4471" dhoondh raha hai.</li>
+</ul>
+<h3 id="example-problem-with-pure-bm25">Example — Problem with Pure BM25</h3>
+<pre><code>Query: &quot;How to fix a broken pipe?&quot;
+Document: &quot;Repairing a leaking water conduit&quot;
+</code></pre>
+<ul>
+<li>BM25 fail ho sakta hai kyunki koi exact common words nahi hain ("broken" vs "leaking", "pipe" vs "conduit").</li>
+<li>Vector search yeh easily samajh jayega ki dono ka <strong>meaning same</strong> hai.</li>
+</ul>
+<blockquote>
+<p><strong>Isiliye Hybrid Search dono combine karta hai</strong> — best of both worlds.</p>
+</blockquote>
+<hr />
+<h2 id="2-recap-bm25-vs-vector-search">2. Recap: BM25 vs Vector Search</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>BM25</th>
+<th>Vector Search</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Based on</td>
+<td>Exact word/term matching</td>
+<td>Meaning/semantic similarity</td>
+</tr>
+<tr>
+<td>Good at</td>
+<td>Rare terms, codes, names, exact phrases</td>
+<td>Synonyms, paraphrasing, context</td>
+</tr>
+<tr>
+<td>Weak at</td>
+<td>Synonyms, different phrasing</td>
+<td>Exact/rare identifiers, numbers, codes</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Very fast</td>
+<td>Fast (with ANN indexing)</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>Sparse retrieval</td>
+<td>Dense retrieval</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-what-is-hybrid-search">3. What is Hybrid Search</h2>
+<p><strong>Simple Meaning:</strong> Query aane par, <strong>dono methods se alag-alag results nikalo</strong> (BM25 se aur Vector search se), phir un dono ke results ko ek <strong>smart formula</strong> se combine/merge karke ek <strong>final ranked list</strong> banao.</p>
+<pre><code>Query
+  ├──→ BM25 Search  → Result Set A (with scores)
+  └──→ Vector Search → Result Set B (with scores)
+              │
+              ▼
+      Combine/Fuse Scores
+              │
+              ▼
+      Final Ranked Results
+</code></pre>
+<hr />
+<h2 id="4-how-hybrid-search-works-architecture">4. How Hybrid Search Works (Architecture)</h2>
+<h3 id="step-by-step-flow">Step-by-Step Flow</h3>
+<ol>
+<li><strong>Indexing Phase:</strong></li>
+<li>
+<p>Documents ko dono tarike se index kiya jata hai:</p>
+<ul>
+<li><strong>Sparse Index</strong> (BM25) — term frequency based</li>
+<li><strong>Dense Index</strong> (Vector DB) — embeddings based</li>
+</ul>
+</li>
+<li>
+<p><strong>Query Phase:</strong></p>
+</li>
+<li>
+<p>User query ko dono systems ko bheja jata hai:</p>
+<ul>
+<li>BM25 query → top-K results with keyword-match scores</li>
+<li>Vector query (embedding banake) → top-K results with similarity scores</li>
+</ul>
+</li>
+<li>
+<p><strong>Fusion Phase:</strong></p>
+</li>
+<li>
+<p>Dono result sets ke scores ko <strong>combine</strong> kiya jata hai (neeche techniques dekho).</p>
+</li>
+<li>
+<p><strong>Final Ranking:</strong></p>
+</li>
+<li>Combined score ke hisaab se results ko <strong>re-rank</strong> karke top results user/LLM ko diye jate hain.</li>
+</ol>
+<hr />
+<h2 id="5-score-combination-techniques">5. Score Combination Techniques</h2>
+<p>Problem: BM25 scores aur Vector similarity scores <strong>different scales</strong> pe hote hain (BM25 unbounded ho sakta hai, cosine similarity -1 to 1 range me hota hai) — inko directly add nahi kar sakte. Isliye combine karne ke specific techniques hain:</p>
+<h3 id="51-simple-weighted-sum-normalize-combine">5.1 Simple Weighted Sum (Normalize + Combine)</h3>
+<pre><code>Final Score = (weight1 × normalized_BM25_score) + (weight2 × normalized_vector_score)
+</code></pre>
+<ul>
+<li>Pehle dono scores ko <strong>0-1 range me normalize</strong> karo, phir weighted average nikaalo.</li>
+</ul>
+<h3 id="52-reciprocal-rank-fusion-rrf-most-popular">5.2 Reciprocal Rank Fusion (RRF) — Most Popular</h3>
+<p>(Detail neeche section 6 me)</p>
+<h3 id="53-alpha-weighting-weaviate-style">5.3 Alpha Weighting (Weaviate Style)</h3>
+<p>(Detail neeche section 7 me)</p>
+<hr />
+<h2 id="6-reciprocal-rank-fusion-rrf-deep-dive">6. Reciprocal Rank Fusion (RRF) — Deep Dive</h2>
+<p><strong>Simple Meaning:</strong> RRF <strong>actual scores ignore karta hai</strong>, sirf <strong>rank/position</strong> dekhta hai — kyunki different systems ke scores compare karna mushkil hai, lekin "rank" (1st, 2nd, 3rd...) universal hai.</p>
+<h3 id="formula">Formula</h3>
+<pre><code>RRF_score(document) = Σ [ 1 / (k + rank_in_list_i) ]
+</code></pre>
+<ul>
+<li><code>rank_in_list_i</code> = us document ki position us particular search method (BM25 ya Vector) ke result list me</li>
+<li><code>k</code> = ek constant (usually <strong>60</strong>) — jo bahut low ranks (jaise rank 1) ko bahut zyada dominate hone se rokta hai</li>
+</ul>
+<h3 id="example">Example</h3>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>BM25 Rank</th>
+<th>Vector Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Doc A</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Doc B</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Doc C</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Using k = 60:</p>
+<pre><code>RRF(Doc A) = 1/(60+1) + 1/(60+3) = 0.0164 + 0.0159 = 0.0323
+RRF(Doc B) = 1/(60+2) + 1/(60+1) = 0.0161 + 0.0164 = 0.0325
+RRF(Doc C) = 1/(60+3) + 1/(60+2) = 0.0159 + 0.0161 = 0.0320
+</code></pre>
+<p><strong>Final Ranking:</strong> Doc B &gt; Doc A &gt; Doc C (highest RRF score wins)</p>
+<h3 id="why-rrf-is-popular">Why RRF is Popular</h3>
+<ul>
+<li>✅ <strong>Score normalization ki zaroorat nahi</strong> — bas ranks use hoti hain, isliye scale-mismatch problem solve ho jati hai.</li>
+<li>✅ Simple, robust, aur bahut systems (Elasticsearch, Weaviate, LangChain) me built-in support hai.</li>
+<li>✅ Multiple retrieval methods (sirf 2 nahi, 3-4 bhi) ko easily combine kar sakte ho.</li>
+</ul>
+<hr />
+<h2 id="7-alpha-weighting-method">7. Alpha Weighting Method</h2>
+<p><strong>Simple Meaning:</strong> Ek single parameter <strong>alpha (α)</strong> use karke, aap manually decide karte ho ki final score me <strong>kitna weight BM25 ko</strong> aur <strong>kitna weight Vector search ko</strong> dena hai.</p>
+<pre><code>Final Score = α × (vector_score) + (1 - α) × (BM25_score)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Alpha Value</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>α = 1.0</td>
+<td>100% Vector search (pure semantic)</td>
+</tr>
+<tr>
+<td>α = 0.0</td>
+<td>100% BM25 (pure keyword search)</td>
+</tr>
+<tr>
+<td>α = 0.5</td>
+<td>Equal weight to both</td>
+</tr>
+</tbody>
+</table>
+<h3 id="when-to-adjust-alpha">When to Adjust Alpha</h3>
+<ul>
+<li>Agar aapke queries me <strong>exact terms/codes zyada</strong> important hain (technical docs, legal) → alpha ko <strong>kam</strong> rakho (BM25 ko zyada weight)</li>
+<li>Agar queries <strong>natural language/conversational</strong> hain → alpha ko <strong>zyada</strong> rakho (vector search ko zyada weight)</li>
+</ul>
+<blockquote>
+<p>Weaviate jaisi vector databases me yeh <code>alpha</code> parameter directly configure kiya ja sakta hai query time pe.</p>
+</blockquote>
+<hr />
+<h2 id="8-implementation-approaches">8. Implementation Approaches</h2>
+<h3 id="81-using-langchain-conceptual">8.1 Using LangChain (Conceptual)</h3>
+<pre><code class="language-python">from langchain.retrievers import EnsembleRetriever
+
+bm25_retriever = BM25Retriever.from_documents(docs)
+vector_retriever = vector_store.as_retriever()
+
+hybrid_retriever = EnsembleRetriever(
+    retrievers=[bm25_retriever, vector_retriever],
+    weights=[0.4, 0.6]   # 40% BM25, 60% Vector
+)
+
+results = hybrid_retriever.invoke(&quot;your query here&quot;)
+</code></pre>
+<h3 id="82-using-weaviate-built-in-hybrid-search">8.2 Using Weaviate (Built-in Hybrid Search)</h3>
+<pre><code class="language-python">results = client.query.get(&quot;Article&quot;, [&quot;title&quot;, &quot;content&quot;]) \
+    .with_hybrid(query=&quot;your query&quot;, alpha=0.5) \
+    .with_limit(5) \
+    .do()
+</code></pre>
+<hr />
+<h2 id="9-popular-toolsdatabases-supporting-hybrid-search">9. Popular Tools/Databases Supporting Hybrid Search</h2>
+<table>
+<thead>
+<tr>
+<th>Tool/DB</th>
+<th>Hybrid Search Support</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Weaviate</strong></td>
+<td>Native, built-in <code>alpha</code> parameter</td>
+</tr>
+<tr>
+<td><strong>Elasticsearch/OpenSearch</strong></td>
+<td>Strong support — combines BM25 + kNN vector search</td>
+</tr>
+<tr>
+<td><strong>Qdrant</strong></td>
+<td>Supports combining sparse + dense vectors</td>
+</tr>
+<tr>
+<td><strong>Pinecone</strong></td>
+<td>Supports sparse-dense hybrid vectors</td>
+</tr>
+<tr>
+<td><strong>LangChain (EnsembleRetriever)</strong></td>
+<td>Framework-level combination of any retrievers</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-when-to-use-hybrid-search-vs-pure-vector-search">10. When to Use Hybrid Search vs Pure Vector Search</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Queries have technical terms, IDs, codes, names</td>
+<td><strong>Hybrid Search</strong></td>
+</tr>
+<tr>
+<td>Purely conversational/natural language queries</td>
+<td>Vector Search alone might be enough</td>
+</tr>
+<tr>
+<td>Legal, medical, technical documentation (precision matters)</td>
+<td><strong>Hybrid Search</strong> (almost always better here)</td>
+</tr>
+<tr>
+<td>General knowledge Q&amp;A / chatbots</td>
+<td>Vector Search alone often sufficient, but Hybrid still improves accuracy</td>
+</tr>
+<tr>
+<td>Need best possible accuracy, cost/latency not a big concern</td>
+<td><strong>Hybrid Search</strong> (generally recommended default in production RAG)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Industry consensus (as of recent RAG research):</strong> Hybrid Search almost always <strong>outperforms pure vector search alone</strong> in production systems — it's become close to a "best practice default" for serious RAG applications.</p>
+</blockquote>
+<hr />
+<h2 id="11-common-mistakes">11. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Directly adding BM25 + Cosine scores without normalization</td>
+<td>Scores are on different scales — misleading results</td>
+<td>Use RRF or normalize scores before combining</td>
+</tr>
+<tr>
+<td>Using a fixed alpha for all query types</td>
+<td>Some queries need more keyword weight, others more semantic</td>
+<td>Consider dynamic alpha tuning or just use RRF (scale-independent)</td>
+</tr>
+<tr>
+<td>Not testing with real user queries</td>
+<td>Assumes hybrid always better without validation</td>
+<td>A/B test on your actual data/queries</td>
+</tr>
+<tr>
+<td>Ignoring computational cost</td>
+<td>Running two search systems doubles retrieval cost/latency</td>
+<td>Consider caching, parallel execution, or simpler methods if latency-critical</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-cheat-sheet">12. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Hybrid Search</strong> → "Keyword match + Meaning match, dono jodo"</li>
+<li><strong>RRF</strong> → "Score bhool jao, sirf rank dekho aur combine karo"</li>
+<li><strong>Alpha Weighting</strong> → "Ek dial se decide karo kitna keyword, kitna semantic"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>Query
+  ├─→ BM25 (keyword match)     → Ranked List A
+  └─→ Vector Search (semantic) → Ranked List B
+         │
+         ▼
+   Combine using RRF or Alpha Weighting
+         │
+         ▼
+   Final Hybrid Ranked Results → Passed to LLM
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"Keywords ke liye BM25 bharosemand hai, meaning ke liye Vector Search — production RAG me dono ko saath use karo, akela mat chhodo."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Context-Engineering-Notes/">
+      
+      
+        <link rel="prev" href="../Computer-Vision-and-NLP-Basics/">
+      
+      
+        <link rel="next" href="../Cosine_Similarity-Complete-Guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>🧩 Context Engineering — Asaan Alfaz Mein Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#context-engineering-asaan-alfaz-mein-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🧩 Context Engineering — Asaan Alfaz Mein Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sabse-pehle-context-engineering-hai-kya-cheez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 🧭 Sabse Pehle - Context Engineering Hai Kya Cheez?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 🧭 Sabse Pehle - Context Engineering Hai Kya Cheez?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example-ek-cook-ka-kaam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🍳 Real-World Example: Ek Cook Ka Kaam
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prompt-engineering-vs-context-engineering-farak-kya-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 🤔 Prompt Engineering vs Context Engineering - Farak Kya Hai?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 🤔 Prompt Engineering vs Context Engineering - Farak Kya Hai?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#farak-table-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Farak Table Mein
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-context-engineering-ke-core-components-ye-hai-asal-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🧱 Context Engineering Ke Core Components - Ye Hai Asal Building Blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 🧱 Context Engineering Ke Core Components - Ye Hai Asal Building Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-context-sources-raw-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📥 1. Context Sources (Raw Input)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-representation-encoding-information-kaise-structure-hoti-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔤 2. Representation &amp; Encoding (Information Kaise Structure Hoti Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-selection-filtering-kya-rakhna-hai-kya-chorna-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 3. Selection &amp; Filtering (Kya Rakhna Hai, Kya Chorna Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-system-instructions-role-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ 4. System Instructions &amp; Role Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-memory-operational-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 5. Memory (Operational Memory)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-retrieval-systems-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 6. Retrieval Systems (RAG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-tool-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ 7. Tool Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-phil-schmid-ke-4-operations-context-ko-manage-karne-ke-tareeke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ⚙️ Phil Schmid Ke 4 Operations - Context Ko Manage Karne Ke Tareeke
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ek-practical-example-se-samjho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 💬 Ek Practical Example Se Samjho
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-real-systems-mein-context-engineering-konse-tools-use-hote-hain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 🏗️ Real Systems Mein Context Engineering - Konse Tools Use Hote Hain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-context-engineering-vs-agent-memory-ek-chota-sa-farak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 🧠 Context Engineering vs Agent Memory - Ek Chota Sa Farak
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap-sab-ek-nazar-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Recap - Sab Ek Nazar Mein
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sabse-pehle-context-engineering-hai-kya-cheez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 🧭 Sabse Pehle - Context Engineering Hai Kya Cheez?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 🧭 Sabse Pehle - Context Engineering Hai Kya Cheez?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example-ek-cook-ka-kaam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🍳 Real-World Example: Ek Cook Ka Kaam
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prompt-engineering-vs-context-engineering-farak-kya-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 🤔 Prompt Engineering vs Context Engineering - Farak Kya Hai?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 🤔 Prompt Engineering vs Context Engineering - Farak Kya Hai?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#farak-table-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Farak Table Mein
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-context-engineering-ke-core-components-ye-hai-asal-building-blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🧱 Context Engineering Ke Core Components - Ye Hai Asal Building Blocks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 🧱 Context Engineering Ke Core Components - Ye Hai Asal Building Blocks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-context-sources-raw-input" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📥 1. Context Sources (Raw Input)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-representation-encoding-information-kaise-structure-hoti-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔤 2. Representation &amp; Encoding (Information Kaise Structure Hoti Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-selection-filtering-kya-rakhna-hai-kya-chorna-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 3. Selection &amp; Filtering (Kya Rakhna Hai, Kya Chorna Hai)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-system-instructions-role-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗂️ 4. System Instructions &amp; Role Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-memory-operational-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧠 5. Memory (Operational Memory)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-retrieval-systems-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔍 6. Retrieval Systems (RAG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-tool-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛠️ 7. Tool Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-phil-schmid-ke-4-operations-context-ko-manage-karne-ke-tareeke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ⚙️ Phil Schmid Ke 4 Operations - Context Ko Manage Karne Ke Tareeke
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ek-practical-example-se-samjho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 💬 Ek Practical Example Se Samjho
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-real-systems-mein-context-engineering-konse-tools-use-hote-hain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 🏗️ Real Systems Mein Context Engineering - Konse Tools Use Hote Hain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-context-engineering-vs-agent-memory-ek-chota-sa-farak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 🧠 Context Engineering vs Agent Memory - Ek Chota Sa Farak
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap-sab-ek-nazar-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Recap - Sab Ek Nazar Mein
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="context-engineering-asaan-alfaz-mein-notes">🧩 Context Engineering — Asaan Alfaz Mein Notes</h1>
+<p><em>(Jaise koi dost tumhe samjha raha ho)</em></p>
+<hr />
+<h2 id="1-sabse-pehle-context-engineering-hai-kya-cheez">1. 🧭 Sabse Pehle - Context Engineering Hai Kya Cheez?</h2>
+<p>Dekho, pehle log sirf "<strong>Prompt Engineering</strong>" ki baat karte the - matlab AI ko ek acha sa sawal ya instruction likh dena, bas. Lekin jab log AI Agents banane lage jo lambe tasks karte hain (jaise multiple steps, tools use karna, files parhna, memory rakhna) - to sirf ek acha prompt likhna kaafi nahi raha.</p>
+<p>Isliye ek naya concept aya jo iska naam hai <strong>Context Engineering</strong>.</p>
+<blockquote>
+<p><strong>Simple definition:</strong> Context Engineering matlab sirf ek achi prompt likhna nahi, balke AI ko <strong>poora ka poora information environment design karna</strong> - matlab wo kya dekh raha hai, kaunsi files, kaunsa history, kaunsi memory, kaunsa tool - sab kuch sahi tarike se arrange karna, sahi waqt par, sahi maqdar mein.</p>
+</blockquote>
+<p>Shopify ke CEO Tobi Lütke ne isko bohot achi tarah bayan kiya hai - unke mutabiq context engineering <strong>"wo art hai jisme tum LLM ko task complete karne ke liye har zaroori context muhaiya karte ho"</strong>.</p>
+<h3 id="real-world-example-ek-cook-ka-kaam">🍳 Real-World Example: Ek Cook Ka Kaam</h3>
+<p>Socho tumne ek naye cook ko rakha hai. <strong>Prompt Engineering</strong> ka matlab hai - tum usse bolo <em>"acha khana banao"</em>. Bas itni si baat.</p>
+<p>Lekin <strong>Context Engineering</strong> ka matlab hai:
+- Cook ko batana ke tumhare ghar mein kaunse ingredients maujood hain (ye hua "context sources")
+- Uska pichla record dekhna ke tumhe kya pasand hai, kya allergy hai (ye hui "memory")
+- Cook ko sahi cheezein sahi waqt par dena - poora fridge kholke saamne nahi rakh dena, sirf zaroori cheezein (ye hua "selection/filtering")
+- Agar recipe book mein se koi cheez chahiye to sahi page nikal ke dena, poori book nahi (ye hua "retrieval")</p>
+<p>Matlab sirf instruction dena kaafi nahi - <strong>poora environment set karna</strong> zaroori hai taake cook (AI) sahi decision le sake.</p>
+<hr />
+<h2 id="2-prompt-engineering-vs-context-engineering-farak-kya-hai">2. 🤔 Prompt Engineering vs Context Engineering - Farak Kya Hai?</h2>
+<p>Ye wo sawal hai jo sabse zyada puchha jata hai. Chalo clear karte hain.</p>
+<ul>
+<li><strong>Prompt Engineering</strong> = Ek acha, clear instruction likhna - <strong>one-time task</strong> ke liye best hai. Jaise ek sawal poochna, ek email likhwana.</li>
+<li><strong>Context Engineering</strong> = Poore system ko design karna jo <strong>multi-step, lambi conversations, aur agents</strong> ke liye chalta hai - jisme history, tools, retrieved data, memory sab shamil hai.</li>
+</ul>
+<p>Agar tum sirf apne alfaz badal rahe ho better result ke liye - wo <strong>Prompt Engineering</strong> hai.
+Agar tum ye decide kar rahe ho ke agent <strong>kaunsa data retrieve</strong> kare, <strong>kis order mein</strong>, <strong>kya context window se nikal (evict) kare jab jagah kam ho</strong> - to wo <strong>Context Engineering</strong> hai.</p>
+<h3 id="farak-table-mein">📊 Farak Table Mein</h3>
+<table>
+<thead>
+<tr>
+<th>Cheez</th>
+<th>✍️ Prompt Engineering</th>
+<th>🧩 Context Engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Focus</strong></td>
+<td>Alfaz aur instruction ki wording</td>
+<td>Poora information environment - memory, tools, history, retrieval</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Single message/task</td>
+<td>Multi-turn, long-running agent tasks</td>
+</tr>
+<tr>
+<td><strong>Kya control hota hai</strong></td>
+<td>Sirf jo tum type karte ho</td>
+<td>Kya include hoga, kya exclude, kaunsa order, kab tak yaad rahega</td>
+</tr>
+<tr>
+<td><strong>Example</strong></td>
+<td>"Is email ko professional tone mein likho"</td>
+<td>Agent ko decide karna ke kaunsi purani conversation yaad rakhni hai, kaunsi file parhni hai, kaunsa tool call karna hai</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-context-engineering-ke-core-components-ye-hai-asal-building-blocks">3. 🧱 Context Engineering Ke Core Components - Ye Hai Asal Building Blocks</h2>
+<p>Chalo ab dekhte hain ke context engineering banti kis cheez se hai. Alag alag log isko alag tareeke se explain karte hain, lekin mota mota inn cheezon par sab agree karte hain:</p>
+<h3 id="1-context-sources-raw-input">📥 1. Context Sources (Raw Input)</h3>
+<p>Ye wo cheezein hain jo model ke andar dali ja sakti hain:
+- User ka sawal / conversation
+- System instructions aur policies
+- Retrieved documents (jinhe RAG - Retrieval Augmented Generation - ke zariye laya jata hai)</p>
+<h3 id="2-representation-encoding-information-kaise-structure-hoti-hai">🔤 2. Representation &amp; Encoding (Information Kaise Structure Hoti Hai)</h3>
+<p>Ye decide karta hai ke information kaise di jaye model ko:
+- Plain text ya structured JSON?
+- Poora document ya sirf summary?
+- Embeddings (numbers wali representation) ya seedha text?</p>
+<h3 id="3-selection-filtering-kya-rakhna-hai-kya-chorna-hai">🎯 3. Selection &amp; Filtering (Kya Rakhna Hai, Kya Chorna Hai)</h3>
+<p>Ye sabse important decision hai - <strong>agent ko sab kuch dikhana zaroori nahi</strong>, bas jo zaroori hai wo dikhana hai. Agent ko balance karna parta hai:
+- Retrieved documents
+- User ki purani preferences
+- Conversation history
+- Learned behavior</p>
+<p>Agar ye sahi se na ho to information conflict ho sakta hai - matlab agent confuse ho sakta hai konsi baat sach hai.</p>
+<h3 id="4-system-instructions-role-definition">🗂️ 4. System Instructions &amp; Role Definition</h3>
+<p>Ye batata hai agent ko ke wo <strong>hai kya</strong>, uska kaam kya hai, aur uski limits kya hain:
+- Role: "Tum ek financial analyst ho, generic assistant nahi"
+- Behavioral limits: "Kabhi PII (private info) share mat karna"
+- Decision rules: "Agar do rules conflict karein to kaunsa pehle apply hoga"</p>
+<h3 id="5-memory-operational-memory">🧠 5. Memory (Operational Memory)</h3>
+<p>Ye wo hissa hai jo agent ko <strong>yaad rakhne</strong> deta hai - short-term (isi conversation ka context) aur long-term (purani conversations se seekhi hui cheezein, user preferences).</p>
+<h3 id="6-retrieval-systems-rag">🔍 6. Retrieval Systems (RAG)</h3>
+<p>Jab bhi zaroorat pare, agent bahar se relevant information "khinch" ke la sakta hai - jaise koi document, database record, ya knowledge base se answer.</p>
+<blockquote>
+<p>💡 <strong>Zaroori baat:</strong> RAG khud context engineering nahi hai - wo <strong>ek chota sa hissa</strong> hai poore system ka. Advanced techniques mein "contextual compression" istemal hoti hai - matlab poora document na dena, sirf wo hissa dena jo abhi ke conversation se relevant hai.</p>
+</blockquote>
+<h3 id="7-tool-access">🛠️ 7. Tool Access</h3>
+<p>Agent ke pass kaunse tools available hain (jaise search, calculator, database query) - aur wo unhe kab aur kaise use kare, ye bhi context ka hissa hai.</p>
+<hr />
+<h2 id="4-phil-schmid-ke-4-operations-context-ko-manage-karne-ke-tareeke">4. ⚙️ Phil Schmid Ke 4 Operations - Context Ko Manage Karne Ke Tareeke</h2>
+<p>Ek mashhoor framework hai jo bataata hai ke context ko <strong>kaise handle</strong> kiya jaye jab conversation lambi ho jaye:</p>
+<ol>
+<li><strong>📤 Context Offloading</strong> — Information ko prompt se bahar nikal ke kisi external system (database, file, API) mein rakh dena, taake context window bhari na ho</li>
+<li><strong>📉 Context Reduction</strong> — Purani information ko compress ya summarize karna taake "context rot" na ho (context rot matlab jab bohot zyada purani, irrelevant info context window mein bhari ho jaye aur model confuse ho jaye)</li>
+<li><strong>Aur baaki operations</strong> — retrieval aur selection ke through relevant cheezein la ke dikhana, aur jo zaroori na ho use context window se hata dena (evict karna)</li>
+</ol>
+<blockquote>
+<p>📌 <strong>Ye kyun zaroori hai?</strong> Context window ek limited jagah hai - jaise ek chota sa bag jisme tum saman rakhte ho. Agar tum sab kuch usme thoons doge (poori history, saari files, sab kuch) to na sirf jagah khatam ho jayegi, balke model bhi confuse ho jayega ke kaunsi baat important hai. Isliye <strong>smart selection aur compression</strong> zaroori hai.</p>
+</blockquote>
+<hr />
+<h2 id="5-ek-practical-example-se-samjho">5. 💬 Ek Practical Example Se Samjho</h2>
+<p>Socho tumne ek AI agent se kaha:</p>
+<p><em>"Q1 2026 ke liye ek quarterly business review likho"</em></p>
+<p><strong>Agar sirf Prompt Engineering istemal ki jaye:</strong>
+Agent ek generic template bana dega jisme placeholder data hoga - kyunki usko tumhare business ke baare mein koi context hi nahi hai.</p>
+<p><strong>Agar Context Engineering istemal ki jaye:</strong>
+- Agent ko tumhare company ke actual sales data tak access diya jayega (retrieval)
+- Pichle quarters ki reports memory mein available hongi (memory)
+- System instructions usko batayenge ke report kis format mein chahiye, kaunse metrics important hain (system instructions)
+- Agent khud decide karega ke kaunsi purani jaankari abhi relevant hai aur kaunsi hata deni hai (selection/filtering)</p>
+<p>Result: Ek <strong>actual, meaningful report</strong> jo tumhare real business data par based hai - generic template nahi.</p>
+<hr />
+<h2 id="6-real-systems-mein-context-engineering-konse-tools-use-hote-hain">6. 🏗️ Real Systems Mein Context Engineering - Konse Tools Use Hote Hain</h2>
+<ul>
+<li><strong>Orchestration Frameworks</strong>: LangChain, LlamaIndex, aur OpenAI Agents SDK jaise frameworks agent ko chalane (orchestrate karne) ka kaam karte hain</li>
+<li><strong>Enterprise Context Platforms</strong>: Bari companies mein Atlan, Alation, Collibra jaisi platforms data ko organize karke agent ke liye "governed" (trusted, verified) context provide karti hain</li>
+<li><strong>Memory Systems</strong>: Kuch tools sirf agent ki long-term memory manage karne ke liye bane hain (jaise user preferences yaad rakhna across multiple sessions)</li>
+</ul>
+<hr />
+<h2 id="7-context-engineering-vs-agent-memory-ek-chota-sa-farak">7. 🧠 Context Engineering vs Agent Memory - Ek Chota Sa Farak</h2>
+<p>Ye do concepts bhi thora overlap karte hain, isliye samajh lo:</p>
+<ul>
+<li><strong>Context Engineering</strong> zyada tar is baat par focus karti hai ke information <strong>kaise structure ho, kis format mein ho, kab enter ho</strong> context window mein - matlab ye "interface" aur "resource management" ka mamla hai</li>
+<li><strong>Agent Memory</strong> iska scope thora bara hai - ye sirf format ki baat nahi, balke agent <strong>kya seekhta hai, kya yaad rakhta hai lambe arse tak, aur kaise apne behavior ko improve karta hai</strong> - ye zyada "cognitive" (samajhne-boojhne wala) pehlu hai</li>
+</ul>
+<p>Simple lafzon mein: <strong>Context Engineering "kya dikhana hai abhi" decide karti hai, Memory "kya yaad rakhna hai hamesha ke liye" decide karti hai.</strong></p>
+<hr />
+<h2 id="quick-recap-sab-ek-nazar-mein">📌 Quick Recap - Sab Ek Nazar Mein</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Ek Line Mein Samjho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Context Engineering</strong></td>
+<td>Sirf prompt nahi, balke agent ka <strong>poora information environment</strong> design karna - memory, tools, history, retrieval sab shamil</td>
+</tr>
+<tr>
+<td><strong>Prompt vs Context Engineering</strong></td>
+<td>Prompt = ek achi wording; Context = poora system multi-step tasks ke liye</td>
+</tr>
+<tr>
+<td><strong>Core Components</strong></td>
+<td>Context sources, representation, selection/filtering, system instructions, memory, retrieval (RAG), tool access</td>
+</tr>
+<tr>
+<td><strong>4 Operations (Schmid)</strong></td>
+<td>Offloading (bahar nikalna), Reduction (compress karna), Selection, Eviction</td>
+</tr>
+<tr>
+<td><strong>Context Rot</strong></td>
+<td>Jab bohot zyada purani/irrelevant info context window mein bhari ho jaye - model confuse ho jata hai</td>
+</tr>
+<tr>
+<td><strong>Context vs Memory</strong></td>
+<td>Context = abhi kya dikhana hai; Memory = hamesha ke liye kya yaad rakhna hai</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3330 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/multi_agent_systems/">
+      
+      
+        <link rel="prev" href="../Types-of-Ai-Narrow-General-Super/">
+      
+      
+        <link rel="next" href="../python_notes_functions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>🤖 Multi-Agent Systems — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multi-agent-systems-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🤖 Multi-Agent Systems — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai-agents-langgraph-openai-agents-sdk-crewai-autogen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Agents | LangGraph | OpenAI Agents SDK | CrewAI | AutoGen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📑 Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-agent-system-kya-hota-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Agent System Kya Hota Hai?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Multi-Agent System Kya Hota Hai?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kyun-zaroorat-padi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kyun Zaroorat Padi?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-single-agent-vs-multi-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Single Agent vs Multi-Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Core Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator-supervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrator / Supervisor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow / Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-common-multi-agent-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Common Multi-Agent Architectures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Common Multi-Agent Architectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-sequential-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Sequential (Pipeline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-supervisor-orchestrator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Supervisor / Orchestrator Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-parallel-concurrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Parallel (Concurrent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-hierarchical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Hierarchical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-collaborative-debate-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Collaborative / Debate Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agent-communication-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Agent Communication Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-langgraph-for-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. LangGraph for Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. LangGraph for Multi-Agent Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-routing-supervisor-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Routing (Supervisor Pattern)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. OpenAI Agents SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools-ke-sath-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools ke sath Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-crewai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. CrewAI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-autogen-microsoft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. AutoGen (Microsoft)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-tools-function-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Tools &amp; Function Calling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-memory-in-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Memory in Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-real-world-example-full-multi-agent-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Real-World Example: Full Multi-Agent Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-common-problems-how-to-solve-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Common Problems &amp; How to Solve Them
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-interview-questions-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Interview Questions &amp; Answers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-quick-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Quick Cheat Sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-beginner-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Beginner Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Final Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ai-agents-langgraph-openai-agents-sdk-crewai-autogen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI Agents | LangGraph | OpenAI Agents SDK | CrewAI | AutoGen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📑 Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-multi-agent-system-kya-hota-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Multi-Agent System Kya Hota Hai?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Multi-Agent System Kya Hota Hai?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kyun-zaroorat-padi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kyun Zaroorat Padi?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-single-agent-vs-multi-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Single Agent vs Multi-Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Core Concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator-supervisor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrator / Supervisor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        State
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow / Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-common-multi-agent-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Common Multi-Agent Architectures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Common Multi-Agent Architectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-sequential-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Sequential (Pipeline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-supervisor-orchestrator-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Supervisor / Orchestrator Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-parallel-concurrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Parallel (Concurrent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-hierarchical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Hierarchical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-collaborative-debate-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Collaborative / Debate Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agent-communication-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Agent Communication Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-langgraph-for-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. LangGraph for Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. LangGraph for Multi-Agent Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-routing-supervisor-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Routing (Supervisor Pattern)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. OpenAI Agents SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools-ke-sath-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools ke sath Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-crewai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. CrewAI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-autogen-microsoft" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. AutoGen (Microsoft)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-tools-function-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Tools &amp; Function Calling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-memory-in-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Memory in Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-real-world-example-full-multi-agent-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Real-World Example: Full Multi-Agent Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-common-problems-how-to-solve-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Common Problems &amp; How to Solve Them
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-interview-questions-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Interview Questions &amp; Answers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-quick-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Quick Cheat Sheet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-beginner-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Beginner Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 Final Note
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="multi-agent-systems-complete-notes">🤖 Multi-Agent Systems — Complete Notes</h1>
+<h3 id="ai-agents-langgraph-openai-agents-sdk-crewai-autogen">AI Agents | LangGraph | OpenAI Agents SDK | CrewAI | AutoGen</h3>
+<blockquote>
+<p>Ye notes un logon ke liye hain jo Python aur basic AI/LLM concepts jaante hain aur ab <strong>Multi-Agent Systems</strong> (multiple AI agents jo aapas mein collaborate karte hain) samajhna chahte hain.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">📑 Table of Contents</h2>
+<ol>
+<li><a href="#1-multi-agent-system-kya-hota-hai">Multi-Agent System Kya Hota Hai?</a></li>
+<li><a href="#2-single-agent-vs-multi-agent">Single Agent vs Multi-Agent</a></li>
+<li><a href="#3-core-concepts">Core Concepts</a></li>
+<li><a href="#4-common-multi-agent-architectures">Common Multi-Agent Architectures</a></li>
+<li><a href="#5-agent-communication-patterns">Agent Communication Patterns</a></li>
+<li><a href="#6-langgraph-for-multi-agent-systems">LangGraph for Multi-Agent Systems</a></li>
+<li><a href="#7-openai-agents-sdk">OpenAI Agents SDK</a></li>
+<li><a href="#8-crewai">CrewAI</a></li>
+<li><a href="#9-autogen-microsoft">AutoGen (Microsoft)</a></li>
+<li><a href="#10-tools--function-calling">Tools &amp; Function Calling</a></li>
+<li><a href="#11-memory-in-multi-agent-systems">Memory in Multi-Agent Systems</a></li>
+<li><a href="#12-real-world-example-full-multi-agent-workflow">Real-World Example: Full Multi-Agent Workflow</a></li>
+<li><a href="#13-common-problems--how-to-solve-them">Common Problems &amp; How to Solve Them</a></li>
+<li><a href="#14-best-practices">Best Practices</a></li>
+<li><a href="#15-interview-questions--answers">Interview Questions &amp; Answers</a></li>
+<li><a href="#16-quick-cheat-sheet">Quick Cheat Sheet</a></li>
+<li><a href="#17-beginner-mistakes">Beginner Mistakes</a></li>
+</ol>
+<hr />
+<h2 id="1-multi-agent-system-kya-hota-hai">1. Multi-Agent System Kya Hota Hai?</h2>
+<p><strong>Simple definition:</strong> Multi-agent system ek aisa setup hai jahan <strong>multiple AI agents</strong> (har ek apna specific role/kaam rakhta hai) aapas mein milkar ek bara task complete karte hain — bilkul jaise ek company mein different departments (sales, support, engineering) mil kar kaam karte hain.</p>
+<p>Har <strong>agent</strong> basically ek LLM (jaise GPT-4) hota hai jisko:
+- Ek specific <strong>role/goal</strong> diya jata hai
+- Kuch <strong>tools</strong> diye jate hain (jaise web search, calculator, database access)
+- Kabhi kabhi apni <strong>memory</strong> hoti hai</p>
+<blockquote>
+<p>💡 <strong>Analogy:</strong> Socho ek restaurant hai. Ek chef khana banata hai, ek waiter order leta hai, ek manager sab coordinate karta hai. Ye teeno alag "agents" hain jo mil kar restaurant chalate hain — Multi-agent system bhi bilkul isi tarah kaam karta hai, bas AI ke saath.</p>
+</blockquote>
+<h3 id="kyun-zaroorat-padi">Kyun Zaroorat Padi?</h3>
+<table>
+<thead>
+<tr>
+<th>Problem with Single Agent</th>
+<th>Multi-Agent Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ek hi LLM se sab kaam karwana confusing/complex prompt bana deta hai</td>
+<td>Har agent ka apna simple, focused role hota hai</td>
+</tr>
+<tr>
+<td>Bara task ek shot mein galat ho sakta hai</td>
+<td>Task chhote steps mein divide hota hai, har agent apna part sahi karta hai</td>
+</tr>
+<tr>
+<td>Debugging mushkil hoti hai (pata nahi kaunsa part fail hua)</td>
+<td>Har agent independently test/debug ho sakta hai</td>
+</tr>
+<tr>
+<td>Specialized knowledge ek prompt mein fit nahi hoti</td>
+<td>Alag agents alag specialization rakh sakte hain (jaise "Researcher", "Coder", "Reviewer")</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-single-agent-vs-multi-agent">2. Single Agent vs Multi-Agent</h2>
+<pre><code>SINGLE AGENT:
+User -&gt; [ One Big Agent with all tools/knowledge ] -&gt; Response
+
+
+MULTI-AGENT:
+User -&gt; [ Orchestrator Agent ]
+              |
+      -------------------
+      |         |        |
+  [Researcher] [Coder] [Reviewer]
+      |         |        |
+      -------------------
+              |
+         Final Response
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Single Agent</th>
+<th>Multi-Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Complexity</td>
+<td>Simple tasks ke liye best</td>
+<td>Complex, multi-step tasks ke liye best</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Fast (ek hi call)</td>
+<td>Slower (multiple calls, coordination)</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>Kam</td>
+<td>Zyada (multiple LLM calls)</td>
+</tr>
+<tr>
+<td>Reliability</td>
+<td>Bara task mein galti ka chance zyada</td>
+<td>Har agent focused hone se accuracy zyada</td>
+</tr>
+<tr>
+<td>Example use case</td>
+<td>"2+2 kya hai?"</td>
+<td>"Ek company research karo, report likho, aur usko email karo"</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Important:</strong> Har task ke liye multi-agent zaroori nahi. Agar simple task hai, single agent hi behtar hai — zyada agents = zyada cost aur zyada complexity.</p>
+</blockquote>
+<hr />
+<h2 id="3-core-concepts">3. Core Concepts</h2>
+<h3 id="agent">Agent</h3>
+<p>Ek agent = LLM + Role + Tools + (optional) Memory. Ye decide karta hai ke kya karna hai aur kaise karna hai.</p>
+<pre><code class="language-python"># Conceptual example
+agent = {
+    &quot;role&quot;: &quot;Research Agent&quot;,
+    &quot;goal&quot;: &quot;Find accurate information on the web&quot;,
+    &quot;tools&quot;: [&quot;web_search&quot;],
+    &quot;model&quot;: &quot;gpt-4&quot;
+}
+</code></pre>
+<h3 id="orchestrator-supervisor">Orchestrator / Supervisor</h3>
+<p>Ye ek special agent hota hai jo decide karta hai ke <strong>kaunsa agent kab kaam karega</strong>. Ye traffic-controller ki tarah hota hai.</p>
+<h3 id="tools">Tools</h3>
+<p>Functions jo agent call kar sakta hai — jaise web search, calculator, database query, API call.</p>
+<h3 id="handoff">Handoff</h3>
+<p>Jab ek agent apna kaam complete karke task ko <strong>doosre agent ko pass</strong> kar deta hai.</p>
+<h3 id="state">State</h3>
+<p>Shared data jo saare agents ke beech pass hoti hai (jaise conversation history, intermediate results).</p>
+<h3 id="workflow-graph">Workflow / Graph</h3>
+<p>Agents ka execution order — kaun pehle chalega, kis condition par kaunsa agent trigger hoga.</p>
+<hr />
+<h2 id="4-common-multi-agent-architectures">4. Common Multi-Agent Architectures</h2>
+<h3 id="41-sequential-pipeline">4.1 Sequential (Pipeline)</h3>
+<p>Agents ek ke baad ek chalte hain, jaise assembly line.</p>
+<pre><code>Agent A -&gt; Agent B -&gt; Agent C -&gt; Final Output
+</code></pre>
+<p><strong>Example:</strong> Researcher -&gt; Writer -&gt; Editor (blog post banane ke liye)</p>
+<h3 id="42-supervisor-orchestrator-pattern">4.2 Supervisor / Orchestrator Pattern</h3>
+<p>Ek main agent decide karta hai kaunsa sub-agent call karna hai.</p>
+<pre><code>                 [ Supervisor ]
+                /      |       \
+         [Agent 1] [Agent 2] [Agent 3]
+</code></pre>
+<p><strong>Example:</strong> Customer support system jahan supervisor decide karta hai ke query "billing", "technical", ya "general" hai, aur uske hisaab se sahi agent ko route karta hai.</p>
+<h3 id="43-parallel-concurrent">4.3 Parallel (Concurrent)</h3>
+<p>Multiple agents <strong>ek sath</strong> (simultaneously) kaam karte hain, phir results combine hote hain.</p>
+<pre><code>           [ Task Splitter ]
+          /       |         \
+   [Agent A]  [Agent B]  [Agent C]
+          \       |         /
+           [ Combiner/Aggregator ]
+</code></pre>
+<p><strong>Example:</strong> Ek document ko teen agents parallel mein alag alag angles se analyze karte hain (sentiment, summary, keywords).</p>
+<h3 id="44-hierarchical">4.4 Hierarchical</h3>
+<p>Multiple levels ke supervisors, jaise ek company ka org chart.</p>
+<pre><code>              [ CEO Agent ]
+             /              \
+   [Manager Agent A]   [Manager Agent B]
+       /      \              /      \
+ [Worker1] [Worker2]   [Worker3] [Worker4]
+</code></pre>
+<h3 id="45-collaborative-debate-pattern">4.5 Collaborative / Debate Pattern</h3>
+<p>Agents aapas mein "discuss" karte hain, ek doosre ko challenge/review karte hain jab tak best answer na mil jaye.</p>
+<p><strong>Example:</strong> Ek agent code likhta hai, doosra agent us code ko review karta hai aur feedback deta hai, pehla agent improve karta hai — ye loop chalta hai jab tak quality achi na ho.</p>
+<hr />
+<h2 id="5-agent-communication-patterns">5. Agent Communication Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Kaise kaam karta hai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shared State</strong></td>
+<td>Saare agents ek common "state" (dictionary/object) ko read/write karte hain</td>
+</tr>
+<tr>
+<td><strong>Message Passing</strong></td>
+<td>Agents ek doosre ko messages bhejte hain (jaise chat)</td>
+</tr>
+<tr>
+<td><strong>Direct Handoff</strong></td>
+<td>Ek agent apna kaam khatam karke seedha doosre agent ko control de deta hai</td>
+</tr>
+<tr>
+<td><strong>Blackboard Pattern</strong></td>
+<td>Saare agents ek common "board" par apna kaam likhte hain, doosre uspar build karte hain</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python"># Shared state example (conceptual)
+state = {
+    &quot;user_query&quot;: &quot;Plan a trip to Paris&quot;,
+    &quot;research_data&quot;: None,
+    &quot;itinerary&quot;: None,
+    &quot;final_response&quot;: None
+}
+
+# Agent 1 fills research_data
+# Agent 2 reads research_data, fills itinerary
+# Agent 3 reads itinerary, fills final_response
+</code></pre>
+<hr />
+<h2 id="6-langgraph-for-multi-agent-systems">6. LangGraph for Multi-Agent Systems</h2>
+<p>LangGraph multi-agent systems banane ke liye sabse popular framework hai — kyunki ye <strong>graph-based</strong> hai (nodes = agents, edges = flow).</p>
+<h3 id="basic-structure">Basic Structure</h3>
+<pre><code class="language-python">from langgraph.graph import StateGraph, END
+from typing import TypedDict
+
+class AgentState(TypedDict):
+    query: str
+    research: str
+    final_answer: str
+
+def researcher_node(state: AgentState):
+    # yahan LLM call hoti hai research karne ke liye
+    state[&quot;research&quot;] = f&quot;Research findings for: {state['query']}&quot;
+    return state
+
+def writer_node(state: AgentState):
+    # yahan LLM call hoti hai final answer likhne ke liye
+    state[&quot;final_answer&quot;] = f&quot;Based on research: {state['research']}&quot;
+    return state
+
+# Graph banate hain
+graph = StateGraph(AgentState)
+graph.add_node(&quot;researcher&quot;, researcher_node)
+graph.add_node(&quot;writer&quot;, writer_node)
+
+graph.set_entry_point(&quot;researcher&quot;)
+graph.add_edge(&quot;researcher&quot;, &quot;writer&quot;)
+graph.add_edge(&quot;writer&quot;, END)
+
+app = graph.compile()
+result = app.invoke({&quot;query&quot;: &quot;Python multi-agent systems&quot;, &quot;research&quot;: &quot;&quot;, &quot;final_answer&quot;: &quot;&quot;})
+print(result[&quot;final_answer&quot;])
+</code></pre>
+<h3 id="conditional-routing-supervisor-pattern">Conditional Routing (Supervisor Pattern)</h3>
+<pre><code class="language-python">def supervisor_node(state: AgentState):
+    if &quot;code&quot; in state[&quot;query&quot;].lower():
+        return &quot;coder&quot;
+    else:
+        return &quot;researcher&quot;
+
+graph.add_conditional_edges(
+    &quot;supervisor&quot;,
+    supervisor_node,
+    {&quot;coder&quot;: &quot;coder_node&quot;, &quot;researcher&quot;: &quot;researcher_node&quot;}
+)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>StateGraph</code></td>
+<td>Poore workflow ka blueprint — nodes aur edges define karta hai</td>
+</tr>
+<tr>
+<td><code>add_node()</code></td>
+<td>Ek agent/function ko graph mein add karta hai</td>
+</tr>
+<tr>
+<td><code>add_edge()</code></td>
+<td>Do nodes ke beech fixed connection banata hai (A ke baad hamesha B chalega)</td>
+</tr>
+<tr>
+<td><code>add_conditional_edges()</code></td>
+<td>Condition ke basis par decide karta hai next node kaunsa hoga</td>
+</tr>
+<tr>
+<td><code>set_entry_point()</code></td>
+<td>Batata hai graph kahan se start hoga</td>
+</tr>
+<tr>
+<td><code>END</code></td>
+<td>Special node jo workflow ko khatam karta hai</td>
+</tr>
+<tr>
+<td><code>.compile()</code></td>
+<td>Graph ko executable app mein convert karta hai</td>
+</tr>
+<tr>
+<td><code>.invoke()</code></td>
+<td>Graph ko run karta hai with initial state</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>When to use LangGraph:</strong> Jab aapko complex, branching, ya looping workflows chahiye hon (jaise agent khud decide kare ke usko dobara try karna hai ya nahi).</p>
+</blockquote>
+<hr />
+<h2 id="7-openai-agents-sdk">7. OpenAI Agents SDK</h2>
+<p>OpenAI ka apna framework hai multi-agent systems banane ke liye — simpler aur lightweight hai LangGraph ke comparison mein.</p>
+<pre><code class="language-python">from agents import Agent, Runner, handoff
+
+# Individual agents banate hain
+billing_agent = Agent(
+    name=&quot;Billing Agent&quot;,
+    instructions=&quot;You handle billing-related questions only.&quot;
+)
+
+technical_agent = Agent(
+    name=&quot;Technical Agent&quot;,
+    instructions=&quot;You handle technical support questions only.&quot;
+)
+
+# Triage agent jo decide karta hai kis agent ko bhejna hai
+triage_agent = Agent(
+    name=&quot;Triage Agent&quot;,
+    instructions=&quot;Determine if the user's question is about billing or technical issues, and hand off accordingly.&quot;,
+    handoffs=[billing_agent, technical_agent]
+)
+
+result = Runner.run_sync(triage_agent, &quot;My internet is not working&quot;)
+print(result.final_output)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Agent()</code></td>
+<td>Ek naya agent banata hai with name, instructions, tools</td>
+</tr>
+<tr>
+<td><code>instructions</code></td>
+<td>System prompt jaisa hi hai — agent ka role define karta hai</td>
+</tr>
+<tr>
+<td><code>handoffs</code></td>
+<td>List of agents jinko ye agent control de sakta hai</td>
+</tr>
+<tr>
+<td><code>Runner.run_sync()</code></td>
+<td>Agent ko synchronously run karta hai</td>
+</tr>
+<tr>
+<td><code>Runner.run()</code></td>
+<td>Async version, <code>await</code> ke saath use hota hai</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tools-ke-sath-agent">Tools ke sath Agent</h3>
+<pre><code class="language-python">from agents import Agent, function_tool
+
+@function_tool
+def get_weather(city: str) -&gt; str:
+    return f&quot;The weather in {city} is sunny.&quot;
+
+weather_agent = Agent(
+    name=&quot;Weather Agent&quot;,
+    instructions=&quot;Help users with weather information.&quot;,
+    tools=[get_weather]
+)
+</code></pre>
+<blockquote>
+<p>💡 <strong>When to use OpenAI Agents SDK:</strong> Jab simple, clean handoff-based systems chahiye hon aur OpenAI models hi use kar rahe ho.</p>
+</blockquote>
+<hr />
+<h2 id="8-crewai">8. CrewAI</h2>
+<p>CrewAI ek framework hai jo agents ko <strong>"Crew"</strong> (team) ki tarah organize karta hai — role-based collaboration ke liye best hai.</p>
+<pre><code class="language-python">from crewai import Agent, Task, Crew
+
+researcher = Agent(
+    role=&quot;Senior Researcher&quot;,
+    goal=&quot;Find accurate and relevant information&quot;,
+    backstory=&quot;You are an expert researcher with years of experience.&quot;
+)
+
+writer = Agent(
+    role=&quot;Content Writer&quot;,
+    goal=&quot;Write engaging content based on research&quot;,
+    backstory=&quot;You are a skilled writer who simplifies complex topics.&quot;
+)
+
+research_task = Task(
+    description=&quot;Research the latest trends in AI agents&quot;,
+    agent=researcher
+)
+
+writing_task = Task(
+    description=&quot;Write a blog post based on the research&quot;,
+    agent=writer
+)
+
+crew = Crew(
+    agents=[researcher, writer],
+    tasks=[research_task, writing_task]
+)
+
+result = crew.kickoff()
+print(result)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Agent(role, goal, backstory)</code></td>
+<td>Har agent ki personality aur purpose define karta hai</td>
+</tr>
+<tr>
+<td><code>Task</code></td>
+<td>Ek specific kaam jo kisi agent ko assign hota hai</td>
+</tr>
+<tr>
+<td><code>Crew</code></td>
+<td>Agents aur tasks ka group jo mil kar kaam karta hai</td>
+</tr>
+<tr>
+<td><code>.kickoff()</code></td>
+<td>Poori crew ko run karta hai, sequentially ya parallel</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>When to use CrewAI:</strong> Jab role-based teams banani hon (jaise "Researcher + Writer + Editor" jaisi setup), aur readable/structured code chahiye ho.</p>
+</blockquote>
+<hr />
+<h2 id="9-autogen-microsoft">9. AutoGen (Microsoft)</h2>
+<p>AutoGen agents ke beech <strong>conversational</strong> collaboration ke liye best hai — agents aapas mein chat karke problem solve karte hain.</p>
+<pre><code class="language-python">from autogen import AssistantAgent, UserProxyAgent
+
+assistant = AssistantAgent(
+    name=&quot;assistant&quot;,
+    llm_config={&quot;model&quot;: &quot;gpt-4&quot;}
+)
+
+user_proxy = UserProxyAgent(
+    name=&quot;user_proxy&quot;,
+    code_execution_config={&quot;use_docker&quot;: False}
+)
+
+user_proxy.initiate_chat(
+    assistant,
+    message=&quot;Write Python code to calculate factorial of a number&quot;
+)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AssistantAgent</code></td>
+<td>LLM-powered agent jo tasks solve karta hai</td>
+</tr>
+<tr>
+<td><code>UserProxyAgent</code></td>
+<td>Human ki jagah kaam karta hai — code execute bhi kar sakta hai</td>
+</tr>
+<tr>
+<td><code>initiate_chat()</code></td>
+<td>Do agents ke beech conversation start karta hai</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>When to use AutoGen:</strong> Jab agents ko aapas mein "discuss" karke, code run karke, ya iterative refinement karke problem solve karna ho (jaise coding assistants).</p>
+</blockquote>
+<hr />
+<h2 id="10-tools-function-calling">10. Tools &amp; Function Calling</h2>
+<p>Agents ke paas <strong>tools</strong> hone chahiye taake wo sirf text generate na karein, balki actual kaam bhi kar sakein (jaise web search, calculation, database query).</p>
+<pre><code class="language-python"># General pattern (works similarly across frameworks)
+def search_web(query: str) -&gt; str:
+    &quot;&quot;&quot;Searches the web and returns results&quot;&quot;&quot;
+    # actual search logic
+    return f&quot;Results for {query}&quot;
+
+def calculate(expression: str) -&gt; float:
+    &quot;&quot;&quot;Evaluates a math expression&quot;&quot;&quot;
+    return eval(expression)  # NOTE: eval() real projects mein risky hai, safe parser use karo
+
+tools = [search_web, calculate]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>Agent ko real-world actions perform karne ki ability deta hai</td>
+</tr>
+<tr>
+<td>When to use</td>
+<td>Jab agent ko sirf text nahi, balki data fetch/calculate/save karna ho</td>
+</tr>
+<tr>
+<td>Common Mistakes</td>
+<td>Tool ka description clear na likhna — agent confuse ho jata hai kab konsa tool use kare. Bohot zyada tools ek agent ko dena — performance kharab hoti hai</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Security Tip:</strong> Kabhi bhi <code>eval()</code> ya raw code execution production mein directly use mat karo bina sandboxing ke — security risk hai.</p>
+</blockquote>
+<hr />
+<h2 id="11-memory-in-multi-agent-systems">11. Memory in Multi-Agent Systems</h2>
+<p>Agents ko kabhi kabhi <strong>memory</strong> chahiye hoti hai — pichli conversations ya facts yaad rakhne ke liye.</p>
+<table>
+<thead>
+<tr>
+<th>Memory Type</th>
+<th>Kya karta hai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Short-term memory</strong></td>
+<td>Current conversation/session ka context (jaise message history)</td>
+</tr>
+<tr>
+<td><strong>Long-term memory</strong></td>
+<td>Persistent data jo sessions ke across yaad rahe (jaise vector database mein)</td>
+</tr>
+<tr>
+<td><strong>Shared memory</strong></td>
+<td>Saare agents ek common memory access karte hain (state, blackboard)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python"># Simple conceptual example
+conversation_history = []
+
+def add_to_memory(role, content):
+    conversation_history.append({&quot;role&quot;: role, &quot;content&quot;: content})
+
+add_to_memory(&quot;user&quot;, &quot;What's the weather in Lahore?&quot;)
+add_to_memory(&quot;assistant&quot;, &quot;It's sunny in Lahore.&quot;)
+</code></pre>
+<p>Real projects mein long-term memory ke liye <strong>vector databases</strong> (jaise Pinecone, Chroma, FAISS) use hote hain jahan embeddings store hoti hain aur semantic search se relevant memories retrieve hoti hain.</p>
+<hr />
+<h2 id="12-real-world-example-full-multi-agent-workflow">12. Real-World Example: Full Multi-Agent Workflow</h2>
+<p>Ek complete example — <strong>"Research &amp; Report" system</strong> jo LangGraph jaise pattern follow karta hai:</p>
+<pre><code class="language-python">from typing import TypedDict, List
+
+class AgentState(TypedDict):
+    topic: str
+    research_notes: List[str]
+    draft: str
+    final_report: str
+    needs_revision: bool
+
+# --- Agent 1: Researcher ---
+def researcher_agent(state: AgentState) -&gt; AgentState:
+    print(&quot;🔍 Researcher is gathering information...&quot;)
+    state[&quot;research_notes&quot;] = [
+        &quot;Multi-agent systems improve task accuracy&quot;,
+        &quot;Popular frameworks: LangGraph, CrewAI, AutoGen&quot;
+    ]
+    return state
+
+# --- Agent 2: Writer ---
+def writer_agent(state: AgentState) -&gt; AgentState:
+    print(&quot;✍️ Writer is drafting the report...&quot;)
+    notes = &quot; &quot;.join(state[&quot;research_notes&quot;])
+    state[&quot;draft&quot;] = f&quot;Report on {state['topic']}: {notes}&quot;
+    return state
+
+# --- Agent 3: Reviewer ---
+def reviewer_agent(state: AgentState) -&gt; AgentState:
+    print(&quot;🔎 Reviewer is checking the draft...&quot;)
+    if len(state[&quot;draft&quot;]) &lt; 50:
+        state[&quot;needs_revision&quot;] = True
+    else:
+        state[&quot;needs_revision&quot;] = False
+        state[&quot;final_report&quot;] = state[&quot;draft&quot;]
+    return state
+
+# --- Decision function ---
+def route_after_review(state: AgentState) -&gt; str:
+    return &quot;writer&quot; if state[&quot;needs_revision&quot;] else &quot;end&quot;
+
+# --- Building the graph ---
+from langgraph.graph import StateGraph, END
+
+graph = StateGraph(AgentState)
+graph.add_node(&quot;researcher&quot;, researcher_agent)
+graph.add_node(&quot;writer&quot;, writer_agent)
+graph.add_node(&quot;reviewer&quot;, reviewer_agent)
+
+graph.set_entry_point(&quot;researcher&quot;)
+graph.add_edge(&quot;researcher&quot;, &quot;writer&quot;)
+graph.add_edge(&quot;writer&quot;, &quot;reviewer&quot;)
+graph.add_conditional_edges(&quot;reviewer&quot;, route_after_review, {&quot;writer&quot;: &quot;writer&quot;, &quot;end&quot;: END})
+
+app = graph.compile()
+
+initial_state = {
+    &quot;topic&quot;: &quot;Multi-Agent AI Systems&quot;,
+    &quot;research_notes&quot;: [],
+    &quot;draft&quot;: &quot;&quot;,
+    &quot;final_report&quot;: &quot;&quot;,
+    &quot;needs_revision&quot;: False
+}
+
+result = app.invoke(initial_state)
+print(&quot;\n📄 FINAL REPORT:&quot;, result[&quot;final_report&quot;])
+</code></pre>
+<p><strong>Ye kya sikhata hai:</strong>
+- Har agent ka apna <strong>focused kaam</strong> hai (research, write, review)
+- <strong>State</strong> saare agents ke beech share hoti hai
+- <strong>Conditional routing</strong> hai — agar draft chota hai, wapas writer ke paas jata hai (loop)
+- Ye real projects mein "self-correcting" agent pipelines ka basic pattern hai</p>
+<hr />
+<h2 id="13-common-problems-how-to-solve-them">13. Common Problems &amp; How to Solve Them</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agents infinite loop mein phas jaate hain</td>
+<td>Max iteration limit set karo (jaise <code>max_turns=5</code>)</td>
+</tr>
+<tr>
+<td>Agent galat tool choose karta hai</td>
+<td>Tool descriptions ko clear aur specific likho</td>
+</tr>
+<tr>
+<td>Cost bohot zyada ho jati hai (multiple LLM calls)</td>
+<td>Chhote/cheaper models use karo simple sub-tasks ke liye (jaise GPT-4 sirf complex reasoning ke liye, GPT-3.5/mini baaki ke liye)</td>
+</tr>
+<tr>
+<td>Agents ka output inconsistent hota hai</td>
+<td>Structured output (Pydantic models, JSON schema) enforce karo</td>
+</tr>
+<tr>
+<td>Debugging mushkil hoti hai</td>
+<td>Logging/tracing tools use karo (LangSmith, AgentOps) taake dekh sako har agent ne kya kiya</td>
+</tr>
+<tr>
+<td>Agent hallucinate karta hai (galat info deta hai)</td>
+<td>Tools use karke real data fetch karwao, sirf LLM ki memory par depend mat karo</td>
+</tr>
+<tr>
+<td>Race conditions parallel agents mein</td>
+<td>Shared state ko carefully manage karo, locks ya proper aggregation logic use karo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-best-practices">14. Best Practices</h2>
+<ol>
+<li><strong>Single Responsibility</strong> — Har agent ka ek hi clear, focused role hona chahiye (jaise "sirf research karo", "sirf code likho")</li>
+<li><strong>Clear Instructions</strong> — Agent ke system prompt/instructions specific aur unambiguous hone chahiye</li>
+<li><strong>Limit the number of agents</strong> — Zyada agents = zyada complexity aur cost. Jitna kam utna behtar (jab tak kaam ho jaye)</li>
+<li><strong>Use structured outputs</strong> — Pydantic models ya JSON schema use karo taake agents ka output predictable ho</li>
+<li><strong>Add guardrails</strong> — Max retries, timeouts, aur validation checks add karo</li>
+<li><strong>Test each agent individually</strong> — Poore system ko test karne se pehle har agent ko alag test karo</li>
+<li><strong>Monitor and log everything</strong> — Production mein tracing tools use karo (LangSmith, Weights &amp; Biases, AgentOps)</li>
+<li><strong>Start simple</strong> — Pehle single agent try karo, agar wo insufficient ho tabhi multi-agent mein jao</li>
+</ol>
+<hr />
+<h2 id="15-interview-questions-answers">15. Interview Questions &amp; Answers</h2>
+<p><strong>Q: Multi-agent system kya hai aur single agent se kyun better hai?</strong></p>
+<blockquote>
+<p>A: Multi-agent system multiple specialized LLM agents ka collaboration hai jahan har agent ka focused role hota hai. Ye complex tasks ko chhote, manageable parts mein divide karta hai jisse accuracy aur maintainability better hoti hai — lekin cost aur latency zyada hoti hai, isliye simple tasks ke liye single agent hi better hai.</p>
+</blockquote>
+<p><strong>Q: Orchestrator/Supervisor pattern kya hai?</strong></p>
+<blockquote>
+<p>A: Ek central agent jo decide karta hai kaunsa sub-agent kab call hoga, based on incoming request ya current state. Ye "traffic controller" ki tarah kaam karta hai.</p>
+</blockquote>
+<p><strong>Q: Agent handoff kya hota hai?</strong></p>
+<blockquote>
+<p>A: Jab ek agent apna kaam complete karke control (aur relevant context) doosre specialized agent ko pass kar deta hai, taake wo agla step handle kar sake.</p>
+</blockquote>
+<p><strong>Q: LangGraph mein "state" ka kya role hai?</strong></p>
+<blockquote>
+<p>A: State ek shared data structure hai jo saare agents/nodes ke beech pass hoti hai — isme intermediate results, conversation history, aur flags (jaise "needs_revision") store hote hain jo workflow ke decisions control karte hain.</p>
+</blockquote>
+<p><strong>Q: Multi-agent systems mein sabse bara challenge kya hota hai?</strong></p>
+<blockquote>
+<p>A: Coordination aur cost — agents ko sahi order mein chalana, infinite loops se bachna, aur multiple LLM calls ki wajah se cost/latency control karna sabse bare challenges hain.</p>
+</blockquote>
+<p><strong>Q: Tools/Function calling multi-agent systems mein kyun zaroori hain?</strong></p>
+<blockquote>
+<p>A: Bina tools ke agent sirf text generate kar sakta hai — real actions (jaise data fetch karna, calculation karna, database update karna) ke liye tools zaroori hain jo agent ko "actually kaam karne" ki ability dete hain.</p>
+</blockquote>
+<hr />
+<h2 id="16-quick-cheat-sheet">16. Quick Cheat Sheet</h2>
+<pre><code>CORE CONCEPTS
+Agent          = LLM + Role + Tools + Memory
+Orchestrator   = Decides which agent runs next
+Handoff        = One agent passes control to another
+State          = Shared data across all agents
+Tool           = Function agent can call for real actions
+
+ARCHITECTURES
+Sequential      A -&gt; B -&gt; C
+Supervisor      Supervisor decides -&gt; routes to A/B/C
+Parallel        A + B + C run together -&gt; combine
+Hierarchical    Multi-level supervisors
+Collaborative   Agents debate/review each other
+
+FRAMEWORKS
+LangGraph        graph-based, best for complex/branching workflows
+OpenAI Agents SDK  lightweight, handoff-based, OpenAI-native
+CrewAI           role-based teams, readable syntax
+AutoGen          conversational agents, good for coding tasks
+
+KEY LANGGRAPH FUNCTIONS
+StateGraph()            define workflow
+add_node()              add an agent
+add_edge()              fixed connection
+add_conditional_edges() conditional routing
+set_entry_point()       starting node
+compile() / invoke()    build and run
+
+GOLDEN RULES
+1. Start with single agent, upgrade to multi-agent only if needed
+2. One agent = one clear job
+3. Always set max iteration limits (avoid infinite loops)
+4. Use structured outputs (Pydantic/JSON schema)
+5. Log/trace everything for debugging
+</code></pre>
+<hr />
+<h2 id="17-beginner-mistakes">17. Beginner Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Sahi Tareeqa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Har chhote task ke liye multi-agent use karna</td>
+<td>Pehle check karo simple single agent/prompt se kaam ho sakta hai ya nahi</td>
+</tr>
+<tr>
+<td>Max iteration limit set na karna</td>
+<td>Hamesha <code>max_turns</code> ya <code>max_iterations</code> set karo — warna infinite loop/cost explode ho sakta hai</td>
+</tr>
+<tr>
+<td>Agent ke instructions vague likhna</td>
+<td>Specific, clear role define karo (jaise "You ONLY handle billing questions", generic "You are helpful" nahi)</td>
+</tr>
+<tr>
+<td>Tool descriptions ambiguous likhna</td>
+<td>Clear docstrings likho taake agent sahi tool choose kare</td>
+</tr>
+<tr>
+<td>State ko carelessly overwrite karna</td>
+<td>State updates carefully design karo, especially parallel agents mein</td>
+</tr>
+<tr>
+<td>Production mein bina monitoring ke deploy karna</td>
+<td>Tracing/logging tools (LangSmith, AgentOps) use karo taake pata chale agent kya kar raha hai</td>
+</tr>
+<tr>
+<td>Sab kaam ek hi expensive model se karwana</td>
+<td>Simple sub-tasks ke liye chhote/cheaper models use karo, complex reasoning ke liye bara model</td>
+</tr>
+<tr>
+<td><code>eval()</code> jaisi unsafe cheezein directly production mein use karna</td>
+<td>Sandboxed execution ya safe parsing libraries use karo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="final-note">🎯 Final Note</h2>
+<p>Multi-agent systems bohot powerful hain lekin <strong>complexity aur cost bhi zyada</strong> hoti hai. Hamesha simple se start karo — agar single agent se kaam chal raha hai to multi-agent mat banao. Jab task genuinely complex ho (multiple distinct skills chahiye hon, jaise research + coding + review), tab multi-agent architecture use karo.</p>
+<p><strong>Practice tip:</strong> Ek chhota project banao jaise "Research + Summarize + Email" agent system, LangGraph ya CrewAI use karke — isse concepts practically clear ho jayenge. 🚀</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

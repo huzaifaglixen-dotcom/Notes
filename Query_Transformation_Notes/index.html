@@ -1,0 +1,2684 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Query_Transformation_Notes/">
+      
+      
+        <link rel="prev" href="../Python_Concepts-for-AI-Engineering/">
+      
+      
+        <link rel="next" href="../RAG_Complete_Guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Query Transformation — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#query-transformation-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Query Transformation — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-query-transformation-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Query Transformation is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-query-rewriting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Query Rewriting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Query Rewriting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-prompt-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Prompt (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-hyde-hypothetical-document-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. HyDE (Hypothetical Document Embeddings)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. HyDE (Hypothetical Document Embeddings)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works-the-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works (The Insight)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-cons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros &amp; Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-multi-query-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Multi-Query Retrieval
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Multi-Query Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-cons_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros &amp; Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-back-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Step-Back Prompting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Step-Back Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-query-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Query Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Query Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-comparison-of-all-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Comparison of All Techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-when-to-use-which-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. When to Use Which Technique
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-query-transformation-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Query Transformation is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-query-rewriting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Query Rewriting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Query Rewriting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-prompt-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Prompt (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-hyde-hypothetical-document-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. HyDE (Hypothetical Document Embeddings)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. HyDE (Hypothetical Document Embeddings)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works-the-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works (The Insight)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-point" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Point
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-cons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros &amp; Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-multi-query-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Multi-Query Retrieval
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Multi-Query Retrieval">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-by-step_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-Step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros-cons_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros &amp; Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-step-back-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Step-Back Prompting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Step-Back Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-query-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Query Decomposition
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Query Decomposition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-comparison-of-all-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Comparison of All Techniques
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-when-to-use-which-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. When to Use Which Technique
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="query-transformation-complete-notes">Query Transformation — Complete Notes</h1>
+<blockquote>
+<p><strong>Query Transformation</strong> = User ki original query ko retrieval se <strong>pehle modify/improve/expand</strong> karna, taaki <strong>better/more relevant chunks</strong> retrieve ho sakein.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why Query Transformation is Needed</li>
+<li>Query Rewriting</li>
+<li>HyDE (Hypothetical Document Embeddings)</li>
+<li>Multi-Query Retrieval</li>
+<li>Step-Back Prompting</li>
+<li>Query Decomposition</li>
+<li>Comparison of All Techniques</li>
+<li>When to Use Which Technique</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-query-transformation-is-needed">1. Why Query Transformation is Needed</h2>
+<p>User ki original query hamesha <strong>retrieval ke liye "ideal"</strong> nahi hoti:
+- Query bahut <strong>short/vague</strong> ho sakti hai ("fix this")
+- Query me <strong>typos/grammar issues</strong> ho sakte hain
+- Query <strong>conversational</strong> ho sakti hai lekin documents <strong>formal/technical language</strong> me likhe hain
+- Query <strong>complex/multi-part</strong> ho sakti hai jisme multiple sub-questions chhupe hain</p>
+<blockquote>
+<p>Analogy: Socho aap ek library me librarian se poochte ho "Woh book chahiye jisme scientist wali cheez thi" — librarian ko exact book dhoondhna mushkil hoga. Agar aap query ko <strong>refine/clarify</strong> karke poochte ho ("Marie Curie ki biography chahiye, jo radioactivity pe hai"), librarian <strong>turant sahi book de dega</strong>. Query Transformation yehi refining process automate karta hai.</p>
+</blockquote>
+<hr />
+<h2 id="2-query-rewriting">2. Query Rewriting</h2>
+<p><strong>Simple Meaning:</strong> User ki query ko ek LLM se <strong>behtar, clearer, ya retrieval-friendly</strong> version me rewrite karwana.</p>
+<h3 id="how-it-works">How It Works</h3>
+<pre><code>Original Query: &quot;that error thing from yesterday, how to fix?&quot;
+         │
+         ▼ (LLM rewrites)
+Rewritten Query: &quot;How to fix the [specific error type] that occurred yesterday?&quot;
+</code></pre>
+<h3 id="common-use-cases">Common Use Cases</h3>
+<ul>
+<li><strong>Conversational → Standalone:</strong> Chat history ke context ko query me merge karna</li>
+</ul>
+<pre><code>Chat History: &quot;Tell me about Python decorators&quot; → &quot;How do I use them with classes?&quot;
+Rewritten Query: &quot;How do I use Python decorators with classes?&quot;
+</code></pre>
+<p>(Yeh especially zaroori hai multi-turn conversations me, jahan follow-up questions pichle context pe depend karte hain)</p>
+<ul>
+<li><strong>Typo/Grammar Correction:</strong> Spelling mistakes fix karna before embedding</li>
+<li><strong>Ambiguity Resolution:</strong> Vague terms ko specific karna</li>
+</ul>
+<h3 id="example-prompt-conceptual">Example Prompt (Conceptual)</h3>
+<pre><code>&quot;Given the conversation history and the latest user question, rewrite the question 
+to be a standalone, clear question that can be understood without the conversation history.
+
+History: {chat_history}
+Latest Question: {user_question}
+Rewritten Standalone Question:&quot;
+</code></pre>
+<hr />
+<h2 id="3-hyde-hypothetical-document-embeddings">3. HyDE (Hypothetical Document Embeddings)</h2>
+<p><strong>Simple Meaning:</strong> Query ko directly embed karne ke bajaye, pehle LLM se ek <strong>"hypothetical" (imaginary/fake) answer/document</strong> generate karwao us query ke liye, phir <strong>usi hypothetical document ko embed karke search</strong> karo.</p>
+<h3 id="why-this-works-the-insight">Why This Works (The Insight)</h3>
+<ul>
+<li>Queries aksar <strong>short aur question-style</strong> hoti hain ("What causes diabetes?")</li>
+<li>Documents/chunks <strong>longer aur statement-style</strong> hote hain ("Diabetes is caused by insulin resistance...")</li>
+<li>Question-style text aur statement-style text ke embeddings, <strong>thoda "mismatch"</strong> ho sakte hain (kyunki unka structure/style different hai)</li>
+<li>HyDE isko fix karta hai — pehle ek "fake statement-style answer" bana lo, jo <strong>actual documents ke style se zyada match karega</strong>, phir usko embed karke search karo.</li>
+</ul>
+<h3 id="step-by-step">Step-by-Step</h3>
+<pre><code>1. User Query: &quot;What causes diabetes?&quot;
+2. LLM generates a hypothetical answer (may be factually imperfect, that's OK):
+   &quot;Diabetes is caused by the body's inability to properly regulate blood sugar 
+   levels, often due to insulin resistance or insufficient insulin production...&quot;
+3. This HYPOTHETICAL document is embedded (not the original query)
+4. Vector search is performed using THIS embedding
+5. Real, actual relevant documents are retrieved (because their embeddings are 
+   &quot;style-similar&quot; to the hypothetical one)
+</code></pre>
+<h3 id="key-point">Key Point</h3>
+<blockquote>
+<p>Yeh hypothetical document <strong>khud kabhi user ko nahi dikhaya jata</strong> — yeh sirf ek <strong>"better search query" banane ka intermediate step</strong> hai. Actual answer, retrieved real documents se hi generate hota hai.</p>
+</blockquote>
+<h3 id="pros-cons">Pros &amp; Cons</h3>
+<ul>
+<li>✅ Short/vague queries ke liye retrieval quality improve karta hai</li>
+<li>✅ Especially useful jab query aur documents ka "style" bahut different ho</li>
+<li>❌ Extra LLM call chahiye (cost/latency badhta hai)</li>
+<li>❌ Agar hypothetical document bahut off-track ban jaye, retrieval bhi galat direction me ja sakta hai</li>
+</ul>
+<hr />
+<h2 id="4-multi-query-retrieval">4. Multi-Query Retrieval</h2>
+<p><strong>Simple Meaning:</strong> Ek hi original query se, LLM <strong>multiple alag-alag phrasings/perspectives</strong> generate karta hai, phir <strong>har version se alag se retrieval</strong> karta hai, aur sabke results ko <strong>combine/deduplicate</strong> karke final set banata hai.</p>
+<h3 id="why-this-works">Why This Works</h3>
+<ul>
+<li>Ek hi query ko <strong>alag tarike se poochne</strong> se, alag-alag relevant chunks mil sakte hain (jo ek single phrasing se miss ho jate).</li>
+<li>Yeh recall improve karta hai — zyada "angles" se search karne se, chhupe hue relevant chunks bhi mil jate hain.</li>
+</ul>
+<h3 id="step-by-step_1">Step-by-Step</h3>
+<pre><code>Original Query: &quot;How do I improve team productivity?&quot;
+
+LLM generates variations:
+1. &quot;What are effective strategies to boost team performance?&quot;
+2. &quot;How can managers increase employee efficiency?&quot;
+3. &quot;Ways to make a team work more productively&quot;
+
+For each variation → Run vector search → Get results
+Combine all results → Remove duplicates → Final retrieved set
+</code></pre>
+<h3 id="pros-cons_1">Pros &amp; Cons</h3>
+<ul>
+<li>✅ Recall improve hota hai (multiple angles se search)</li>
+<li>✅ Ambiguous queries ke liye robust</li>
+<li>❌ Multiple retrieval calls chahiye (zyada latency/cost)</li>
+<li>❌ Zyada results ko combine/dedupe karna extra complexity hai</li>
+</ul>
+<hr />
+<h2 id="5-step-back-prompting">5. Step-Back Prompting</h2>
+<p><strong>Simple Meaning:</strong> Specific/detailed query se pehle, ek <strong>"zoomed-out", more general/abstract question</strong> poochna — taaki broader context mil sake jo specific answer ko better support kare.</p>
+<h3 id="example">Example</h3>
+<pre><code>Original Query: &quot;What was the temperature at which water boiled in the experiment 
+conducted on July 15th at Stanford Lab?&quot;
+
+Step-Back Question: &quot;What are the general principles of water's boiling point 
+and factors that affect it (altitude, pressure)?&quot;
+
+Both queries are used for retrieval:
+- Step-back query gets general/foundational context
+- Original query gets specific details
+
+Both retrieved contexts are combined for the final answer generation.
+</code></pre>
+<h3 id="why-this-works_1">Why This Works</h3>
+<ul>
+<li>Complex/specific questions often <strong>need broader context</strong> to be answered correctly.</li>
+<li>Retrieving only hyper-specific chunks might miss <strong>foundational information</strong> needed to properly interpret them.</li>
+</ul>
+<hr />
+<h2 id="6-query-decomposition">6. Query Decomposition</h2>
+<p><strong>Simple Meaning:</strong> Ek <strong>complex, multi-part query</strong> ko chhote, <strong>independent sub-questions</strong> me todna, har ek ko alag se retrieve/answer karna, phir results ko combine karna.</p>
+<h3 id="example_1">Example</h3>
+<pre><code>Original Query: &quot;Compare the revenue growth of Company A and Company B over the 
+last 3 years, and explain which factors contributed to the difference.&quot;
+
+Decomposed Sub-Questions:
+1. &quot;What was Company A's revenue growth over the last 3 years?&quot;
+2. &quot;What was Company B's revenue growth over the last 3 years?&quot;
+3. &quot;What factors influenced Company A's revenue growth?&quot;
+4. &quot;What factors influenced Company B's revenue growth?&quot;
+
+Each sub-question → retrieved separately → all context combined → final comprehensive answer
+</code></pre>
+<h3 id="why-this-works_2">Why This Works</h3>
+<ul>
+<li>Complex queries me <strong>multiple distinct information needs</strong> hote hain — ek single retrieval call sabko cover nahi kar payegi achhe se.</li>
+<li>Sub-questions ko alag-alag retrieve karne se, <strong>har part ke liye targeted, relevant chunks</strong> milte hain.</li>
+</ul>
+<hr />
+<h2 id="7-comparison-of-all-techniques">7. Comparison of All Techniques</h2>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Core Idea</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Query Rewriting</strong></td>
+<td>Query ko clearer/standalone banana</td>
+<td>Conversational/vague/typo-filled queries</td>
+</tr>
+<tr>
+<td><strong>HyDE</strong></td>
+<td>Fake answer banake usse search karna</td>
+<td>Short queries, query-document style mismatch</td>
+</tr>
+<tr>
+<td><strong>Multi-Query Retrieval</strong></td>
+<td>Multiple phrasings se search karna</td>
+<td>Improving recall, ambiguous queries</td>
+</tr>
+<tr>
+<td><strong>Step-Back Prompting</strong></td>
+<td>General question bhi poochna specific ke saath</td>
+<td>Complex queries needing foundational context</td>
+</tr>
+<tr>
+<td><strong>Query Decomposition</strong></td>
+<td>Complex query ko sub-questions me todna</td>
+<td>Multi-part, comparison-type queries</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-when-to-use-which-technique">8. When to Use Which Technique</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended Technique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-turn chatbot (follow-up questions)</td>
+<td>Query Rewriting (standalone question conversion)</td>
+</tr>
+<tr>
+<td>Very short/vague user queries</td>
+<td>HyDE</td>
+</tr>
+<tr>
+<td>Need to maximize recall, ambiguous phrasing</td>
+<td>Multi-Query Retrieval</td>
+</tr>
+<tr>
+<td>Complex questions needing broader context</td>
+<td>Step-Back Prompting</td>
+</tr>
+<tr>
+<td>Multi-part/comparison questions</td>
+<td>Query Decomposition</td>
+</tr>
+<tr>
+<td>Simple, clear, well-formed queries</td>
+<td>None needed — direct retrieval is fine!</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Important:</strong> Query Transformation <strong>extra LLM calls</strong> add karta hai (latency + cost). Simple, clear queries ke liye yeh overkill ho sakta hai — inhe <strong>selectively</strong> use karo, sirf jab genuinely retrieval quality improve ho.</p>
+</blockquote>
+<hr />
+<h2 id="9-common-mistakes">9. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Applying query transformation to every single query</td>
+<td>Unnecessary latency/cost for simple queries</td>
+<td>Use conditionally — detect when query is vague/complex first</td>
+</tr>
+<tr>
+<td>Not testing if transformation actually helps</td>
+<td>Assuming it improves results without validation</td>
+<td>A/B test with retrieval metrics (Recall, NDCG) before/after</td>
+</tr>
+<tr>
+<td>Using HyDE for very factual/specific queries</td>
+<td>Hypothetical document might introduce inaccuracies that mislead retrieval</td>
+<td>Use HyDE mainly for conceptual/broad queries, not precise fact lookups</td>
+</tr>
+<tr>
+<td>Not deduplicating Multi-Query results</td>
+<td>Redundant chunks passed to LLM, wasting context space</td>
+<td>Always deduplicate combined results before passing to generation</td>
+</tr>
+<tr>
+<td>Ignoring conversational context in multi-turn chats</td>
+<td>Follow-up questions retrieved poorly without rewriting</td>
+<td>Always rewrite to standalone question using chat history</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-cheat-sheet">10. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Query Rewriting</strong> → "Vague/conversational query ko clear banao"</li>
+<li><strong>HyDE</strong> → "Pehle fake answer likho, phir usse search karo"</li>
+<li><strong>Multi-Query</strong> → "Ek query, kayi phrasings, sab se search karo"</li>
+<li><strong>Step-Back</strong> → "General question bhi poocho specific ke saath"</li>
+<li><strong>Query Decomposition</strong> → "Bade sawal ko chhote sawalon me todo"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>User Query
+   │
+   ▼
+[Optional: Transform the query — Rewrite / HyDE / Multi-Query / Step-Back / Decompose]
+   │
+   ▼
+Retrieval (using transformed query/queries)
+   │
+   ▼
+Better, more relevant chunks retrieved → Passed to LLM
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"The user's raw query isn't always the best search query — transforming it intelligently before retrieval often makes the difference between mediocre and great RAG results."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

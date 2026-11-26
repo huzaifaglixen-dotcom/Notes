@@ -1,0 +1,2597 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Observability_LangSmith_Langfuse_Notes/">
+      
+      
+        <link rel="prev" href="../Neural-Networks-Deep-Learning-Basics/">
+      
+      
+        <link rel="next" href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Observability for LLM Apps — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#observability-for-llm-apps-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Observability for LLM Apps — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-observability-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Observability is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-core-problem-llm-apps-are-black-boxes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Core Problem — LLM Apps are "Black Boxes"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-what-observability-tracks-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What Observability Tracks (Core Concepts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tracing-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tracing — Deep Dive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Tracing — Deep Dive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-trace-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Trace (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-spans-building-blocks-of-a-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Spans — Building Blocks of a Trace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Spans — Building Blocks of a Trace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-spans-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Spans Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-popular-observability-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Popular Observability Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-langsmith-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. LangSmith Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. LangSmith Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Setup (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-langfuse-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Langfuse Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Langfuse Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup-conceptual_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Setup (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-key-metrics-to-monitor-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Key Metrics to Monitor in Production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-debugging-workflow-using-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Debugging Workflow Using Traces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-observability-evaluation-connecting-the-dots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Observability + Evaluation (Connecting the Dots)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-observability-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Observability is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-core-problem-llm-apps-are-black-boxes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Core Problem — LLM Apps are "Black Boxes"
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-what-observability-tracks-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What Observability Tracks (Core Concepts)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tracing-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tracing — Deep Dive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Tracing — Deep Dive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-trace-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Trace (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-spans-building-blocks-of-a-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Spans — Building Blocks of a Trace
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Spans — Building Blocks of a Trace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-spans-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Spans Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-popular-observability-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Popular Observability Tools
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-langsmith-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. LangSmith Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. LangSmith Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Setup (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-langfuse-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Langfuse Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Langfuse Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-setup-conceptual_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Setup (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-key-metrics-to-monitor-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Key Metrics to Monitor in Production
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-debugging-workflow-using-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Debugging Workflow Using Traces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-observability-evaluation-connecting-the-dots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Observability + Evaluation (Connecting the Dots)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="observability-for-llm-apps-complete-notes">Observability for LLM Apps — Complete Notes</h1>
+<blockquote>
+<p><strong>Observability</strong> = LLM application ke andar <strong>kya ho raha hai, yeh dekhne, track karne, aur debug karne</strong> ki capability — kaunsa prompt gaya, kaunsa tool call hua, kitna time laga, kitna cost aaya, aur kahan galti hui.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why Observability is Needed</li>
+<li>The Core Problem — LLM Apps are "Black Boxes"</li>
+<li>What Observability Tracks (Core Concepts)</li>
+<li>Tracing — Deep Dive</li>
+<li>Spans — Building Blocks of a Trace</li>
+<li>Popular Observability Tools</li>
+<li>LangSmith Overview</li>
+<li>Langfuse Overview</li>
+<li>Key Metrics to Monitor in Production</li>
+<li>Debugging Workflow Using Traces</li>
+<li>Observability + Evaluation (Connecting the Dots)</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-observability-is-needed">1. Why Observability is Needed</h2>
+<p>Jab aapka RAG pipeline ya Agent <strong>production me</strong> chal raha hota hai, aur koi user complain kare "mujhe galat answer mila", tab bina observability ke aap <strong>andhere me tir chala rahe ho</strong> — pata hi nahi chalega:
+- Kaunsi query thi?
+- Kaunse chunks retrieve hue the?
+- LLM ne kya reasoning ki?
+- Kaunsa tool call hua, kya result aaya?
+- Kahan exactly problem hui — retrieval me, ya generation me?</p>
+<blockquote>
+<p>Analogy: Socho ek <strong>car ka dashboard</strong> — bina dashboard ke, aapko pata hi nahi chalega ki fuel kitna hai, engine ka temperature kya hai, ya koi warning light on hai ya nahi. Observability tools LLM apps ke liye <strong>exactly wahi dashboard</strong> provide karte hain.</p>
+</blockquote>
+<hr />
+<h2 id="2-the-core-problem-llm-apps-are-black-boxes">2. The Core Problem — LLM Apps are "Black Boxes"</h2>
+<p>Complex RAG/Agent pipelines me <strong>bahut saare steps</strong> hote hain:</p>
+<pre><code>User Query → Query Rewriting → Retrieval → Reranking → Prompt Construction 
+→ LLM Call → Tool Call (maybe) → Another LLM Call → Final Response
+</code></pre>
+<p>Bina observability ke, aapko sirf <strong>final output</strong> dikhta hai — beech ke saare steps "hidden" rehte hain. Agar answer galat aaya, aapko pata nahi chalega <strong>kis step pe</strong> problem thi.</p>
+<hr />
+<h2 id="3-what-observability-tracks-core-concepts">3. What Observability Tracks (Core Concepts)</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What It Captures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Traces</strong></td>
+<td>Ek poori request ka end-to-end journey (start se end tak)</td>
+</tr>
+<tr>
+<td><strong>Spans</strong></td>
+<td>Trace ke andar individual steps (e.g., "retrieval step", "LLM call step")</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>Har step aur poori request me kitna time laga</td>
+</tr>
+<tr>
+<td><strong>Token Usage/Cost</strong></td>
+<td>Har LLM call me kitne tokens use hue, kitna cost aaya</td>
+</tr>
+<tr>
+<td><strong>Inputs/Outputs</strong></td>
+<td>Har step ka exact input aur output (prompt, retrieved chunks, LLM response)</td>
+</tr>
+<tr>
+<td><strong>Errors/Exceptions</strong></td>
+<td>Kahan errors/failures hue</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td>Extra context — user ID, session ID, model version, etc.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-tracing-deep-dive">4. Tracing — Deep Dive</h2>
+<p><strong>Simple Meaning:</strong> Trace = Ek <strong>single user request</strong> ka <strong>poora record</strong> — usme shamil har step, uska input/output, time liya gaya, aur koi error — sab kuch ek jagah, visually organized.</p>
+<h3 id="example-trace-conceptual">Example Trace (Conceptual)</h3>
+<pre><code>TRACE ID: abc-123 (User asked: &quot;What's our refund policy?&quot;)
+
+├── Span 1: Query Embedding
+│   Input: &quot;What's our refund policy?&quot;
+│   Output: [0.23, -0.11, ...] (embedding vector)
+│   Duration: 45ms
+│
+├── Span 2: Vector Search
+│   Input: [embedding vector]
+│   Output: [Chunk A, Chunk B, Chunk C] (top-3 retrieved)
+│   Duration: 80ms
+│
+├── Span 3: Reranking
+│   Input: [Chunk A, Chunk B, Chunk C]
+│   Output: [Chunk B, Chunk A, Chunk C] (reordered)
+│   Duration: 120ms
+│
+├── Span 4: LLM Generation
+│   Input: Prompt with [Chunk B, Chunk A, Chunk C] + question
+│   Output: &quot;Our refund policy allows returns within 30 days...&quot;
+│   Tokens: 450 input, 80 output
+│   Cost: $0.002
+│   Duration: 850ms
+│
+Total Trace Duration: 1095ms
+Total Cost: $0.002
+</code></pre>
+<blockquote>
+<p>Iss trace ko dekh ke, agar answer galat tha, aap <strong>exactly identify</strong> kar sakte ho ki problem <strong>retrieval me</strong> thi (galat chunks retrieve hue) ya <strong>generation me</strong> (LLM ne chunks ko misinterpret kiya).</p>
+</blockquote>
+<hr />
+<h2 id="5-spans-building-blocks-of-a-trace">5. Spans — Building Blocks of a Trace</h2>
+<p><strong>Simple Meaning:</strong> Span = Trace ka <strong>ek individual step/operation</strong>. Ek trace me <strong>multiple nested spans</strong> ho sakte hain (jaise ek span ke andar doosra span, agar wo step aage complex sub-steps me divide ho).</p>
+<h3 id="nested-spans-example">Nested Spans Example</h3>
+<pre><code>Trace: &quot;Agent completes research task&quot;
+├── Span: &quot;Understand Query&quot;
+├── Span: &quot;Tool Call: Web Search&quot;
+│    ├── Sub-span: &quot;API Request&quot;
+│    └── Sub-span: &quot;Parse Results&quot;
+├── Span: &quot;LLM Reasoning&quot;
+└── Span: &quot;Generate Final Answer&quot;
+</code></pre>
+<blockquote>
+<p>Yeh <strong>hierarchical structure</strong> especially useful hai <strong>Agent/Multi-step workflows</strong> (jaise LangGraph agents) debug karne ke liye — aap exactly dekh sakte ho ki agent ne kaunse steps liye, kis order me.</p>
+</blockquote>
+<hr />
+<h2 id="6-popular-observability-tools">6. Popular Observability Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Key Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LangSmith</strong></td>
+<td>LangChain/LangGraph ka native observability tool — tracing, evaluation, dataset management</td>
+</tr>
+<tr>
+<td><strong>Langfuse</strong></td>
+<td>Open-source, framework-agnostic — tracing, prompt management, evaluation, cost tracking</td>
+</tr>
+<tr>
+<td><strong>Weights &amp; Biases (W&amp;B) Prompts</strong></td>
+<td>Tracing + experiment tracking, popular in ML-heavy teams</td>
+</tr>
+<tr>
+<td><strong>Helicone</strong></td>
+<td>Lightweight, proxy-based observability — easy to integrate</td>
+</tr>
+<tr>
+<td><strong>Arize Phoenix</strong></td>
+<td>Open-source, strong focus on LLM evaluation + observability together</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-langsmith-overview">7. LangSmith Overview</h2>
+<p><strong>Simple Meaning:</strong> LangChain ka <strong>official observability platform</strong> — agar aap LangChain/LangGraph use kar rahe ho, yeh <strong>sabse seamless integration</strong> deta hai (kam se kam extra code chahiye hota hai).</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Automatic Tracing:</strong> LangChain/LangGraph calls automatically trace ho jate hain (minimal setup)</li>
+<li><strong>Dataset Management:</strong> Test datasets bana ke, unpe evaluations run kar sakte ho</li>
+<li><strong>Evaluation:</strong> Built-in evaluators (Faithfulness, Correctness, etc.) directly traces pe apply kar sakte ho</li>
+<li><strong>Prompt Playground:</strong> Prompts ko directly UI me test/iterate kar sakte ho</li>
+<li><strong>Monitoring Dashboards:</strong> Latency, cost, error rate — sab visualize kiya ja sakta hai</li>
+</ul>
+<h3 id="basic-setup-conceptual">Basic Setup (Conceptual)</h3>
+<pre><code class="language-python">import os
+os.environ[&quot;LANGCHAIN_TRACING_V2&quot;] = &quot;true&quot;
+os.environ[&quot;LANGCHAIN_API_KEY&quot;] = &quot;your-api-key&quot;
+
+# Ab aapke saare LangChain/LangGraph calls automatically LangSmith pe trace honge
+</code></pre>
+<hr />
+<h2 id="8-langfuse-overview">8. Langfuse Overview</h2>
+<p><strong>Simple Meaning:</strong> Ek <strong>open-source, framework-agnostic</strong> observability tool — matlab yeh LangChain ke bina bhi (ya kisi bhi framework ke saath) kaam karta hai, aur aap khud host bhi kar sakte ho (self-hosting option, jo privacy-conscious companies ke liye important hai).</p>
+<h3 id="key-features_1">Key Features</h3>
+<ul>
+<li><strong>Framework-Agnostic:</strong> Kaam karta hai LangChain, LlamaIndex, ya even raw API calls ke saath bhi</li>
+<li><strong>Self-Hostable:</strong> Apna data apne servers pe rakh sakte ho (compliance/privacy ke liye important)</li>
+<li><strong>Prompt Management:</strong> Prompts ko version control ki tarah manage kar sakte ho</li>
+<li><strong>Cost Tracking:</strong> Detailed token usage aur cost breakdown</li>
+</ul>
+<h3 id="basic-setup-conceptual_1">Basic Setup (Conceptual)</h3>
+<pre><code class="language-python">from langfuse.decorators import observe
+
+@observe()
+def my_rag_pipeline(query: str):
+    chunks = retrieve(query)
+    response = generate(query, chunks)
+    return response
+
+# Yeh function call automatically Langfuse pe trace hoga
+</code></pre>
+<hr />
+<h2 id="9-key-metrics-to-monitor-in-production">9. Key Metrics to Monitor in Production</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Latency (p50, p95, p99)</strong></td>
+<td>Average aur worst-case response times — user experience directly impact karta hai</td>
+</tr>
+<tr>
+<td><strong>Token Usage</strong></td>
+<td>Cost directly iske proportional hota hai</td>
+</tr>
+<tr>
+<td><strong>Cost per Request</strong></td>
+<td>Business viability track karne ke liye</td>
+</tr>
+<tr>
+<td><strong>Error Rate</strong></td>
+<td>Kitni requests fail ho rahi hain (tool errors, LLM errors, timeouts)</td>
+</tr>
+<tr>
+<td><strong>Retrieval Quality (RAG systems)</strong></td>
+<td>Kya sahi chunks consistently mil rahe hain production traffic pe bhi</td>
+</tr>
+<tr>
+<td><strong>User Feedback (thumbs up/down)</strong></td>
+<td>Real-world signal ki users satisfied hain ya nahi</td>
+</tr>
+<tr>
+<td><strong>Hallucination Rate</strong></td>
+<td>Periodic sampling se check karo faithfulness metrics production data pe</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>p50/p95/p99 ka matlab:</strong> p50 = median latency (50% requests isse fast hain), p95 = 95% requests isse fast hain (matlab sirf 5% requests isse slow hain — worst-case ka signal). Production monitoring me <strong>p95/p99</strong> dekhna zyada important hota hai average se, kyunki wo "worst user experience" ko highlight karta hai.</p>
+</blockquote>
+<hr />
+<h2 id="10-debugging-workflow-using-traces">10. Debugging Workflow Using Traces</h2>
+<p>Jab koi issue report ho ("bot ne galat answer diya"), yeh systematic approach follow karo:</p>
+<pre><code>1. Find the specific trace (using user ID, timestamp, or session ID)
+2. Check the final output — confirm the issue
+3. Walk backward through spans:
+   a. Was the retrieval step correct? (Check retrieved chunks)
+   b. Was reranking correct? (Check reordering)
+   c. Was the prompt constructed correctly? (Check final prompt sent to LLM)
+   d. Did the LLM misinterpret good context? (Faithfulness issue)
+4. Identify the exact failure point
+5. Fix that specific component (better chunking, better prompt, etc.)
+6. Re-test with the same query to confirm fix
+</code></pre>
+<hr />
+<h2 id="11-observability-evaluation-connecting-the-dots">11. Observability + Evaluation (Connecting the Dots)</h2>
+<p>Observability aur Evaluation (pichli notes) <strong>saath me kaam karte hain</strong>:</p>
+<pre><code>Observability → Collects real production data/traces (what's actually happening)
+       │
+       ▼
+Evaluation → Uses that data to measure quality (Faithfulness, Relevance, etc.)
+       │
+       ▼
+Insights → Identify patterns (e.g., &quot;retrieval fails often for questions about X topic&quot;)
+       │
+       ▼
+Improvements → Fix the specific weak points (better chunking for X topic, etc.)
+</code></pre>
+<blockquote>
+<p>Modern tools (LangSmith, Langfuse) <strong>combine both</strong> — aap traces collect bhi kar sakte ho aur unpe directly evaluation metrics bhi run kar sakte ho, ek hi platform me.</p>
+</blockquote>
+<hr />
+<h2 id="12-common-mistakes">12. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No tracing in production</td>
+<td>Impossible to debug issues when they occur</td>
+<td>Set up tracing from day one, even in early development</td>
+</tr>
+<tr>
+<td>Only checking final output, not intermediate steps</td>
+<td>Miss the actual root cause of failures</td>
+<td>Always inspect full trace (all spans) when debugging</td>
+</tr>
+<tr>
+<td>Not monitoring cost/token usage</td>
+<td>Bills can spiral unexpectedly</td>
+<td>Set up cost dashboards and alerts</td>
+</tr>
+<tr>
+<td>Ignoring p95/p99 latency, only looking at averages</td>
+<td>Miss worst-case user experiences</td>
+<td>Monitor percentile latencies, not just average</td>
+</tr>
+<tr>
+<td>Not connecting observability data back to evaluation</td>
+<td>Miss opportunities to systematically improve the system</td>
+<td>Periodically sample production traces and run evaluation metrics on them</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-cheat-sheet">13. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Observability</strong> → "LLM app ka dashboard — dekho andar kya ho raha hai"</li>
+<li><strong>Trace</strong> → "Ek poori request ka safarnama, start se end tak"</li>
+<li><strong>Span</strong> → "Trace ke andar ek individual step"</li>
+<li><strong>LangSmith</strong> → "LangChain ka native observability tool"</li>
+<li><strong>Langfuse</strong> → "Open-source, framework-agnostic, self-hostable observability tool"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>User Request → [Every step gets traced: retrieval, reranking, LLM call, tool calls]
+   → Trace stored with full input/output/timing/cost
+   → When issue occurs: inspect trace → find exact failure point → fix it
+   → Periodically: run evaluation metrics on sampled traces to catch systemic issues
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"You can't fix what you can't see — observability gives you the visibility to debug, optimize cost, and continuously improve your LLM application in production."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

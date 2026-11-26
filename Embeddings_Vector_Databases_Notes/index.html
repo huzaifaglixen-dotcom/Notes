@@ -1,0 +1,2997 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Embeddings_Vector_Databases_Notes/">
+      
+      
+        <link rel="prev" href="../Dependency_Aware_Retrieval_Notes/">
+      
+      
+        <link rel="next" href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Embeddings & Vector Databases — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#embeddings-vector-databases-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Embeddings &amp; Vector Databases — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-are-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What are Embeddings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What are Embeddings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-simplified-asal-me-embeddings-3847681536-dimensions-ke-hote-hain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Simplified — asal me embeddings 384/768/1536+ dimensions ke hote hain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-embeddings-matter-in-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Embeddings Matter in RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-semantic-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Semantic Understanding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-embeddings-work-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How Embeddings Work (Intuition)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. How Embeddings Work (Intuition)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-intuition-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training Intuition (Simplified)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-types-of-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Types of Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-popular-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Popular Embedding Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-similarity-metrics-how-closeness-is-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Similarity Metrics — How "Closeness" is Measured
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Similarity Metrics — How &#34;Closeness&#34; is Measured">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-cosine-similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Cosine Similarity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-dot-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Dot Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-euclidean-distance-l2-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Euclidean Distance (L2 Distance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-is-a-vector-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What is a Vector Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. What is a Vector Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-not-use-a-normal-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Not Use a Normal Database?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-job-of-a-vector-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Job of a Vector Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-how-vector-databases-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. How Vector Databases Work Internally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. How Vector Databases Work Internally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-the-naive-approach-brute-force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 The Naive Approach (Brute Force)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-approximate-nearest-neighbor-ann-the-real-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Approximate Nearest Neighbor (ANN) — The Real Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-ann-algorithmsindex-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common ANN Algorithms/Index Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-analogy-for-ann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Analogy for ANN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-popular-vector-databases-compared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Popular Vector Databases Compared
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Popular Vector Databases Compared">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-a-vector-database-quick-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a Vector Database — Quick Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-vector-database-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Vector Database Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Vector Database Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-upsert-insertupdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Upsert (Insert/Update)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-query-similarity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Query (Similarity Search)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-metadata-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Metadata Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-deleteupdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Delete/Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-dimensionality-its-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Dimensionality &amp; Its Impact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow-how-it-all-connects-in-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow (How It All Connects in RAG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-are-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What are Embeddings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What are Embeddings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-simplified-asal-me-embeddings-3847681536-dimensions-ke-hote-hain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Simplified — asal me embeddings 384/768/1536+ dimensions ke hote hain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-embeddings-matter-in-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Embeddings Matter in RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-semantic-understanding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Semantic Understanding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-how-embeddings-work-intuition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How Embeddings Work (Intuition)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. How Embeddings Work (Intuition)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#training-intuition-simplified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training Intuition (Simplified)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-types-of-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Types of Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-popular-embedding-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Popular Embedding Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-similarity-metrics-how-closeness-is-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Similarity Metrics — How "Closeness" is Measured
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Similarity Metrics — How &#34;Closeness&#34; is Measured">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-cosine-similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Cosine Similarity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-dot-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Dot Product
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-euclidean-distance-l2-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Euclidean Distance (L2 Distance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-what-is-a-vector-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. What is a Vector Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. What is a Vector Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-not-use-a-normal-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Not Use a Normal Database?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-job-of-a-vector-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Job of a Vector Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-how-vector-databases-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. How Vector Databases Work Internally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. How Vector Databases Work Internally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-the-naive-approach-brute-force" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 The Naive Approach (Brute Force)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-approximate-nearest-neighbor-ann-the-real-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Approximate Nearest Neighbor (ANN) — The Real Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-ann-algorithmsindex-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common ANN Algorithms/Index Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-analogy-for-ann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Analogy for ANN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-popular-vector-databases-compared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Popular Vector Databases Compared
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Popular Vector Databases Compared">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-a-vector-database-quick-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a Vector Database — Quick Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-vector-database-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Vector Database Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Vector Database Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-upsert-insertupdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Upsert (Insert/Update)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-query-similarity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Query (Similarity Search)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-metadata-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Metadata Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-deleteupdate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Delete/Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-dimensionality-its-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Dimensionality &amp; Its Impact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow-how-it-all-connects-in-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow (How It All Connects in RAG)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="embeddings-vector-databases-complete-notes">Embeddings &amp; Vector Databases — Complete Notes</h1>
+<blockquote>
+<p><strong>Embeddings</strong> = Text (ya image/audio) ko <strong>numbers ki list (vector)</strong> me convert karna, taaki computer uska "meaning" samajh sake aur similarity compare kar sake.
+<strong>Vector Database</strong> = Woh special database jo in embeddings ko <strong>store aur fast search</strong> karne ke liye design ki gayi hai.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>What are Embeddings</li>
+<li>How Embeddings Work (Intuition)</li>
+<li>Types of Embeddings</li>
+<li>Popular Embedding Models</li>
+<li>Similarity Metrics (Cosine, Dot Product, Euclidean)</li>
+<li>What is a Vector Database</li>
+<li>How Vector Databases Work Internally (ANN, Indexing)</li>
+<li>Popular Vector Databases Compared</li>
+<li>Vector Database Operations</li>
+<li>Dimensionality &amp; Its Impact</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-what-are-embeddings">1. What are Embeddings</h2>
+<p><strong>Simple Meaning:</strong> Embedding ek tarika hai jisse hum <strong>text ke meaning ko numbers (vector)</strong> me represent karte hain. Do texts jinka <strong>meaning similar</strong> hai, unke embeddings bhi (vector space me) <strong>ek doosre ke paas</strong> honge.</p>
+<blockquote>
+<p>Analogy: Socho ek <strong>map</strong> — jahan similar cheezein ek doosre ke paas rakhi gayi hain. "King" aur "Queen" paas honge, lekin "King" aur "Banana" bahut door honge. Embeddings bhi aisa hi ek "meaning ka map" banate hain, bas 2D nahi balki <strong>hundreds/thousands of dimensions</strong> me.</p>
+</blockquote>
+<h3 id="example-simplified-asal-me-embeddings-3847681536-dimensions-ke-hote-hain">Example (Simplified — asal me embeddings 384/768/1536+ dimensions ke hote hain)</h3>
+<pre><code>&quot;dog&quot;    → [0.2, 0.8, -0.1, ...]
+&quot;puppy&quot;  → [0.21, 0.79, -0.09, ...]   ← &quot;dog&quot; ke bahut paas hai
+&quot;car&quot;    → [-0.9, 0.1, 0.5, ...]      ← &quot;dog&quot; se bahut door hai
+</code></pre>
+<h3 id="why-embeddings-matter-in-rag">Why Embeddings Matter in RAG</h3>
+<ul>
+<li>Jab user query karta hai, uska embedding banaya jata hai.</li>
+<li>Document chunks ke embeddings pehle se stored hote hain.</li>
+<li>System query ke embedding ke <strong>sabse paas (similar)</strong> wale chunks dhoondhta hai — yehi <strong>semantic search</strong> ka core hai.</li>
+<li>Yeh keyword matching (jaise BM25) se alag hai — embeddings <strong>meaning</strong> samajhte hain, exact words match hona zaroori nahi.</li>
+</ul>
+<h3 id="example-semantic-understanding">Example — Semantic Understanding</h3>
+<pre><code>Query: &quot;How do I fix a flat tire?&quot;
+Document: &quot;Steps to repair a punctured wheel&quot;
+</code></pre>
+<p>Koi common exact words nahi hain ("flat tire" vs "punctured wheel"), lekin <strong>embeddings unka meaning similar samjhenge</strong>, isliye semantic search yeh document retrieve kar lega — jo keyword search (BM25) nahi kar payega.</p>
+<hr />
+<h2 id="2-how-embeddings-work-intuition">2. How Embeddings Work (Intuition)</h2>
+<ol>
+<li>Text ek <strong>neural network (embedding model)</strong> ko diya jata hai.</li>
+<li>Model text ko process karta hai aur ek <strong>fixed-length vector</strong> (e.g., 768 numbers) output karta hai.</li>
+<li>Yeh vector text ka "meaning fingerprint" hai — training ke dauraan model ne seekha hota hai ki similar-meaning texts ke vectors close hone chahiye.</li>
+</ol>
+<h3 id="training-intuition-simplified">Training Intuition (Simplified)</h3>
+<ul>
+<li>Model ko lakhon text pairs dikhaye jate hain (similar vs dissimilar).</li>
+<li>Model training ke dauraan apne weights adjust karta hai taaki:</li>
+<li>Similar meaning wale texts → <strong>close vectors</strong></li>
+<li>Different meaning wale texts → <strong>far apart vectors</strong></li>
+</ul>
+<hr />
+<h2 id="3-types-of-embeddings">3. Types of Embeddings</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kya Hai</th>
+<th>Example Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Word Embeddings</strong></td>
+<td>Har individual word ka ek vector (purana approach)</td>
+<td>Word2Vec, GloVe</td>
+</tr>
+<tr>
+<td><strong>Sentence/Document Embeddings</strong></td>
+<td>Poore sentence/paragraph ka ek single vector</td>
+<td>RAG retrieval, semantic search</td>
+</tr>
+<tr>
+<td><strong>Dense Embeddings</strong></td>
+<td>Har dimension me koi meaningful value hoti hai (most common today)</td>
+<td>OpenAI, Cohere, sentence-transformers</td>
+</tr>
+<tr>
+<td><strong>Sparse Embeddings</strong></td>
+<td>Zyadatar values 0 hoti hain, sirf specific "important" words pe value hoti hai</td>
+<td>BM25-style, SPLADE</td>
+</tr>
+<tr>
+<td><strong>Multimodal Embeddings</strong></td>
+<td>Text, image, audio — sabko same vector space me represent karna</td>
+<td>CLIP (text+image search)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>RAG me zyadatar <strong>Dense Sentence/Document Embeddings</strong> use hote hain, kyunki wo poore chunk ka meaning ek vector me capture karte hain.</p>
+</blockquote>
+<hr />
+<h2 id="4-popular-embedding-models">4. Popular Embedding Models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Provider</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>text-embedding-3-small/large</strong></td>
+<td>OpenAI</td>
+<td>Popular, general-purpose, good performance/cost balance</td>
+</tr>
+<tr>
+<td><strong>Voyage AI embeddings</strong></td>
+<td>Voyage AI</td>
+<td>High quality, often used with Claude/Anthropic-based apps</td>
+</tr>
+<tr>
+<td><strong>Cohere Embed</strong></td>
+<td>Cohere</td>
+<td>Strong multilingual support</td>
+</tr>
+<tr>
+<td><strong>BGE (BAAI General Embedding)</strong></td>
+<td>Open-source (BAAI)</td>
+<td>Free, self-hostable, strong performance</td>
+</tr>
+<tr>
+<td><strong>sentence-transformers (all-MiniLM, etc.)</strong></td>
+<td>Open-source</td>
+<td>Lightweight, fast, good for prototyping</td>
+</tr>
+<tr>
+<td><strong>Jina Embeddings</strong></td>
+<td>Jina AI</td>
+<td>Supports long-context &amp; Late Chunking (jo humne pehle discuss kiya)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Choosing a model depends on:</strong> cost, latency needs, whether you need self-hosting (privacy/compliance), language support (multilingual or not), and context length limits.</p>
+</blockquote>
+<hr />
+<h2 id="5-similarity-metrics-how-closeness-is-measured">5. Similarity Metrics — How "Closeness" is Measured</h2>
+<p>Embeddings ke beech "kitna similar hai" measure karne ke 3 common tareeke:</p>
+<h3 id="51-cosine-similarity">5.1 Cosine Similarity</h3>
+<p><strong>Simple Meaning:</strong> Do vectors ke beech ka <strong>angle</strong> measure karta hai — magnitude (length) ignore karke, sirf <strong>direction</strong> dekhta hai.</p>
+<pre><code>Cosine Similarity = (A · B) / (||A|| × ||B||)
+</code></pre>
+<ul>
+<li>Range: <strong>-1 to 1</strong> (1 = exactly same direction/meaning, 0 = unrelated, -1 = opposite meaning)</li>
+<li><strong>Most commonly used</strong> metric in RAG/semantic search.</li>
+</ul>
+<h3 id="52-dot-product">5.2 Dot Product</h3>
+<p><strong>Simple Meaning:</strong> Vectors ko multiply karke sum kar dete hain — yeh <strong>magnitude aur direction dono</strong> consider karta hai.</p>
+<pre><code>Dot Product = A · B = Σ(Ai × Bi)
+</code></pre>
+<ul>
+<li>Agar embeddings already <strong>normalized</strong> hain (length = 1), toh Dot Product aur Cosine Similarity <strong>same result</strong> dete hain.</li>
+<li>Kai vector databases dot product use karte hain kyunki yeh <strong>computationally faster</strong> hota hai.</li>
+</ul>
+<h3 id="53-euclidean-distance-l2-distance">5.3 Euclidean Distance (L2 Distance)</h3>
+<p><strong>Simple Meaning:</strong> Do points (vectors) ke beech ki <strong>actual straight-line distance</strong> — jaise normal geometry me distance nikaalte hain.</p>
+<pre><code>Euclidean Distance = √(Σ(Ai - Bi)²)
+</code></pre>
+<ul>
+<li><strong>Lower distance = more similar</strong> (yeh baaki dono se ulta hai — usme higher score = zyada similar hota hai)</li>
+</ul>
+<h3 id="comparison-table">Comparison Table</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Range</th>
+<th>Higher/Lower = More Similar?</th>
+<th>Common Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cosine Similarity</td>
+<td>-1 to 1</td>
+<td>Higher = more similar</td>
+<td>Most RAG/semantic search systems</td>
+</tr>
+<tr>
+<td>Dot Product</td>
+<td>Unbounded</td>
+<td>Higher = more similar</td>
+<td>When embeddings are normalized (faster compute)</td>
+</tr>
+<tr>
+<td>Euclidean Distance</td>
+<td>0 to ∞</td>
+<td>Lower = more similar</td>
+<td>Clustering, some vector DBs</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tip:</strong> Agar aapka embedding model "normalized vectors" produce karta hai (jaise OpenAI models), toh Cosine Similarity aur Dot Product practically same result denge.</p>
+</blockquote>
+<hr />
+<h2 id="6-what-is-a-vector-database">6. What is a Vector Database</h2>
+<p><strong>Simple Meaning:</strong> Vector Database ek <strong>special type ka database</strong> hai jo specifically embeddings (vectors) ko <strong>store, index, aur fast search</strong> karne ke liye design kiya gaya hai.</p>
+<h3 id="why-not-use-a-normal-database">Why Not Use a Normal Database?</h3>
+<ul>
+<li>Normal databases (SQL, MongoDB) <strong>exact match ya range queries</strong> ke liye optimized hain (e.g., "age &gt; 25").</li>
+<li>Vector databases <strong>"nearest neighbor search"</strong> ke liye optimized hain — "in millions of vectors me se, in vectors ke sabse paas kaun se 5 hain?" — yeh normal databases efficiently nahi kar sakte (bahut slow ho jayega bade scale pe).</li>
+</ul>
+<h3 id="core-job-of-a-vector-database">Core Job of a Vector Database</h3>
+<pre><code>Input: Query Vector
+Output: Top-K most similar vectors (+ their associated metadata/original text)
+</code></pre>
+<hr />
+<h2 id="7-how-vector-databases-work-internally">7. How Vector Databases Work Internally</h2>
+<h3 id="71-the-naive-approach-brute-force">7.1 The Naive Approach (Brute Force)</h3>
+<ul>
+<li>Query vector ko <strong>har ek</strong> stored vector se compare karo, similarity calculate karo, sort karo, top-K nikaalo.</li>
+<li>✅ 100% accurate.</li>
+<li>❌ Bahut <strong>slow</strong> hai jab millions of vectors ho (linear time complexity).</li>
+</ul>
+<h3 id="72-approximate-nearest-neighbor-ann-the-real-solution">7.2 Approximate Nearest Neighbor (ANN) — The Real Solution</h3>
+<p><strong>Simple Meaning:</strong> Instead of checking <strong>every single vector</strong>, ANN algorithms ek <strong>smart index structure</strong> banate hain jisse "approximately" (thoda sa accuracy trade-off karke) <strong>bahut fast</strong> search ho sake.</p>
+<h3 id="common-ann-algorithmsindex-types">Common ANN Algorithms/Index Types</h3>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Simple Idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HNSW (Hierarchical Navigable Small World)</strong></td>
+<td>Ek multi-layer "graph" banata hai — jaise ek city map jisme highways (top layer) se shuru karke, chhoti roads (bottom layer) tak navigate karte ho, taaki fast nearest point mil jaye</td>
+</tr>
+<tr>
+<td><strong>IVF (Inverted File Index)</strong></td>
+<td>Vectors ko pehle "clusters/buckets" me group karta hai; search ke time sirf relevant cluster(s) me dhoondhta hai, sab jagah nahi</td>
+</tr>
+<tr>
+<td><strong>PQ (Product Quantization)</strong></td>
+<td>Vectors ko compress karta hai (chhote pieces me todke approximate karta hai) taaki memory kam use ho aur search fast ho</td>
+</tr>
+<tr>
+<td><strong>LSH (Locality-Sensitive Hashing)</strong></td>
+<td>Similar vectors ko same "hash bucket" me daalta hai, taaki similar cheezein jaldi mil jayein</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>HNSW</strong> sabse popular/widely-used algorithm hai aaj-kal (Pinecone, Weaviate, Qdrant, FAISS sab isko support karte hain) — best balance of speed and accuracy deta hai.</p>
+</blockquote>
+<h3 id="simple-analogy-for-ann">Simple Analogy for ANN</h3>
+<blockquote>
+<p>Socho ek <strong>library</strong> — agar har book ko ek-ek karke check karoge (brute force), bahut time lagega. Lekin agar books already <strong>categorized/organized</strong> hain (genre → shelf → section), toh aap seedha relevant section me jaake jaldi dhoondh sakte ho. Yehi ANN indexing karta hai.</p>
+</blockquote>
+<hr />
+<h2 id="8-popular-vector-databases-compared">8. Popular Vector Databases Compared</h2>
+<table>
+<thead>
+<tr>
+<th>Vector DB</th>
+<th>Type</th>
+<th>Key Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pinecone</strong></td>
+<td>Managed/Cloud (SaaS)</td>
+<td>Fully managed, easy to scale, no infrastructure headache, paid</td>
+</tr>
+<tr>
+<td><strong>Weaviate</strong></td>
+<td>Open-source + Cloud option</td>
+<td>Built-in hybrid search (vector + keyword), GraphQL API</td>
+</tr>
+<tr>
+<td><strong>Qdrant</strong></td>
+<td>Open-source + Cloud option</td>
+<td>Fast, Rust-based, good filtering support</td>
+</tr>
+<tr>
+<td><strong>Milvus</strong></td>
+<td>Open-source</td>
+<td>Highly scalable, good for very large datasets, more complex setup</td>
+</tr>
+<tr>
+<td><strong>ChromaDB</strong></td>
+<td>Open-source, lightweight</td>
+<td>Great for prototyping/small projects, easy to start with</td>
+</tr>
+<tr>
+<td><strong>FAISS (Facebook AI Similarity Search)</strong></td>
+<td>Library (not a full DB)</td>
+<td>Extremely fast, but no built-in persistence/metadata filtering — you build that yourself</td>
+</tr>
+<tr>
+<td><strong>pgvector</strong></td>
+<td>PostgreSQL extension</td>
+<td>Adds vector search directly into existing Postgres DB — good if already using Postgres</td>
+</tr>
+</tbody>
+</table>
+<h3 id="choosing-a-vector-database-quick-guide">Choosing a Vector Database — Quick Guide</h3>
+<table>
+<thead>
+<tr>
+<th>Your Situation</th>
+<th>Recommended</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quick prototype/learning</td>
+<td>ChromaDB or FAISS</td>
+</tr>
+<tr>
+<td>Production app, don't want to manage infra</td>
+<td>Pinecone</td>
+</tr>
+<tr>
+<td>Need hybrid search (keyword + vector) built-in</td>
+<td>Weaviate or Qdrant</td>
+</tr>
+<tr>
+<td>Already using PostgreSQL</td>
+<td>pgvector</td>
+</tr>
+<tr>
+<td>Massive scale (billions of vectors)</td>
+<td>Milvus</td>
+</tr>
+<tr>
+<td>Need full control, self-hosted, open-source</td>
+<td>Qdrant or Weaviate</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-vector-database-operations">9. Vector Database Operations</h2>
+<h3 id="91-upsert-insertupdate">9.1 Upsert (Insert/Update)</h3>
+<pre><code class="language-python">vector_db.upsert(
+    id=&quot;doc1&quot;,
+    vector=[0.12, 0.45, ...],
+    metadata={&quot;source&quot;: &quot;article.pdf&quot;, &quot;page&quot;: 3}
+)
+</code></pre>
+<h3 id="92-query-similarity-search">9.2 Query (Similarity Search)</h3>
+<pre><code class="language-python">results = vector_db.query(
+    vector=query_embedding,
+    top_k=5,
+    filter={&quot;source&quot;: &quot;article.pdf&quot;}   # metadata filtering
+)
+</code></pre>
+<h3 id="93-metadata-filtering">9.3 Metadata Filtering</h3>
+<ul>
+<li>Vector search ke saath-saath, <strong>traditional filters</strong> bhi laga sakte ho (e.g., "sirf 2024 ke documents me dhoondo", "sirf category='finance' wale chunks me dhoondo").</li>
+<li>Yeh <strong>hybrid retrieval</strong> ka ek important part hai.</li>
+</ul>
+<h3 id="94-deleteupdate">9.4 Delete/Update</h3>
+<pre><code class="language-python">vector_db.delete(id=&quot;doc1&quot;)
+</code></pre>
+<hr />
+<h2 id="10-dimensionality-its-impact">10. Dimensionality &amp; Its Impact</h2>
+<p><strong>Simple Meaning:</strong> Dimension = embedding vector me <strong>kitne numbers</strong> hain (e.g., 384, 768, 1536, 3072).</p>
+<table>
+<thead>
+<tr>
+<th>Higher Dimensions</th>
+<th>Lower Dimensions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Zyada detail/nuance capture kar sakta hai</td>
+<td>✅ Faster search, kam storage</td>
+</tr>
+<tr>
+<td>❌ Zyada storage aur compute chahiye</td>
+<td>❌ Kuch nuance/detail miss ho sakta hai</td>
+</tr>
+<tr>
+<td>❌ Search thoda slower ho sakta hai bade scale pe</td>
+<td>✅ Cost-effective</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Trend:</strong> Kai naye embedding models (jaise OpenAI's <code>text-embedding-3</code>) <strong>"Matryoshka Representation Learning"</strong> support karte hain — jisse aap ek hi embedding ko <strong>truncate</strong> karke chhoti dimension me bhi use kar sakte ho, bina retrain kiye, thoda accuracy trade-off ke saath.</p>
+</blockquote>
+<hr />
+<h2 id="11-common-mistakes">11. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Different embedding models mix karna (query aur documents ke liye alag model)</td>
+<td>Vectors compatible nahi honge, similarity meaningless ho jayegi</td>
+<td>Hamesha <strong>same embedding model</strong> use karo query aur documents dono ke liye</td>
+</tr>
+<tr>
+<td>Embeddings ko normalize na karna</td>
+<td>Similarity scores misleading ho sakte hain</td>
+<td>Model ke recommended similarity metric follow karo (usually cosine)</td>
+</tr>
+<tr>
+<td>Bahut chhote chunks embed karna</td>
+<td>Context miss ho jata hai embedding me</td>
+<td>Reasonable chunk size rakho (pichli chunking notes dekho)</td>
+</tr>
+<tr>
+<td>Metadata filtering ignore karna</td>
+<td>Irrelevant results aa sakte hain (e.g., purani/outdated docs)</td>
+<td>Metadata filters use karo relevant scope narrow karne ke liye</td>
+</tr>
+<tr>
+<td>Vector DB choose karte waqt scale consider na karna</td>
+<td>Chhoti scale pe theek chalega, production me slow/expensive ho sakta hai</td>
+<td>Apna expected data size aur query volume pehle se estimate karo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-cheat-sheet">12. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Embedding</strong> → "Text ko meaning-wale numbers me convert karna"</li>
+<li><strong>Cosine Similarity</strong> → "Angle dekho, length ignore karo"</li>
+<li><strong>Dot Product</strong> → "Angle + length dono dekho (fast agar normalized ho)"</li>
+<li><strong>Euclidean Distance</strong> → "Seedhi-line distance — kam distance = zyada similar"</li>
+<li><strong>ANN (HNSW/IVF)</strong> → "Har cheez check mat karo, smart shortcuts se fast dhoondo"</li>
+<li><strong>Vector Database</strong> → "Embeddings store aur fast search karne wala special DB"</li>
+</ul>
+<h3 id="quick-recap-flow-how-it-all-connects-in-rag">Quick Recap Flow (How It All Connects in RAG)</h3>
+<pre><code>1. Document → Chunked (pichli notes)
+2. Each Chunk → Embedded (numbers/vector banaya)
+3. Vectors → Stored in Vector Database (indexed using ANN like HNSW)
+4. User Query → Also Embedded
+5. Vector DB → Finds Top-K similar vectors (using Cosine/Dot Product)
+6. Retrieved Chunks → Passed to LLM for Generation
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

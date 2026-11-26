@@ -1,0 +1,3877 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Python_Concepts-for-AI-Engineering/">
+      
+      
+        <link rel="prev" href="../Prompt_Engineering_Complete_Notes/">
+      
+      
+        <link rel="next" href="../Query_Transformation_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Python Concepts for AI Engineering — Complete Recap Guide - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-concepts-for-ai-engineering-complete-recap-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python Concepts for AI Engineering — Complete Recap Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basic-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basic Data Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-strings-string-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Strings &amp; String Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Strings &amp; String Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f-strings-bohat-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f-strings (bohat important)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-lists-matrix-like-ai-mein-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List of lists (matrix-like — AI mein common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tuples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Sets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dictionaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dictionaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-dictionary-ai-configs-mein-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Dictionary (AI configs mein common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultdict-counter-collections-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        defaultdict &amp; Counter (collections module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Loops
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        while loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#break-continue-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        break, continue, pass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested loops
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-comprehensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Comprehensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Comprehensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dict Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generator-expression-memory-efficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generator Expression (memory efficient)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-conditional-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Conditional Statements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-multiple-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return multiple values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-keyword-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default &amp; Keyword arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hints-in-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type hints in functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lambda-map-filter-reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Lambda, Map, Filter, Reduce
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-file-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. File Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. File Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-csv-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading CSV files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-exception-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Exception Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Exception Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-oop-object-oriented-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. OOP (Object Oriented Programming)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. OOP (Object Oriented Programming)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-oop-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key OOP Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-iterators-generators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Iterators &amp; Generators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Iterators &amp; Generators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iterator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Iterator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generator-memory-efficient-bade-datasets-ke-liye-zaroori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generator (memory efficient — bade datasets ke liye zaroori)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-decorators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Decorators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Decorators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caching-decorator-model-inference-speed-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching decorator (model inference speed up)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-context-managers-with-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Context Managers (with statement)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-hashing-hashable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Hashing &amp; Hashable Objects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Hashing &amp; Hashable Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hashlib-cryptographic-hashing-data-integritychecksums-ke-liye" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hashlib (cryptographic hashing — data integrity/checksums ke liye)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-copy-vs-deepcopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Copy vs Deepcopy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-modules-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Modules &amp; Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Modules &amp; Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apna-module-banana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apna module banana
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-regular-expressions-regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Regular Expressions (regex)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-json-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. JSON Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-working-with-dates-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Working with Dates &amp; Time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-type-hinting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Type Hinting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-enumerate-zip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Enumerate &amp; Zip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-args-and-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. args and kwargs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-multithreading-multiprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Multithreading &amp; Multiprocessing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-virtual-environments-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Virtual Environments &amp; pip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-numpy-essentials-ai-ke-liye-zaroori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29. NumPy Essentials (AI ke liye zaroori)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-pandas-essentials-ai-ke-liye-zaroori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        30. Pandas Essentials (AI ke liye zaroori)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-useful-built-in-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        31. Useful Built-in Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-best-practices-for-ai-engineering-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        32. Best Practices for AI Engineering Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="32. Best Practices for AI Engineering Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-reference-which-structure-to-use-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Reference: Which Structure to Use When?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-basic-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basic Data Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-strings-string-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Strings &amp; String Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Strings &amp; String Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#f-strings-bohat-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        f-strings (bohat important)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-of-lists-matrix-like-ai-mein-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List of lists (matrix-like — AI mein common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Tuples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Sets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dictionaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dictionaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nested-dictionary-ai-configs-mein-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Dictionary (AI configs mein common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultdict-counter-collections-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        defaultdict &amp; Counter (collections module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Loops
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Loops">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        for loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#while-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        while loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#break-continue-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        break, continue, pass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-loops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested loops
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-comprehensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Comprehensions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Comprehensions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dict Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generator-expression-memory-efficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generator Expression (memory efficient)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nested-comprehension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nested Comprehension
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-conditional-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Conditional Statements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#return-multiple-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return multiple values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-keyword-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default &amp; Keyword arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type-hints-in-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type hints in functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lambda-map-filter-reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Lambda, Map, Filter, Reduce
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-file-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. File Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. File Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reading-csv-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading CSV files
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-exception-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Exception Handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Exception Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-oop-object-oriented-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. OOP (Object Oriented Programming)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. OOP (Object Oriented Programming)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inheritance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-oop-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key OOP Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-iterators-generators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Iterators &amp; Generators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Iterators &amp; Generators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iterator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Iterator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generator-memory-efficient-bade-datasets-ke-liye-zaroori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generator (memory efficient — bade datasets ke liye zaroori)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-decorators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Decorators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Decorators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caching-decorator-model-inference-speed-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caching decorator (model inference speed up)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-context-managers-with-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Context Managers (with statement)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-hashing-hashable-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Hashing &amp; Hashable Objects
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. Hashing &amp; Hashable Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hashlib-cryptographic-hashing-data-integritychecksums-ke-liye" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hashlib (cryptographic hashing — data integrity/checksums ke liye)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-copy-vs-deepcopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Copy vs Deepcopy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-modules-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Modules &amp; Packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="20. Modules &amp; Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apna-module-banana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apna module banana
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-regular-expressions-regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Regular Expressions (regex)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-json-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. JSON Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-working-with-dates-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Working with Dates &amp; Time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-type-hinting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Type Hinting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-enumerate-zip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Enumerate &amp; Zip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-args-and-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. args and kwargs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-multithreading-multiprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Multithreading &amp; Multiprocessing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-virtual-environments-pip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Virtual Environments &amp; pip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-numpy-essentials-ai-ke-liye-zaroori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29. NumPy Essentials (AI ke liye zaroori)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-pandas-essentials-ai-ke-liye-zaroori" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        30. Pandas Essentials (AI ke liye zaroori)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-useful-built-in-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        31. Useful Built-in Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-best-practices-for-ai-engineering-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        32. Best Practices for AI Engineering Code
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="32. Best Practices for AI Engineering Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-reference-which-structure-to-use-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Reference: Which Structure to Use When?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-concepts-for-ai-engineering-complete-recap-guide">Python Concepts for AI Engineering — Complete Recap Guide</h1>
+<blockquote>
+<p>Yeh file un tamam Python concepts ka collection hai jo AI/ML engineering mein commonly use hotay hain. Har concept ke sath short explanation + code example diya gaya hai taake sirf ek nazar mein sab yaad aa jaye.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-basic-data-types">Basic Data Types</a></li>
+<li><a href="#2-strings--string-methods">Strings &amp; String Methods</a></li>
+<li><a href="#3-lists">Lists</a></li>
+<li><a href="#4-tuples">Tuples</a></li>
+<li><a href="#5-sets">Sets</a></li>
+<li><a href="#6-dictionaries">Dictionaries</a></li>
+<li><a href="#7-loops">Loops</a></li>
+<li><a href="#8-comprehensions">Comprehensions</a></li>
+<li><a href="#9-conditional-statements">Conditional Statements</a></li>
+<li><a href="#10-functions">Functions</a></li>
+<li><a href="#11-lambda-map-filter-reduce">Lambda, Map, Filter, Reduce</a></li>
+<li><a href="#12-file-handling">File Handling</a></li>
+<li><a href="#13-exception-handling">Exception Handling</a></li>
+<li><a href="#14-oop-object-oriented-programming">OOP (Object Oriented Programming)</a></li>
+<li><a href="#15-iterators--generators">Iterators &amp; Generators</a></li>
+<li><a href="#16-decorators">Decorators</a></li>
+<li><a href="#17-context-managers-with-statement">Context Managers (with statement)</a></li>
+<li><a href="#18-hashing--hashable-objects">Hashing &amp; Hashable Objects</a></li>
+<li><a href="#19-copy-vs-deepcopy">Copy vs Deepcopy</a></li>
+<li><a href="#20-modules--packages">Modules &amp; Packages</a></li>
+<li><a href="#21-regular-expressions-regex">Regular Expressions (regex)</a></li>
+<li><a href="#22-json-handling">JSON Handling</a></li>
+<li><a href="#23-working-with-dates--time">Working with Dates &amp; Time</a></li>
+<li><a href="#24-type-hinting">Type Hinting</a></li>
+<li><a href="#25-enumerate--zip">Enumerate &amp; Zip</a></li>
+<li><a href="#26-args-and-kwargs">args and kwargs</a></li>
+<li><a href="#27-multithreading--multiprocessing">Multithreading &amp; Multiprocessing</a></li>
+<li><a href="#28-virtual-environments--pip">Virtual Environments &amp; pip</a></li>
+<li><a href="#29-numpy-essentials-ai-ke-liye-zaroori">NumPy Essentials (AI ke liye zaroori)</a></li>
+<li><a href="#30-pandas-essentials-ai-ke-liye-zaroori">Pandas Essentials (AI ke liye zaroori)</a></li>
+<li><a href="#31-useful-built-in-functions">Useful Built-in Functions</a></li>
+<li><a href="#32-best-practices-for-ai-engineering-code">Best Practices for AI Engineering Code</a></li>
+</ol>
+<hr />
+<h2 id="1-basic-data-types">1. Basic Data Types</h2>
+<p>Python mein har value ka ek type hota hai. Types automatically assign hotay hain (dynamic typing).</p>
+<pre><code class="language-python">x = 10          # int
+y = 3.14        # float
+name = &quot;Ali&quot;    # str
+is_valid = True # bool
+n = None        # NoneType
+</code></pre>
+<ul>
+<li><strong>int</strong> → whole numbers</li>
+<li><strong>float</strong> → decimal numbers</li>
+<li><strong>str</strong> → text</li>
+<li><strong>bool</strong> → True/False</li>
+<li><strong>complex</strong> → complex numbers (rare in AI code, used in signal processing)</li>
+</ul>
+<pre><code class="language-python">print(type(x))       # &lt;class 'int'&gt;
+print(isinstance(x, int))  # True
+</code></pre>
+<hr />
+<h2 id="2-strings-string-methods">2. Strings &amp; String Methods</h2>
+<p>Strings AI engineering mein bohat use hoti hain — text preprocessing, prompts, logs waghera ke liye.</p>
+<pre><code class="language-python">s = &quot;Hello World&quot;
+
+s.lower()          # 'hello world'
+s.upper()          # 'HELLO WORLD'
+s.strip()          # remove leading/trailing whitespace
+s.split(&quot; &quot;)       # ['Hello', 'World']
+&quot;-&quot;.join([&quot;a&quot;,&quot;b&quot;])# 'a-b'
+s.replace(&quot;World&quot;, &quot;AI&quot;)
+s.startswith(&quot;Hello&quot;)
+s.endswith(&quot;World&quot;)
+len(s)             # 11
+s[0:5]             # slicing -&gt; 'Hello'
+f&quot;Value is {x}&quot;    # f-strings (formatting)
+</code></pre>
+<h3 id="f-strings-bohat-important">f-strings (bohat important)</h3>
+<pre><code class="language-python">name = &quot;Sara&quot;
+age = 21
+print(f&quot;{name} is {age} years old&quot;)
+</code></pre>
+<hr />
+<h2 id="3-lists">3. Lists</h2>
+<p>List ek <strong>ordered, mutable</strong> collection hoti hai. Duplicate values allowed hain.</p>
+<pre><code class="language-python">nums = [1, 2, 3, 4, 5]
+
+nums.append(6)         # add at end
+nums.insert(0, 0)      # insert at index
+nums.remove(3)         # remove by value
+nums.pop()             # remove last
+nums.pop(0)            # remove by index
+nums.sort()            # sort ascending
+nums.sort(reverse=True)
+nums.reverse()
+len(nums)
+nums[1:3]              # slicing
+nums.count(2)
+nums.index(4)
+nums.extend([7,8])
+</code></pre>
+<h3 id="list-of-lists-matrix-like-ai-mein-common">List of lists (matrix-like — AI mein common)</h3>
+<pre><code class="language-python">matrix = [[1,2,3],[4,5,6],[7,8,9]]
+print(matrix[1][2])   # 6
+</code></pre>
+<hr />
+<h2 id="4-tuples">4. Tuples</h2>
+<p>Tuple bhi ordered hoti hai lekin <strong>immutable</strong> (change nahi ho sakti). AI mein shapes, coordinates, ya fixed data ke liye use hoti hai.</p>
+<pre><code class="language-python">t = (1, 2, 3)
+x, y, z = t          # unpacking
+t2 = t + (4, 5)      # concatenation
+t.count(1)
+t.index(2)
+</code></pre>
+<ul>
+<li>Tuple <strong>memory-efficient</strong> aur <strong>fast</strong> hoti hai lists ke muqable.</li>
+<li>Function se multiple values return karne ke liye use hoti hai:</li>
+</ul>
+<pre><code class="language-python">def get_min_max(nums):
+    return min(nums), max(nums)
+
+low, high = get_min_max([3,1,4,1,5])
+</code></pre>
+<hr />
+<h2 id="5-sets">5. Sets</h2>
+<p>Set ek <strong>unordered</strong>, <strong>unique values</strong> wali collection hai. Duplicates automatically remove ho jate hain.</p>
+<pre><code class="language-python">s1 = {1, 2, 3}
+s2 = {3, 4, 5}
+
+s1.add(6)
+s1.remove(2)
+s1.union(s2)          # {1,3,4,5,6}
+s1.intersection(s2)   # common elements
+s1.difference(s2)     # only in s1
+s1.issubset(s2)
+s1.issuperset(s2)
+</code></pre>
+<p><strong>AI use-case:</strong> duplicate tokens/words remove karna, unique labels/classes nikalna, fast membership check (<code>in</code> operator O(1) hota hai set mein, list mein O(n)).</p>
+<pre><code class="language-python">unique_words = set(text.split())
+</code></pre>
+<hr />
+<h2 id="6-dictionaries">6. Dictionaries</h2>
+<p>Dictionary <strong>key-value pairs</strong> store karti hai. AI mein config, JSON data, model parameters, mappings ke liye bohat use hoti hai.</p>
+<pre><code class="language-python">person = {&quot;name&quot;: &quot;Ali&quot;, &quot;age&quot;: 22, &quot;city&quot;: &quot;Lahore&quot;}
+
+person[&quot;age&quot;]              # access
+person[&quot;email&quot;] = &quot;a@b.com&quot; # add new key
+person.get(&quot;age&quot;)          # safe access
+person.get(&quot;salary&quot;, 0)    # default value if missing
+person.pop(&quot;city&quot;)
+person.keys()
+person.values()
+person.items()
+
+for key, value in person.items():
+    print(key, value)
+</code></pre>
+<h3 id="nested-dictionary-ai-configs-mein-common">Nested Dictionary (AI configs mein common)</h3>
+<pre><code class="language-python">model_config = {
+    &quot;layers&quot;: 3,
+    &quot;params&quot;: {&quot;lr&quot;: 0.001, &quot;batch_size&quot;: 32}
+}
+print(model_config[&quot;params&quot;][&quot;lr&quot;])
+</code></pre>
+<h3 id="defaultdict-counter-collections-module">defaultdict &amp; Counter (collections module)</h3>
+<pre><code class="language-python">from collections import defaultdict, Counter
+
+d = defaultdict(int)
+d[&quot;a&quot;] += 1        # no KeyError even if key doesn't exist
+
+word_counts = Counter([&quot;a&quot;,&quot;b&quot;,&quot;a&quot;,&quot;c&quot;,&quot;b&quot;,&quot;a&quot;])
+print(word_counts)   # Counter({'a': 3, 'b': 2, 'c': 1})
+</code></pre>
+<hr />
+<h2 id="7-loops">7. Loops</h2>
+<h3 id="for-loop">for loop</h3>
+<pre><code class="language-python">for i in range(5):
+    print(i)
+
+for item in [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]:
+    print(item)
+</code></pre>
+<h3 id="while-loop">while loop</h3>
+<pre><code class="language-python">i = 0
+while i &lt; 5:
+    print(i)
+    i += 1
+</code></pre>
+<h3 id="break-continue-pass">break, continue, pass</h3>
+<pre><code class="language-python">for i in range(10):
+    if i == 5:
+        break       # loop rok do
+    if i % 2 == 0:
+        continue    # is iteration ko skip karo
+    pass            # kuch nahi karna (placeholder)
+</code></pre>
+<h3 id="nested-loops">Nested loops</h3>
+<pre><code class="language-python">for i in range(3):
+    for j in range(3):
+        print(i, j)
+</code></pre>
+<hr />
+<h2 id="8-comprehensions">8. Comprehensions</h2>
+<p>Comprehensions ek line mein loop + condition likhne ka tareeqa hain — AI code mein bohat clean aur fast hote hain.</p>
+<h3 id="list-comprehension">List Comprehension</h3>
+<pre><code class="language-python">squares = [x**2 for x in range(10)]
+evens = [x for x in range(20) if x % 2 == 0]
+</code></pre>
+<h3 id="dict-comprehension">Dict Comprehension</h3>
+<pre><code class="language-python">squares_dict = {x: x**2 for x in range(5)}
+</code></pre>
+<h3 id="set-comprehension">Set Comprehension</h3>
+<pre><code class="language-python">unique_lengths = {len(word) for word in [&quot;ai&quot;,&quot;ml&quot;,&quot;dl&quot;,&quot;ai&quot;]}
+</code></pre>
+<h3 id="generator-expression-memory-efficient">Generator Expression (memory efficient)</h3>
+<pre><code class="language-python">gen = (x**2 for x in range(1000000))  # lazy evaluation
+</code></pre>
+<h3 id="nested-comprehension">Nested Comprehension</h3>
+<pre><code class="language-python">matrix = [[1,2],[3,4]]
+flat = [num for row in matrix for num in row]  # [1,2,3,4]
+</code></pre>
+<hr />
+<h2 id="9-conditional-statements">9. Conditional Statements</h2>
+<pre><code class="language-python">x = 10
+
+if x &gt; 5:
+    print(&quot;Greater&quot;)
+elif x == 5:
+    print(&quot;Equal&quot;)
+else:
+    print(&quot;Smaller&quot;)
+
+# Ternary (one-line if-else)
+result = &quot;Yes&quot; if x &gt; 5 else &quot;No&quot;
+</code></pre>
+<hr />
+<h2 id="10-functions">10. Functions</h2>
+<pre><code class="language-python">def greet(name, greeting=&quot;Hello&quot;):
+    return f&quot;{greeting}, {name}!&quot;
+
+greet(&quot;Ali&quot;)
+greet(&quot;Ali&quot;, &quot;Hi&quot;)
+greet(name=&quot;Ali&quot;, greeting=&quot;Salam&quot;)
+</code></pre>
+<h3 id="return-multiple-values">Return multiple values</h3>
+<pre><code class="language-python">def stats(nums):
+    return min(nums), max(nums), sum(nums)/len(nums)
+</code></pre>
+<h3 id="default-keyword-arguments">Default &amp; Keyword arguments</h3>
+<pre><code class="language-python">def train_model(epochs=10, lr=0.001, verbose=False):
+    pass
+</code></pre>
+<h3 id="type-hints-in-functions">Type hints in functions</h3>
+<pre><code class="language-python">def add(a: int, b: int) -&gt; int:
+    return a + b
+</code></pre>
+<hr />
+<h2 id="11-lambda-map-filter-reduce">11. Lambda, Map, Filter, Reduce</h2>
+<pre><code class="language-python">square = lambda x: x**2
+square(5)  # 25
+
+nums = [1,2,3,4,5]
+
+# map -&gt; har element pe function apply karo
+squared = list(map(lambda x: x**2, nums))
+
+# filter -&gt; condition ke mutabiq values chuno
+evens = list(filter(lambda x: x % 2 == 0, nums))
+
+# reduce -&gt; saari values ko combine kar ke ek result do
+from functools import reduce
+total = reduce(lambda a, b: a + b, nums)
+</code></pre>
+<p><strong>AI use-case:</strong> data preprocessing pipelines, quick transformations on datasets.</p>
+<hr />
+<h2 id="12-file-handling">12. File Handling</h2>
+<pre><code class="language-python"># Reading a file
+with open(&quot;data.txt&quot;, &quot;r&quot;) as f:
+    content = f.read()
+
+# Reading line by line
+with open(&quot;data.txt&quot;, &quot;r&quot;) as f:
+    for line in f:
+        print(line.strip())
+
+# Writing to a file
+with open(&quot;output.txt&quot;, &quot;w&quot;) as f:
+    f.write(&quot;Hello AI\n&quot;)
+
+# Appending
+with open(&quot;output.txt&quot;, &quot;a&quot;) as f:
+    f.write(&quot;New line\n&quot;)
+</code></pre>
+<ul>
+<li><code>with</code> statement automatically file ko close kar deta hai (context manager).</li>
+<li>Modes: <code>"r"</code> read, <code>"w"</code> write (overwrite), <code>"a"</code> append, <code>"rb"/"wb"</code> binary.</li>
+</ul>
+<h3 id="reading-csv-files">Reading CSV files</h3>
+<pre><code class="language-python">import csv
+
+with open(&quot;data.csv&quot;, &quot;r&quot;) as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        print(row)
+</code></pre>
+<hr />
+<h2 id="13-exception-handling">13. Exception Handling</h2>
+<p>AI pipelines mein errors handle karna zaroori hai (missing files, bad data, API errors waghera).</p>
+<pre><code class="language-python">try:
+    result = 10 / 0
+except ZeroDivisionError as e:
+    print(&quot;Error:&quot;, e)
+except Exception as e:
+    print(&quot;Something went wrong:&quot;, e)
+else:
+    print(&quot;No error occurred&quot;)
+finally:
+    print(&quot;This always runs&quot;)
+</code></pre>
+<h3 id="custom-exceptions">Custom Exceptions</h3>
+<pre><code class="language-python">class InvalidDataError(Exception):
+    pass
+
+def check_data(x):
+    if x &lt; 0:
+        raise InvalidDataError(&quot;Data cannot be negative&quot;)
+</code></pre>
+<hr />
+<h2 id="14-oop-object-oriented-programming">14. OOP (Object Oriented Programming)</h2>
+<p>AI mein models, layers, datasets sab classes ki shakal mein hote hain (PyTorch, sklearn waghera isi tarah kaam karte hain).</p>
+<pre><code class="language-python">class Model:
+    def __init__(self, name, lr=0.01):
+        self.name = name
+        self.lr = lr
+
+    def train(self):
+        print(f&quot;Training {self.name} with lr={self.lr}&quot;)
+
+m = Model(&quot;NeuralNet&quot;)
+m.train()
+</code></pre>
+<h3 id="inheritance">Inheritance</h3>
+<pre><code class="language-python">class BaseModel:
+    def predict(self):
+        print(&quot;Predicting...&quot;)
+
+class CNNModel(BaseModel):
+    def predict(self):
+        print(&quot;CNN Predicting...&quot;)
+        super().predict()
+</code></pre>
+<h3 id="key-oop-concepts">Key OOP Concepts</h3>
+<ul>
+<li><strong>Encapsulation</strong> → data ko class ke andar band rakhna</li>
+<li><strong>Inheritance</strong> → parent class se properties lena</li>
+<li><strong>Polymorphism</strong> → same method, different behavior</li>
+<li><strong>Abstraction</strong> → sirf zaroori cheezein expose karna</li>
+</ul>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+
+class Layer(ABC):
+    @abstractmethod
+    def forward(self):
+        pass
+</code></pre>
+<hr />
+<h2 id="15-iterators-generators">15. Iterators &amp; Generators</h2>
+<h3 id="iterator">Iterator</h3>
+<pre><code class="language-python">nums = [1,2,3]
+it = iter(nums)
+print(next(it))  # 1
+print(next(it))  # 2
+</code></pre>
+<h3 id="generator-memory-efficient-bade-datasets-ke-liye-zaroori">Generator (memory efficient — bade datasets ke liye zaroori)</h3>
+<pre><code class="language-python">def data_loader(data):
+    for item in data:
+        yield item * 2
+
+for value in data_loader([1,2,3]):
+    print(value)
+</code></pre>
+<p><strong>AI use-case:</strong> bade datasets ko batch-by-batch load karna bina pura data RAM mein rakhe.</p>
+<hr />
+<h2 id="16-decorators">16. Decorators</h2>
+<p>Function ko modify karne ka tareeqa bina uska code change kiye. AI mein timing, logging, caching ke liye use hote hain.</p>
+<pre><code class="language-python">import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        print(f&quot;Time taken: {time.time()-start}s&quot;)
+        return result
+    return wrapper
+
+@timer
+def train():
+    time.sleep(2)
+
+train()
+</code></pre>
+<h3 id="caching-decorator-model-inference-speed-up">Caching decorator (model inference speed up)</h3>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def expensive_computation(n):
+    return n ** 2
+</code></pre>
+<hr />
+<h2 id="17-context-managers-with-statement">17. Context Managers (with statement)</h2>
+<p>Resources (files, DB connections, GPU sessions) ko safely open/close karne ke liye.</p>
+<pre><code class="language-python">class ManagedResource:
+    def __enter__(self):
+        print(&quot;Resource opened&quot;)
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        print(&quot;Resource closed&quot;)
+
+with ManagedResource() as r:
+    print(&quot;Using resource&quot;)
+</code></pre>
+<hr />
+<h2 id="18-hashing-hashable-objects">18. Hashing &amp; Hashable Objects</h2>
+<p>Hashing ka use dictionaries/sets ke fast lookup ke peeche hota hai, aur AI mein caching, data deduplication, embeddings indexing ke liye important hai.</p>
+<pre><code class="language-python">print(hash(&quot;hello&quot;))     # integer hash value
+print(hash(42))
+print(hash((1,2,3)))     # tuples hashable hain
+</code></pre>
+<ul>
+<li><strong>Hashable</strong> → int, float, str, tuple, frozenset (immutable objects)</li>
+<li><strong>Not hashable</strong> → list, dict, set (mutable objects)</li>
+</ul>
+<pre><code class="language-python"># Isliye set/dict ki keys hamesha immutable honi chahiye
+d = {(1,2): &quot;point&quot;}   # valid — tuple hashable hai
+# d = {[1,2]: &quot;point&quot;} # invalid — list not hashable
+</code></pre>
+<h3 id="hashlib-cryptographic-hashing-data-integritychecksums-ke-liye">hashlib (cryptographic hashing — data integrity/checksums ke liye)</h3>
+<pre><code class="language-python">import hashlib
+
+text = &quot;hello world&quot;
+hash_value = hashlib.sha256(text.encode()).hexdigest()
+print(hash_value)
+</code></pre>
+<p><strong>AI use-case:</strong> dataset versioning, checking duplicate records, model checkpoint verification.</p>
+<hr />
+<h2 id="19-copy-vs-deepcopy">19. Copy vs Deepcopy</h2>
+<pre><code class="language-python">import copy
+
+original = {&quot;a&quot;: [1,2,3]}
+
+shallow = copy.copy(original)      # nested objects shared rehte hain
+deep = copy.deepcopy(original)     # pura naya independent copy
+</code></pre>
+<ul>
+<li><strong>Shallow copy</strong> → sirf top-level copy hota hai, nested objects same reference share karte hain.</li>
+<li><strong>Deep copy</strong> → har cheez independently copy hoti hai.</li>
+</ul>
+<p><strong>AI use-case:</strong> model weights ya config dictionaries copy karte waqt accidental overwrite se bachne ke liye.</p>
+<hr />
+<h2 id="20-modules-packages">20. Modules &amp; Packages</h2>
+<pre><code class="language-python">import math
+from math import sqrt
+import numpy as np
+from sklearn.model_selection import train_test_split
+
+print(math.pi)
+print(sqrt(16))
+</code></pre>
+<h3 id="apna-module-banana">Apna module banana</h3>
+<pre><code class="language-python"># utils.py
+def clean_text(text):
+    return text.lower().strip()
+
+# main.py
+from utils import clean_text
+</code></pre>
+<hr />
+<h2 id="21-regular-expressions-regex">21. Regular Expressions (regex)</h2>
+<p>Text preprocessing / NLP mein bohat use hota hai.</p>
+<pre><code class="language-python">import re
+
+text = &quot;My email is ali@example.com&quot;
+
+re.findall(r&quot;\S+@\S+&quot;, text)             # find emails
+re.sub(r&quot;[^a-zA-Z\s]&quot;, &quot;&quot;, text)         # remove special chars/numbers
+re.match(r&quot;^My&quot;, text)                    # match from start
+re.search(r&quot;email&quot;, text)                 # search anywhere
+re.split(r&quot;\s+&quot;, text)                    # split by whitespace
+</code></pre>
+<hr />
+<h2 id="22-json-handling">22. JSON Handling</h2>
+<p>APIs aur model configs mostly JSON format mein hote hain.</p>
+<pre><code class="language-python">import json
+
+data = {&quot;name&quot;: &quot;Ali&quot;, &quot;score&quot;: 95.5}
+
+json_string = json.dumps(data)          # dict -&gt; JSON string
+parsed = json.loads(json_string)        # JSON string -&gt; dict
+
+# File se
+with open(&quot;data.json&quot;, &quot;w&quot;) as f:
+    json.dump(data, f, indent=4)
+
+with open(&quot;data.json&quot;, &quot;r&quot;) as f:
+    loaded = json.load(f)
+</code></pre>
+<hr />
+<h2 id="23-working-with-dates-time">23. Working with Dates &amp; Time</h2>
+<pre><code class="language-python">from datetime import datetime, timedelta
+
+now = datetime.now()
+formatted = now.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)
+
+future = now + timedelta(days=7)
+</code></pre>
+<p><strong>AI use-case:</strong> logging timestamps, experiment tracking, time-series data.</p>
+<hr />
+<h2 id="24-type-hinting">24. Type Hinting</h2>
+<p>Code ko readable aur bugs se pak rakhne ke liye.</p>
+<pre><code class="language-python">from typing import List, Dict, Tuple, Optional, Union
+
+def process(data: List[int]) -&gt; Dict[str, int]:
+    return {&quot;sum&quot;: sum(data)}
+
+def find_user(id: int) -&gt; Optional[str]:
+    return None
+
+def combine(a: Union[int, float], b: Union[int, float]) -&gt; float:
+    return a + b
+</code></pre>
+<hr />
+<h2 id="25-enumerate-zip">25. Enumerate &amp; Zip</h2>
+<pre><code class="language-python">names = [&quot;Ali&quot;, &quot;Sara&quot;, &quot;Ahmed&quot;]
+
+# enumerate -&gt; index + value
+for i, name in enumerate(names):
+    print(i, name)
+
+# zip -&gt; multiple lists ko parallel combine karna
+ages = [20, 22, 25]
+for name, age in zip(names, ages):
+    print(name, age)
+</code></pre>
+<p><strong>AI use-case:</strong> batch processing mein features aur labels ko saath saath iterate karna.</p>
+<hr />
+<h2 id="26-args-and-kwargs">26. args and kwargs</h2>
+<p>Jab function ko flexible number of arguments chahiye hon (jaise model layers, hyperparameters).</p>
+<pre><code class="language-python">def my_func(*args, **kwargs):
+    print(args)     # tuple of positional args
+    print(kwargs)   # dict of keyword args
+
+my_func(1, 2, 3, lr=0.01, epochs=10)
+</code></pre>
+<hr />
+<h2 id="27-multithreading-multiprocessing">27. Multithreading &amp; Multiprocessing</h2>
+<p>Bade datasets ya parallel tasks (data loading, API calls) ke liye.</p>
+<pre><code class="language-python">import threading
+import multiprocessing
+
+def worker():
+    print(&quot;Working...&quot;)
+
+# Threading -&gt; I/O bound tasks (API calls, file reading)
+t = threading.Thread(target=worker)
+t.start()
+t.join()
+
+# Multiprocessing -&gt; CPU bound tasks (heavy computation)
+p = multiprocessing.Process(target=worker)
+p.start()
+p.join()
+</code></pre>
+<hr />
+<h2 id="28-virtual-environments-pip">28. Virtual Environments &amp; pip</h2>
+<pre><code class="language-bash">python -m venv myenv          # environment banana
+source myenv/bin/activate     # activate (Linux/Mac)
+myenv\Scripts\activate        # activate (Windows)
+
+pip install numpy pandas torch
+pip freeze &gt; requirements.txt
+pip install -r requirements.txt
+</code></pre>
+<hr />
+<h2 id="29-numpy-essentials-ai-ke-liye-zaroori">29. NumPy Essentials (AI ke liye zaroori)</h2>
+<pre><code class="language-python">import numpy as np
+
+arr = np.array([1,2,3,4,5])
+matrix = np.array([[1,2],[3,4]])
+
+arr.shape
+arr.reshape(5,1)
+np.zeros((3,3))
+np.ones((2,2))
+np.arange(0,10,2)
+np.linspace(0,1,5)
+
+arr.mean()
+arr.sum()
+arr.max()
+arr.min()
+arr.std()
+
+# Element-wise operations
+arr * 2
+arr + arr
+
+# Matrix multiplication
+np.dot(matrix, matrix)
+
+# Broadcasting
+matrix + np.array([1,0])
+</code></pre>
+<hr />
+<h2 id="30-pandas-essentials-ai-ke-liye-zaroori">30. Pandas Essentials (AI ke liye zaroori)</h2>
+<pre><code class="language-python">import pandas as pd
+
+df = pd.read_csv(&quot;data.csv&quot;)
+
+df.head()
+df.info()
+df.describe()
+df.shape
+df.columns
+
+df[&quot;column_name&quot;]
+df[[&quot;col1&quot;,&quot;col2&quot;]]
+df.loc[0]              # row by label
+df.iloc[0]             # row by index
+
+df.dropna()
+df.fillna(0)
+df.groupby(&quot;category&quot;).mean()
+df.sort_values(&quot;column_name&quot;)
+df[&quot;new_col&quot;] = df[&quot;col1&quot;] + df[&quot;col2&quot;]
+
+df.to_csv(&quot;output.csv&quot;, index=False)
+</code></pre>
+<hr />
+<h2 id="31-useful-built-in-functions">31. Useful Built-in Functions</h2>
+<pre><code class="language-python">len([1,2,3])
+sum([1,2,3])
+max([1,2,3])
+min([1,2,3])
+sorted([3,1,2])
+reversed([1,2,3])
+abs(-5)
+round(3.14159, 2)
+any([True, False])
+all([True, True])
+type(x)
+isinstance(x, int)
+id(x)
+range(10)
+input(&quot;Enter value: &quot;)
+str(123)
+int(&quot;123&quot;)
+float(&quot;3.14&quot;)
+list(&quot;abc&quot;)
+</code></pre>
+<hr />
+<h2 id="32-best-practices-for-ai-engineering-code">32. Best Practices for AI Engineering Code</h2>
+<ul>
+<li>Hamesha <strong>type hints</strong> use karein — readability behtar hoti hai.</li>
+<li>Data preprocessing ke liye <strong>list/dict comprehensions</strong> use karein, loops se fast hote hain.</li>
+<li>Bade datasets ke liye <strong>generators</strong> use karein taake memory bachay.</li>
+<li>File aur resource handling ke liye hamesha <strong><code>with</code> statement</strong> use karein.</li>
+<li>Errors ko <strong>specific except blocks</strong> se handle karein, generic <code>except:</code> se bachein.</li>
+<li>Config/hyperparameters ke liye <strong>dictionaries</strong> use karein, hard-coded values se bachein.</li>
+<li>Repeated computations ke liye <strong>caching (<code>lru_cache</code>)</strong> use karein.</li>
+<li>Code ko <strong>functions/classes</strong> mein modular rakhein — reusability ke liye.</li>
+<li><strong>Virtual environments</strong> har project ke liye alag rakhein.</li>
+<li><strong>Logging</strong> use karein <code>print()</code> ki jagah production code mein.</li>
+</ul>
+<hr />
+<h3 id="quick-reference-which-structure-to-use-when">📌 Quick Reference: Which Structure to Use When?</h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordered, duplicate values allowed, changeable</td>
+<td><strong>List</strong></td>
+</tr>
+<tr>
+<td>Ordered, fixed/unchangeable data</td>
+<td><strong>Tuple</strong></td>
+</tr>
+<tr>
+<td>Unique values, fast membership check</td>
+<td><strong>Set</strong></td>
+</tr>
+<tr>
+<td>Key-value mapping</td>
+<td><strong>Dictionary</strong></td>
+</tr>
+<tr>
+<td>Large data, memory efficient iteration</td>
+<td><strong>Generator</strong></td>
+</tr>
+<tr>
+<td>Fast lookup by unique key</td>
+<td><strong>Hashing (dict/set)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Yeh guide AI engineering interviews, projects, aur daily coding recap ke liye ek complete cheat-sheet hai. Jab bhi Python concepts bhool jayen, isi file ko dekh kar fori revise kar sakte hain.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

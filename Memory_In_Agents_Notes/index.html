@@ -1,0 +1,2752 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Memory_In_Agents_Notes/">
+      
+      
+        <link rel="prev" href="../Mcp-Model-Context-Protocol/">
+      
+      
+        <link rel="next" href="../Multi_Agent_Systems_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Memory in Agents — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#memory-in-agents-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Memory in Agents — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-memory-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Memory is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-core-problem-llms-are-stateless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Core Problem — LLMs are Stateless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Core Problem — LLMs are Stateless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-types-of-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Types of Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-short-term-memory-conversation-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Short-Term Memory (Conversation Buffer)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Short-Term Memory (Conversation Buffer)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversation-buffer-full-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Buffer (Full History)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversation-buffer-window-sliding-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Buffer Window (Sliding Window)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-long-term-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Long-Term Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Long-Term Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-its-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It's Implemented
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summarization-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Summarization Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Summarization Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-entity-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Entity Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Entity Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-episodic-vs-semantic-vs-procedural-memory-advanced-categorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Episodic vs Semantic vs Procedural Memory (Advanced Categorization)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-memory-storage-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Memory Storage Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-how-memory-fits-into-an-agents-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. How Memory Fits into an Agent's Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-context-window-limitations-memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Context Window Limitations &amp; Memory Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Context Window Limitations &amp; Memory Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategies-to-manage-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategies to Manage This
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-memory-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why Memory is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-core-problem-llms-are-stateless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Core Problem — LLMs are Stateless
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Core Problem — LLMs are Stateless">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Solution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-types-of-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Types of Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-short-term-memory-conversation-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Short-Term Memory (Conversation Buffer)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Short-Term Memory (Conversation Buffer)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversation-buffer-full-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Buffer (Full History)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversation-buffer-window-sliding-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Buffer Window (Sliding Window)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-long-term-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Long-Term Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Long-Term Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Use Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-its-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It's Implemented
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-summarization-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Summarization Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Summarization Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-entity-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Entity Memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Entity Memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-episodic-vs-semantic-vs-procedural-memory-advanced-categorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Episodic vs Semantic vs Procedural Memory (Advanced Categorization)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-memory-storage-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Memory Storage Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-how-memory-fits-into-an-agents-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. How Memory Fits into an Agent's Loop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-context-window-limitations-memory-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Context Window Limitations &amp; Memory Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Context Window Limitations &amp; Memory Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategies-to-manage-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategies to Manage This
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="memory-in-agents-complete-notes">Memory in Agents — Complete Notes</h1>
+<blockquote>
+<p><strong>Memory</strong> = Agent/LLM ka woh mechanism jisse wo <strong>purani conversation, facts, ya experiences</strong> yaad rakh sakta hai — taaki har interaction "fresh start" na ho, aur context continuity bani rahe.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why Memory is Needed</li>
+<li>The Core Problem — LLMs are Stateless</li>
+<li>Types of Memory</li>
+<li>Short-Term Memory (Conversation Buffer)</li>
+<li>Long-Term Memory</li>
+<li>Summarization Memory</li>
+<li>Entity Memory</li>
+<li>Episodic vs Semantic vs Procedural Memory</li>
+<li>Memory Storage Options</li>
+<li>How Memory Fits into an Agent's Loop</li>
+<li>Context Window Limitations &amp; Memory Management</li>
+<li>Best Practices</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-memory-is-needed">1. Why Memory is Needed</h2>
+<p>Bina memory ke, har baar jab aap LLM se baat karte ho, wo <strong>bilkul naye insaan ki tarah</strong> react karega — usse pichli baatcheet ka <strong>kuch bhi yaad nahi</strong> rahega.</p>
+<blockquote>
+<p>Analogy: Socho aap ek doctor se baat kar rahe ho jisko har 2 minute me <strong>amnesia</strong> ho jata hai — har baar aapko apni poori medical history dobara batani padegi. Memory iss problem ko solve karti hai — doctor (LLM) ko aapki history yaad rehti hai across the conversation (aur kabhi-kabhi across multiple sessions bhi).</p>
+</blockquote>
+<hr />
+<h2 id="2-the-core-problem-llms-are-stateless">2. The Core Problem — LLMs are Stateless</h2>
+<p><strong>Simple Meaning:</strong> LLMs khud se <strong>kuch bhi yaad nahi rakhte</strong> — har API call <strong>independent</strong> hoti hai. Model ko sirf wahi pata hota hai jo aap <strong>current request me bhejte ho</strong> (prompt ke andar).</p>
+<pre><code>Request 1: &quot;My name is Rahul.&quot; → Response: &quot;Nice to meet you, Rahul!&quot;
+Request 2 (NEW, separate call): &quot;What's my name?&quot; → Response: &quot;I don't know your name&quot; 
+   (kyunki Request 1 ka context is naye call me include hi nahi kiya gaya)
+</code></pre>
+<h3 id="the-solution">The Solution</h3>
+<p>Har naye request ke saath, <strong>poori (ya relevant) purani conversation history</strong> ko bhi wapas bhejna padta hai:</p>
+<pre><code>Request 2 (with memory): 
+   [Previous: &quot;My name is Rahul.&quot; &quot;Nice to meet you, Rahul!&quot;] 
+   + New message: &quot;What's my name?&quot;
+→ Response: &quot;Your name is Rahul!&quot;
+</code></pre>
+<blockquote>
+<p><strong>Key Insight:</strong> Memory asal me LLM ke andar "store" nahi hoti — balki <strong>developer/system</strong> purani history ko track karta hai aur <strong>har naye request ke saath dobara bhejta hai</strong>. LLM sirf jo "context window" me hai, wahi "yaad" rakh pata hai.</p>
+</blockquote>
+<hr />
+<h2 id="3-types-of-memory">3. Types of Memory</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Duration</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Short-Term Memory</strong></td>
+<td>Ek hi conversation/session tak</td>
+<td>Current chat ka context maintain karna</td>
+</tr>
+<tr>
+<td><strong>Long-Term Memory</strong></td>
+<td>Multiple sessions ke across</td>
+<td>User preferences, past interactions yaad rakhna</td>
+</tr>
+<tr>
+<td><strong>Summarization Memory</strong></td>
+<td>Compressed version of long conversations</td>
+<td>Lambi history ko chhota, useful summary me convert karna</td>
+</tr>
+<tr>
+<td><strong>Entity Memory</strong></td>
+<td>Specific facts about people/things</td>
+<td>"User ka naam Rahul hai, wo Mumbai me rehta hai" jaisi facts track karna</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-short-term-memory-conversation-buffer">4. Short-Term Memory (Conversation Buffer)</h2>
+<p><strong>Simple Meaning:</strong> Current conversation ke <strong>saare (ya recent) messages</strong> ko as-is store karke, har naye request ke saath bhej dena.</p>
+<h3 id="conversation-buffer-full-history">Conversation Buffer (Full History)</h3>
+<pre><code class="language-python">conversation = [
+    {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;My name is Rahul.&quot;},
+    {&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: &quot;Nice to meet you, Rahul!&quot;},
+    {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;What's my name?&quot;}
+]
+# Poori history LLM ko bhej do
+</code></pre>
+<ul>
+<li>✅ Simple, sabse accurate (kuch bhi miss nahi hota)</li>
+<li>❌ <strong>Context window limit</strong> ka problem — bahut lambi conversation me, purane messages ki wajah se token limit exceed ho sakta hai (aur cost bhi badhta hai)</li>
+</ul>
+<h3 id="conversation-buffer-window-sliding-window">Conversation Buffer Window (Sliding Window)</h3>
+<pre><code>Sirf last N messages (e.g., last 10) rakho, purane automatically drop kar do.
+</code></pre>
+<ul>
+<li>✅ Token usage control me rehta hai</li>
+<li>❌ Bahut purani important info <strong>permanently lost</strong> ho sakti hai</li>
+</ul>
+<hr />
+<h2 id="5-long-term-memory">5. Long-Term Memory</h2>
+<p><strong>Simple Meaning:</strong> Information jo <strong>current session ke bahar bhi</strong> persist karti hai — agli baar jab user wapas aaye (naya session), tab bhi yeh yaad rahe.</p>
+<h3 id="example-use-cases">Example Use Cases</h3>
+<ul>
+<li>User preferences: "Mujhe short answers pasand hain" (ek baar bataya, hamesha yaad rahe)</li>
+<li>Past interactions: "Pichli baar humne X topic discuss kiya tha"</li>
+<li>Personal facts: "User ka favorite programming language Python hai"</li>
+</ul>
+<h3 id="how-its-implemented">How It's Implemented</h3>
+<ul>
+<li>Conversation ke important facts ko <strong>extract</strong> karke ek <strong>database</strong> (vector DB ya normal DB) me store kiya jata hai.</li>
+<li>Naye session me, relevant facts <strong>retrieve</strong> karke context me include kiye jate hain (RAG jaisa hi concept!).</li>
+</ul>
+<pre><code>New Session Starts
+   │
+   ▼
+Retrieve relevant long-term memories (from DB) about this user
+   │
+   ▼
+Inject into system prompt/context: &quot;User previously mentioned: prefers Python, works in finance...&quot;
+   │
+   ▼
+Continue conversation with this added context
+</code></pre>
+<hr />
+<h2 id="6-summarization-memory">6. Summarization Memory</h2>
+<p><strong>Simple Meaning:</strong> Poori conversation history store karne ke bajaye, LLM se hi <strong>periodically summarize</strong> karwate raho — taaki lambi conversation bhi <strong>ek chhoti summary</strong> me fit ho jaye.</p>
+<h3 id="how-it-works">How It Works</h3>
+<pre><code>After every N messages:
+   → Send full recent conversation to LLM
+   → Ask: &quot;Summarize this conversation so far in 3-4 sentences&quot;
+   → Replace the full history with this summary
+   → Continue conversation using [Summary] + [New Messages]
+</code></pre>
+<h3 id="example">Example</h3>
+<pre><code>Original History (500 messages about a coding project)
+   ↓ (summarized)
+Summary: &quot;User is building a Python web app using FastAPI. They've discussed 
+database schema design and are now working on authentication. Prefers concise code examples.&quot;
+</code></pre>
+<ul>
+<li>✅ Token usage bahut kam ho jata hai lambi conversations me</li>
+<li>❌ Kuch <strong>specific details</strong> summary me lost ho sakte hain (trade-off hai)</li>
+</ul>
+<hr />
+<h2 id="7-entity-memory">7. Entity Memory</h2>
+<p><strong>Simple Meaning:</strong> Conversation se <strong>specific entities</strong> (people, places, things, facts) ko track karke ek <strong>structured format</strong> me store karna.</p>
+<h3 id="example_1">Example</h3>
+<pre><code class="language-json">{
+  &quot;user_name&quot;: &quot;Rahul&quot;,
+  &quot;location&quot;: &quot;Mumbai&quot;,
+  &quot;occupation&quot;: &quot;Software Engineer&quot;,
+  &quot;current_project&quot;: &quot;E-commerce recommendation system&quot;,
+  &quot;preferences&quot;: [&quot;concise answers&quot;, &quot;Python code examples&quot;]
+}
+</code></pre>
+<ul>
+<li>✅ Structured hone ki wajah se <strong>precise retrieval</strong> possible hai (e.g., "user ka naam kya hai" — seedha field se mil jayega)</li>
+<li>✅ Conversation buffer ke comparison me bahut <strong>compact</strong></li>
+</ul>
+<hr />
+<h2 id="8-episodic-vs-semantic-vs-procedural-memory-advanced-categorization">8. Episodic vs Semantic vs Procedural Memory (Advanced Categorization)</h2>
+<p>Yeh categorization human memory se inspired hai, advanced agent systems me use hoti hai:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Episodic Memory</strong></td>
+<td>Specific past events/interactions</td>
+<td>"Last week, user asked about refunds and was upset"</td>
+</tr>
+<tr>
+<td><strong>Semantic Memory</strong></td>
+<td>General facts/knowledge about the user or world</td>
+<td>"User works in finance", "User prefers metric units"</td>
+</tr>
+<tr>
+<td><strong>Procedural Memory</strong></td>
+<td>How to do things — learned patterns/skills</td>
+<td>"This user always wants responses in bullet points"</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Yeh distinction especially <strong>advanced/production-grade AI assistants</strong> me use hoti hai (jaise personal AI assistants jo long-term relationship maintain karte hain).</p>
+</blockquote>
+<hr />
+<h2 id="9-memory-storage-options">9. Memory Storage Options</h2>
+<table>
+<thead>
+<tr>
+<th>Storage Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>In-memory (RAM)</strong></td>
+<td>Simple, single-session apps, testing (data lost on restart)</td>
+</tr>
+<tr>
+<td><strong>Redis</strong></td>
+<td>Fast, temporary session storage — good for short-term memory</td>
+</tr>
+<tr>
+<td><strong>SQL/NoSQL Database</strong></td>
+<td>Structured long-term memory (entity facts, user profiles)</td>
+</tr>
+<tr>
+<td><strong>Vector Database</strong></td>
+<td>Long-term memory jisme <strong>semantic search</strong> chahiye (e.g., "find similar past conversations")</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>LangGraph me humne <strong>Checkpointer</strong> (MemorySaver, SqliteSaver, PostgresSaver) dekha tha — yeh exactly isi purpose ke liye hai: state/memory ko persist karna.</p>
+</blockquote>
+<hr />
+<h2 id="10-how-memory-fits-into-an-agents-loop">10. How Memory Fits into an Agent's Loop</h2>
+<pre><code>User sends new message
+        │
+        ▼
+Retrieve relevant memory:
+   - Short-term: recent conversation buffer
+   - Long-term: relevant facts/past interactions (via DB/vector search)
+        │
+        ▼
+Combine: [System Prompt] + [Long-term Memory] + [Short-term History] + [New Message]
+        │
+        ▼
+Send to LLM → Generate Response
+        │
+        ▼
+Update Memory:
+   - Add new message to short-term buffer
+   - Extract any new important facts → save to long-term memory
+   - If buffer too long → summarize
+</code></pre>
+<hr />
+<h2 id="11-context-window-limitations-memory-management">11. Context Window Limitations &amp; Memory Management</h2>
+<p><strong>Problem:</strong> LLMs ki context window <strong>limited</strong> hoti hai (e.g., 200K tokens) — poori history hamesha nahi bhej sakte, especially long-running agents/conversations me.</p>
+<h3 id="strategies-to-manage-this">Strategies to Manage This</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sliding Window</strong></td>
+<td>Sirf last N messages rakho</td>
+</tr>
+<tr>
+<td><strong>Summarization</strong></td>
+<td>Purani history ko summary me compress karo</td>
+</tr>
+<tr>
+<td><strong>Selective Retrieval (RAG-style)</strong></td>
+<td>Poori history store karo (DB me), lekin sirf <strong>relevant</strong> parts retrieve karke context me daalo</td>
+</tr>
+<tr>
+<td><strong>Hierarchical Memory</strong></td>
+<td>Recent messages = full detail; older messages = summarized; very old = just key facts</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Most production systems use a hybrid approach:</strong> Recent messages full detail me rakhte hain (short-term buffer), aur purani/important info ko summarized ya entity-based long-term memory me store karte hain.</p>
+</blockquote>
+<hr />
+<h2 id="12-best-practices">12. Best Practices</h2>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use sliding window + summarization together</td>
+<td>Balance between context richness and token cost</td>
+</tr>
+<tr>
+<td>Extract and store only "important" facts long-term</td>
+<td>Avoid bloating memory with irrelevant chit-chat</td>
+</tr>
+<tr>
+<td>Use vector search for long-term memory retrieval</td>
+<td>Ensures only relevant past info is pulled in, not everything</td>
+</tr>
+<tr>
+<td>Regularly test memory accuracy</td>
+<td>Make sure agent isn't "forgetting" or "hallucinating" facts about the user</td>
+</tr>
+<tr>
+<td>Give users control over their memory</td>
+<td>Let users view/edit/delete what the system remembers about them (privacy)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-common-mistakes">13. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sending entire raw history every time</td>
+<td>Token cost explodes, hits context limit eventually</td>
+<td>Use summarization or sliding window</td>
+</tr>
+<tr>
+<td>No long-term memory at all</td>
+<td>User has to repeat preferences/info every session</td>
+<td>Implement entity/long-term memory for persistent apps</td>
+</tr>
+<tr>
+<td>Storing everything without filtering</td>
+<td>Memory becomes cluttered with irrelevant info</td>
+<td>Extract only meaningful facts, not every message</td>
+</tr>
+<tr>
+<td>Not handling memory conflicts (contradicting facts over time)</td>
+<td>Agent might use outdated/wrong info</td>
+<td>Update/overwrite facts when new info contradicts old</td>
+</tr>
+<tr>
+<td>Ignoring privacy/security of stored memory</td>
+<td>Sensitive user data at risk</td>
+<td>Encrypt stored memory, give users deletion controls</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-cheat-sheet">14. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Short-Term Memory</strong> → "Current conversation yaad rakhna"</li>
+<li><strong>Long-Term Memory</strong> → "Sessions ke paar bhi yaad rakhna"</li>
+<li><strong>Summarization Memory</strong> → "Lambi baat ko chhota summary bana do"</li>
+<li><strong>Entity Memory</strong> → "Specific facts ko structured format me store karo"</li>
+<li><strong>LLMs are Stateless</strong> → "Har request independent hai — memory developer manage karta hai, LLM khud nahi"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>Conversation Happens
+   │
+   ▼
+Short-Term: Add to buffer (or summarize if too long)
+   │
+   ▼
+Extract Important Facts → Save to Long-Term Memory (DB)
+   │
+   ▼
+Next Interaction: Retrieve relevant memory → Inject into context → Continue
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"LLMs don't remember anything on their own — memory is an engineering layer YOU build around the model, deciding what to keep, summarize, or discard."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

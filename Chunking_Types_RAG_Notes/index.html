@@ -1,0 +1,3916 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Chunking_Types_RAG_Notes/">
+      
+      
+        <link rel="prev" href="../BM25_Algorithm_Notes/">
+      
+      
+        <link rel="next" href="../Computer-Vision-and-NLP-Basics/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Chunking in RAG — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chunking-in-rag-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chunking in RAG — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-chunking-is-needed-simple-reason" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Chunking is Needed (Simple Reason)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#golden-rule-of-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule of Chunking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-table-all-chunking-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview Table — All Chunking Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-fixed-size-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Fixed-Size Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Fixed-Size Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-recursive-charactertext-chunking-most-common-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Recursive Character/Text Chunking (Most Common Default)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Recursive Character/Text Chunking (Most Common Default)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sentence-based-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sentence-Based Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sentence-Based Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-semantic-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Semantic Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Semantic Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-document-based-structural-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Document-Based / Structural Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Document-Based / Structural Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sliding-window-chunking-overlapping-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sliding Window Chunking (Overlapping Chunks)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sliding Window Chunking (Overlapping Chunks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-agentic-llm-based-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Agentic / LLM-Based Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Agentic / LLM-Based Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-table-code-aware-chunking-special-content-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Table / Code-Aware Chunking (Special Content Chunking)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Table / Code-Aware Chunking (Special Content Chunking)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-parent-child-chunking-small-to-big-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Parent-Child Chunking (Small-to-Big Retrieval)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Parent-Child Chunking (Small-to-Big Retrieval)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-it-solves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem it Solves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-late-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Late Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Late Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-it-solves_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem it Solves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-chunking-vs-late-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal Chunking vs Late Chunking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-choose-the-right-chunking-strategy-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Choose the Right Chunking Strategy (Decision Guide)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-parameters-to-tune-regardless-of-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Parameters to Tune (Regardless of Method)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-chunking-connects-to-evaluation-link-to-previous-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Chunking Connects to Evaluation (Link to Previous Notes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-line-memory-trick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Trick
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-chunking-is-needed-simple-reason" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Chunking is Needed (Simple Reason)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#golden-rule-of-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule of Chunking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-table-all-chunking-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview Table — All Chunking Types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-fixed-size-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Fixed-Size Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Fixed-Size Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-recursive-charactertext-chunking-most-common-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Recursive Character/Text Chunking (Most Common Default)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Recursive Character/Text Chunking (Most Common Default)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sentence-based-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sentence-Based Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sentence-Based Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-semantic-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Semantic Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Semantic Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-document-based-structural-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Document-Based / Structural Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Document-Based / Structural Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sliding-window-chunking-overlapping-chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sliding Window Chunking (Overlapping Chunks)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sliding Window Chunking (Overlapping Chunks)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-agentic-llm-based-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Agentic / LLM-Based Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Agentic / LLM-Based Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-table-code-aware-chunking-special-content-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Table / Code-Aware Chunking (Special Content Chunking)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Table / Code-Aware Chunking (Special Content Chunking)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-parent-child-chunking-small-to-big-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Parent-Child Chunking (Small-to-Big Retrieval)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Parent-Child Chunking (Small-to-Big Retrieval)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-it-solves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem it Solves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-late-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Late Chunking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Late Chunking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-it-solves_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem it Solves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-chunking-vs-late-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal Chunking vs Late Chunking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pros_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cons_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-choose-the-right-chunking-strategy-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Choose the Right Chunking Strategy (Decision Guide)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-parameters-to-tune-regardless-of-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Parameters to Tune (Regardless of Method)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-chunking-connects-to-evaluation-link-to-previous-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Chunking Connects to Evaluation (Link to Previous Notes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-line-memory-trick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Trick
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="chunking-in-rag-complete-notes">Chunking in RAG — Complete Notes</h1>
+<blockquote>
+<p><strong>Chunking</strong> = Bade documents ko chhote-chhote pieces (chunks) me todna, taaki RAG system unhe efficiently store, search aur retrieve kar sake.
+Yeh RAG pipeline ka <strong>sabse important step</strong> hai — agar chunking galat hui, toh retrieval aur generation dono kharab honge, chahe embedding model kitna bhi accha ho.</p>
+</blockquote>
+<hr />
+<h2 id="why-chunking-is-needed-simple-reason">Why Chunking is Needed (Simple Reason)</h2>
+<ol>
+<li><strong>LLMs ki context window limited hoti hai</strong> — pura document ek saath nahi de sakte.</li>
+<li><strong>Embedding models</strong> bhi ek limit tak hi text ko accurately represent kar sakte hain — bahut lamba text dene se meaning "dilute" ho jata hai.</li>
+<li><strong>Precise Retrieval</strong> — Chote, focused chunks se sirf relevant info milti hai, pura irrelevant document nahi.</li>
+</ol>
+<blockquote>
+<p>Analogy: Socho ek poori kitab ko dhoondhne ke bajaye, sirf uska relevant paragraph nikal ke doctor/lawyer ko dena — zyada useful hai.</p>
+</blockquote>
+<hr />
+<h2 id="golden-rule-of-chunking">Golden Rule of Chunking</h2>
+<blockquote>
+<p><strong>"Chunk chhota ho par complete meaning wala ho — na bahut chhota (context lost), na bahut bada (irrelevant info mix ho jaye)."</strong></p>
+</blockquote>
+<hr />
+<h2 id="overview-table-all-chunking-types">Overview Table — All Chunking Types</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Based On</th>
+<th>Complexity</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fixed-Size Chunking</td>
+<td>Character/token count</td>
+<td>⭐ Easy</td>
+<td>Simple, generic text</td>
+</tr>
+<tr>
+<td>Recursive Character Chunking</td>
+<td>Hierarchical separators (paragraph→sentence→word)</td>
+<td>⭐⭐ Medium</td>
+<td>General purpose (most common default)</td>
+</tr>
+<tr>
+<td>Sentence-Based Chunking</td>
+<td>Sentence boundaries</td>
+<td>⭐⭐ Medium</td>
+<td>Q&amp;A, precise answers</td>
+</tr>
+<tr>
+<td>Semantic Chunking</td>
+<td>Meaning/similarity of text</td>
+<td>⭐⭐⭐ Advanced</td>
+<td>High-accuracy RAG</td>
+</tr>
+<tr>
+<td>Document-Based/Structural Chunking</td>
+<td>Document structure (headings, sections)</td>
+<td>⭐⭐ Medium</td>
+<td>Structured docs (manuals, legal, wiki)</td>
+</tr>
+<tr>
+<td>Sliding Window Chunking</td>
+<td>Overlapping fixed windows</td>
+<td>⭐⭐ Medium</td>
+<td>Preserving context across boundaries</td>
+</tr>
+<tr>
+<td>Agentic / LLM-Based Chunking</td>
+<td>LLM decides chunk boundaries</td>
+<td>⭐⭐⭐⭐ Advanced</td>
+<td>Complex, high-value documents</td>
+</tr>
+<tr>
+<td>Table/Code-Aware Chunking</td>
+<td>Special content type (tables, code)</td>
+<td>⭐⭐⭐ Advanced</td>
+<td>Technical docs, code repos</td>
+</tr>
+<tr>
+<td>Parent-Child Chunking</td>
+<td>Two-level chunks (big + small)</td>
+<td>⭐⭐⭐ Advanced</td>
+<td>Long structured docs needing context + precision</td>
+</tr>
+<tr>
+<td>Late Chunking</td>
+<td>Embed full doc first, split after</td>
+<td>⭐⭐⭐⭐ Advanced</td>
+<td>Docs with heavy pronoun/reference usage, need context-aware embeddings</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-fixed-size-chunking">1. Fixed-Size Chunking</h2>
+<p><strong>Simple Meaning:</strong> Document ko ek fixed number of characters/tokens me todo — bas seedha count karke split karo.</p>
+<h3 id="how-it-works">How it Works</h3>
+<ul>
+<li>Choose a chunk size (e.g., 500 tokens or 1000 characters).</li>
+<li>Cut the text every N tokens/characters, regardless of sentence or paragraph boundaries.</li>
+</ul>
+<h3 id="example">Example</h3>
+<pre><code>Chunk size = 100 characters
+
+Chunk 1: &quot;The quick brown fox jumps over the lazy dog. Machine learning is a subs...&quot;
+Chunk 2: &quot;et of artificial intelligence that focuses on...&quot;
+</code></pre>
+<p>(Notice: word "subset" got cut in between — "subs" and "et" split across chunks!)</p>
+<h3 id="pros">Pros</h3>
+<ul>
+<li>✅ Very simple and fast to implement.</li>
+<li>✅ Predictable chunk sizes (good for embedding models with token limits).</li>
+</ul>
+<h3 id="cons">Cons</h3>
+<ul>
+<li>❌ Can <strong>cut sentences/words in the middle</strong>, breaking meaning.</li>
+<li>❌ Doesn't respect any natural structure of the document.</li>
+</ul>
+<h3 id="when-to-use">When to Use</h3>
+<ul>
+<li>Quick prototypes, simple projects, or when document structure doesn't matter much.</li>
+</ul>
+<hr />
+<h2 id="2-recursive-charactertext-chunking-most-common-default">2. Recursive Character/Text Chunking (Most Common Default)</h2>
+<p><strong>Simple Meaning:</strong> Pehle bade separators (paragraph) se todne ki koshish karo, agar chunk phir bhi bada hai, toh chhote separators (sentence, phir word) pe jao.</p>
+<h3 id="how-it-works_1">How it Works</h3>
+<p>Hierarchy of separators, tried in order:</p>
+<pre><code>1. Try splitting by &quot;\n\n&quot; (paragraphs)
+2. If still too big → split by &quot;\n&quot; (lines)
+3. If still too big → split by &quot;. &quot; (sentences)
+4. If still too big → split by &quot; &quot; (words)
+</code></pre>
+<h3 id="example_1">Example</h3>
+<ul>
+<li>A long paragraph gets split at paragraph breaks first.</li>
+<li>If a single paragraph is still too long, it further breaks it at sentence level.</li>
+</ul>
+<h3 id="pros_1">Pros</h3>
+<ul>
+<li>✅ Respects natural document structure much better than fixed-size.</li>
+<li>✅ Balances chunk size with meaning preservation.</li>
+<li>✅ Most popular default method (used in LangChain's <code>RecursiveCharacterTextSplitter</code>).</li>
+</ul>
+<h3 id="cons_1">Cons</h3>
+<ul>
+<li>❌ Still can occasionally split mid-thought if paragraphs/sentences are very long.</li>
+</ul>
+<h3 id="when-to-use_1">When to Use</h3>
+<ul>
+<li><strong>Default choice</strong> for most RAG projects — general-purpose documents (articles, blogs, reports).</li>
+</ul>
+<hr />
+<h2 id="3-sentence-based-chunking">3. Sentence-Based Chunking</h2>
+<p><strong>Simple Meaning:</strong> Document ko sentence boundaries pe hi todo — ek chunk me poore sentences honge, kabhi bhi sentence beech me nahi katega.</p>
+<h3 id="how-it-works_2">How it Works</h3>
+<ul>
+<li>Use NLP libraries (like <code>nltk</code>, <code>spaCy</code>) to detect sentence boundaries.</li>
+<li>Group a certain number of sentences together (e.g., 3-5 sentences per chunk) or until a token limit is reached.</li>
+</ul>
+<h3 id="example_2">Example</h3>
+<pre><code>Chunk 1: &quot;AI is transforming industries. Machine learning models are becoming more efficient. Companies are investing heavily in AI research.&quot;
+
+Chunk 2: &quot;However, ethical concerns remain. Data privacy is a major issue. Regulators are working on new AI laws.&quot;
+</code></pre>
+<h3 id="pros_2">Pros</h3>
+<ul>
+<li>✅ Preserves complete thoughts/sentences.</li>
+<li>✅ Good for precise Q&amp;A — answer usually lies within 1-2 complete sentences.</li>
+</ul>
+<h3 id="cons_2">Cons</h3>
+<ul>
+<li>❌ Sentence length varies a lot, so chunk sizes become inconsistent.</li>
+<li>❌ May lose paragraph-level context (relation between sentences across chunks).</li>
+</ul>
+<h3 id="when-to-use_2">When to Use</h3>
+<ul>
+<li>Q&amp;A systems where <strong>precise, short answers</strong> matter (e.g., FAQ bots, fact retrieval).</li>
+</ul>
+<hr />
+<h2 id="4-semantic-chunking">4. Semantic Chunking</h2>
+<p><strong>Simple Meaning:</strong> Chunk banate waqt sirf character count nahi, balki <strong>meaning/topic ka similarity</strong> dekha jata hai. Jab tak text ka topic same hai, wahi chunk continue hota hai; jaise hi topic change hota hai, naya chunk shuru hota hai.</p>
+<h3 id="how-it-works_3">How it Works</h3>
+<ol>
+<li>Break text into sentences.</li>
+<li>Generate embeddings for each sentence.</li>
+<li>Compare similarity between consecutive sentences.</li>
+<li>Agar similarity <strong>drop</strong> ho jaye (matlab topic change ho gaya) → naya chunk start karo.</li>
+</ol>
+<h3 id="example_3">Example</h3>
+<pre><code>&quot;Machine learning is a subset of AI. It uses algorithms to learn patterns from data.&quot;
+   ↑ (similar topic — same chunk)
+
+&quot;Meanwhile, the stock market saw a major crash today due to inflation concerns.&quot;
+   ↑ (different topic — similarity drops — NEW chunk starts here)
+</code></pre>
+<h3 id="pros_3">Pros</h3>
+<ul>
+<li>✅ Chunks are <strong>topically coherent</strong> — highest quality for retrieval accuracy.</li>
+<li>✅ Reduces irrelevant info mixing into a single chunk.</li>
+</ul>
+<h3 id="cons_3">Cons</h3>
+<ul>
+<li>❌ Computationally expensive (needs embeddings just to create chunks).</li>
+<li>❌ Slower to process large documents.</li>
+</ul>
+<h3 id="when-to-use_3">When to Use</h3>
+<ul>
+<li><strong>High-accuracy production RAG systems</strong>, especially when documents cover multiple topics (e.g., research papers, mixed-topic articles).</li>
+</ul>
+<hr />
+<h2 id="5-document-based-structural-chunking">5. Document-Based / Structural Chunking</h2>
+<p><strong>Simple Meaning:</strong> Document ki <strong>natural structure</strong> (headings, sections, bullet points, markdown headers) ke hisaab se chunk karo.</p>
+<h3 id="how-it-works_4">How it Works</h3>
+<ul>
+<li>Use existing structure markers: <code># Heading</code>, <code>## Subheading</code>, HTML tags (<code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>), or PDF section breaks.</li>
+<li>Each section/heading becomes its own chunk (or group of related sub-sections).</li>
+</ul>
+<h3 id="example_4">Example</h3>
+<pre><code>Document:
+# Chapter 1: Introduction to AI
+  (content...)
+# Chapter 2: Machine Learning Basics
+  (content...)
+
+→ Chunk 1 = Chapter 1 content
+→ Chunk 2 = Chapter 2 content
+</code></pre>
+<h3 id="pros_4">Pros</h3>
+<ul>
+<li>✅ Naturally aligns with how humans organize information.</li>
+<li>✅ Great metadata can be attached (e.g., "this chunk belongs to Chapter 2").</li>
+</ul>
+<h3 id="cons_4">Cons</h3>
+<ul>
+<li>❌ Only works well if the document <strong>already has clear structure</strong>. Unstructured text (like plain paragraphs) won't benefit.</li>
+<li>❌ Section sizes can vary hugely (one heading might have 2 lines, another 5 pages).</li>
+</ul>
+<h3 id="when-to-use_4">When to Use</h3>
+<ul>
+<li>Structured documents: <strong>manuals, legal contracts, Wikipedia-style articles, technical documentation, textbooks</strong>.</li>
+</ul>
+<hr />
+<h2 id="6-sliding-window-chunking-overlapping-chunks">6. Sliding Window Chunking (Overlapping Chunks)</h2>
+<p><strong>Simple Meaning:</strong> Chunks banate waqt thoda <strong>overlap</strong> rakho, taaki boundary pe important context lost na ho.</p>
+<h3 id="how-it-works_5">How it Works</h3>
+<ul>
+<li>Instead of Chunk 1 ending exactly where Chunk 2 starts, let them <strong>overlap</strong> by some tokens/characters.</li>
+</ul>
+<h3 id="example_5">Example</h3>
+<pre><code>Chunk size = 100 tokens, Overlap = 20 tokens
+
+Chunk 1: tokens 1-100
+Chunk 2: tokens 81-180   (overlap of 20 tokens: 81-100 repeated)
+Chunk 3: tokens 161-260
+</code></pre>
+<h3 id="pros_5">Pros</h3>
+<ul>
+<li>✅ Reduces risk of losing context at chunk boundaries.</li>
+<li>✅ Improves retrieval when key info sits right at a chunk edge.</li>
+</ul>
+<h3 id="cons_5">Cons</h3>
+<ul>
+<li>❌ Increases total storage (duplicate/overlapping content).</li>
+<li>❌ Slightly more compute needed during embedding/indexing.</li>
+</ul>
+<h3 id="when-to-use_5">When to Use</h3>
+<ul>
+<li>Combined with <strong>any other chunking method above</strong> (fixed-size, recursive, sentence-based) — overlap is usually an <strong>add-on strategy</strong>, not standalone. Very commonly used in practice (typical overlap: 10-20% of chunk size).</li>
+</ul>
+<hr />
+<h2 id="7-agentic-llm-based-chunking">7. Agentic / LLM-Based Chunking</h2>
+<p><strong>Simple Meaning:</strong> Ek LLM khud padhta hai document ko aur decide karta hai ki chunk boundaries kahan honi chahiye — jaise ek insaan manually document ko sections me divide karega.</p>
+<h3 id="how-it-works_6">How it Works</h3>
+<ol>
+<li>Feed the document (or parts of it) to an LLM.</li>
+<li>Prompt it: "Split this text into meaningful, self-contained chunks that preserve context."</li>
+<li>LLM returns proposed chunk boundaries or directly returns the chunks.</li>
+</ol>
+<h3 id="example_6">Example</h3>
+<p>Prompt to LLM: <em>"Divide the following article into logical chunks, each covering one complete idea."</em>
+→ LLM intelligently decides where one idea ends and another begins (better than simple similarity-based semantic chunking).</p>
+<h3 id="pros_6">Pros</h3>
+<ul>
+<li>✅ Highest quality — understands <strong>context, meaning, and even document intent</strong>.</li>
+<li>✅ Can handle complex/messy documents where structure isn't obvious.</li>
+</ul>
+<h3 id="cons_6">Cons</h3>
+<ul>
+<li>❌ <strong>Expensive</strong> (LLM API calls for chunking itself).</li>
+<li>❌ <strong>Slow</strong> — not practical for very large document sets.</li>
+<li>❌ Adds another layer of potential error (LLM might chunk inconsistently).</li>
+</ul>
+<h3 id="when-to-use_6">When to Use</h3>
+<ul>
+<li><strong>High-value, complex documents</strong> where accuracy matters more than cost/speed (e.g., legal contracts, medical records, critical research).</li>
+</ul>
+<hr />
+<h2 id="8-table-code-aware-chunking-special-content-chunking">8. Table / Code-Aware Chunking (Special Content Chunking)</h2>
+<p><strong>Simple Meaning:</strong> Tables, code blocks, ya structured data ko normal text ki tarah mat todo — inko apna special treatment do taaki structure na tootay.</p>
+<h3 id="how-it-works_7">How it Works</h3>
+<ul>
+<li>Detect special content types (Markdown tables, code blocks, JSON, CSV data).</li>
+<li>Keep them <strong>intact as a single chunk</strong> (don't split a table row in half or break a function mid-way).</li>
+<li>Optionally attach a text description/summary alongside for better retrieval.</li>
+</ul>
+<h3 id="example_7">Example</h3>
+<pre><code>❌ Bad: Splitting a table mid-row
+| Name | Age
+| John | -- (chunk cut here) --
+25
+
+✅ Good: Whole table kept as one chunk
+| Name | Age |
+| John | 25  |
+| Mary | 30  |
+</code></pre>
+<h3 id="pros_7">Pros</h3>
+<ul>
+<li>✅ Preserves structure and correctness of technical/tabular content.</li>
+<li>✅ Prevents broken code/tables from confusing the LLM during generation.</li>
+</ul>
+<h3 id="cons_7">Cons</h3>
+<ul>
+<li>❌ Requires content-type detection logic (more engineering effort).</li>
+<li>❌ Large tables/code files may still need internal splitting logic (row groups, function-level splits).</li>
+</ul>
+<h3 id="when-to-use_7">When to Use</h3>
+<ul>
+<li>Documents with <strong>code snippets, tables, JSON/CSV data</strong> — e.g., technical documentation, API docs, code repositories, financial reports.</li>
+</ul>
+<hr />
+<h2 id="9-parent-child-chunking-small-to-big-retrieval">9. Parent-Child Chunking (Small-to-Big Retrieval)</h2>
+<p><strong>Simple Meaning:</strong> Document ko <strong>do levels</strong> pe chunk karo — ek <strong>bada chunk (Parent)</strong> aur uske andar chhote chunks (Children). Retrieval <strong>child-level</strong> pe hoti hai (precise match ke liye), lekin LLM ko answer generate karne ke liye <strong>parent-level</strong> (bada context) diya jata hai.</p>
+<h3 id="problem-it-solves">Problem it Solves</h3>
+<ul>
+<li><strong>Chhote chunks</strong> → Retrieval accurate hoti hai (precise match), par LLM ko context kam milta hai.</li>
+<li><strong>Bade chunks</strong> → Context zyada milta hai, par retrieval me irrelevant info mix ho jati hai (precision girti hai).</li>
+</ul>
+<p>Parent-Child dono ka best of both worlds deta hai.</p>
+<h3 id="how-it-works_8">How it Works</h3>
+<ol>
+<li>Document ko pehle <strong>bade Parent chunks</strong> me todo (e.g., 2000 tokens — poora section/paragraph group).</li>
+<li>Har Parent ko aage <strong>chhote Child chunks</strong> me todo (e.g., 200-400 tokens — sentence ya small paragraph level).</li>
+<li>Sirf <strong>Child chunks embed aur index</strong> kiye jate hain (vector DB me) — saath me unka parent ID/reference store hota hai.</li>
+<li>Query aane par:</li>
+<li><strong>Child chunk match hota hai</strong> (kyunki woh precise/focused hai, embedding search sharp result deta hai)</li>
+<li>Retrieval ke baad, system uske corresponding <strong>Parent chunk</strong> ko fetch karta hai (child→parent mapping se)</li>
+<li>LLM ko final answer generate karne ke liye <strong>Parent (bada context)</strong> diya jata hai, na ki sirf woh chhota child</li>
+</ol>
+<h3 id="example_8">Example</h3>
+<pre><code>Parent Chunk (Section: &quot;Machine Learning Basics&quot;)
+├── Child 1: &quot;ML is a subset of AI that learns from data.&quot;
+├── Child 2: &quot;Common algorithms include linear regression, decision trees...&quot;
+└── Child 3: &quot;ML models improve performance through training on datasets.&quot;
+</code></pre>
+<p>Query: <em>"What algorithms are used in ML?"</em>
+- Retrieval matches <strong>Child 2</strong> (best semantic match — sharp, focused text)
+- Lekin LLM ko diya jata hai <strong>poora Parent chunk</strong> (poori "Machine Learning Basics" section) — taaki answer me broader context bhi ho, sirf ek isolated line na ho.</p>
+<h3 id="pros_8">Pros</h3>
+<ul>
+<li>✅ Precise retrieval (child-level) + Rich context (parent-level)</li>
+<li>✅ Reduces "context loss" problem of small chunking</li>
+<li>✅ Better answer quality without sacrificing search accuracy</li>
+</ul>
+<h3 id="cons_8">Cons</h3>
+<ul>
+<li>❌ Thoda zyada engineering complexity (do levels maintain karne padte hain — child→parent mapping)</li>
+<li>❌ Storage/indexing thoda zyada (parent + child dono store karne padte hain)</li>
+</ul>
+<h3 id="when-to-use_8">When to Use</h3>
+<ul>
+<li>Jab documents <strong>lambe aur structured</strong> hon (manuals, wikis, research papers)</li>
+<li>Jab chhote chunks se retrieval toh accurate hoti hai, lekin LLM ka answer <strong>incomplete/context-less</strong> lagta hai</li>
+</ul>
+<blockquote>
+<p>Also known as <strong>"Small-to-Big Retrieval"</strong> — same concept, different name (used interchangeably in LlamaIndex/LangChain docs).</p>
+</blockquote>
+<hr />
+<h2 id="10-late-chunking">10. Late Chunking</h2>
+<p><strong>Simple Meaning:</strong> Normal chunking me hum pehle document ko <strong>todte</strong> hain, phir har chunk ko <strong>alag-alag embed</strong> karte hain — is se har chunk ko sirf apna hi text pata hota hai, baaki document ka context miss ho jata hai. <strong>Late Chunking me order ulta hai</strong> — pehle poora document embed hota hai, chunking sabse <strong>aakhri (late)</strong> step me hoti hai.</p>
+<h3 id="problem-it-solves_1">Problem it Solves</h3>
+<p>Normal chunking me pronouns/references ka context lost ho jata hai. Example:</p>
+<pre><code>&quot;Berlin is the capital of Germany. It has a population of about 3.7 million.&quot;
+</code></pre>
+<p>Agar yeh do chunks me split ho jaye, toh doosre chunk ("It has a population...") ko embed karte waqt model ko pata hi nahi chalta ki <strong>"It" = Berlin</strong>. Iska embedding generic ban jata hai, aur query <em>"Berlin's population?"</em> is chunk ko utna acche se match nahi kar payegi.</p>
+<h3 id="how-it-works_9">How it Works</h3>
+<ol>
+<li><strong>Poore document ko embed karo</strong> — ek <strong>long-context embedding model</strong> use karke jo lambi text ek saath process kar sake.</li>
+<li>Model <strong>har token/word ke liye ek embedding</strong> banata hai — yeh embeddings poore document ka context "dekh" ke bante hain (attention mechanism pura document cover karta hai, isliye "It" ka matlab "Berlin" model ko pata chal jata hai).</li>
+<li><strong>Uske baad</strong> (isiliye naam "late") in token-level embeddings ko chunk boundaries ke hisaab se <strong>group/pool</strong> karke chunk-level embeddings banaye jaate hain.</li>
+</ol>
+<blockquote>
+<p>Matlab — chunking sabse aakhri step hai, embedding ke baad. Normal approach me chunking pehle hoti hai, embedding baad me — Late Chunking isko reverse kar deta hai.</p>
+</blockquote>
+<h3 id="normal-chunking-vs-late-chunking">Normal Chunking vs Late Chunking</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Normal Chunking</th>
+<th>Late Chunking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order</td>
+<td>Split → phir Embed (har chunk alag se)</td>
+<td>Embed (poora doc) → phir Split</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>Har chunk ko sirf apna text pata hai</td>
+<td>Har chunk ko <strong>poore document ka context</strong> pata hai</td>
+</tr>
+<tr>
+<td>Pronoun/reference problem</td>
+<td>❌ Solve nahi hota</td>
+<td>✅ Solve hota hai</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example_9">Example</h3>
+<pre><code>Document: &quot;Berlin is the capital of Germany. It has a population of about 3.7 million.&quot;
+</code></pre>
+<p><strong>Normal Chunking:</strong></p>
+<pre><code>Chunk 1: &quot;Berlin is the capital of Germany.&quot;
+Chunk 2: &quot;It has a population of about 3.7 million.&quot;
+</code></pre>
+<p>Chunk 2 ka embedding "generic city population" jaisa banega — "It" ka reference miss ho jata hai.</p>
+<p><strong>Late Chunking:</strong>
+- Pura paragraph pehle embed hota hai — model ko pata chal jata hai ki "It" = Berlin (kyunki poora context saath me process hua)
+- Fir jab Chunk 2 ka embedding token-embeddings se "pool" kiya jata hai, usme already "Berlin" ka context baked-in hota hai
+- Ab query <em>"Berlin's population"</em> Chunk 2 ko sahi se match karega</p>
+<h3 id="pros_9">Pros</h3>
+<ul>
+<li>✅ Pronoun/reference resolution better hota hai (jaise "it", "he", "this", "the company" jaise words ka matlab pata rehta hai)</li>
+<li>✅ Chunk embeddings zyada "context-aware" hote hain bina overlap/parent-child jaisi extra engineering ke</li>
+<li>✅ Chunking flexible rehti hai — baad me chunk boundaries change bhi kar sakte ho bina dobara pura embed kiye</li>
+</ul>
+<h3 id="cons_9">Cons</h3>
+<ul>
+<li>❌ Long-context embedding model chahiye (jo pura document ek saath process kar sake — token limit issue ho sakta hai bahut bade docs ke liye)</li>
+<li>❌ Har embedding model isko support nahi karta — specific implementation chahiye hoti hai</li>
+<li>❌ Thoda naya/advanced concept hai — sab frameworks me directly built-in nahi milta</li>
+</ul>
+<h3 id="when-to-use_9">When to Use</h3>
+<ul>
+<li>Jab documents me <strong>pronouns/references</strong> bahut zyada ho (jaise "it", "this", "the above method") jo doosre paragraphs ko refer karte hain</li>
+<li>Jab <strong>high retrieval accuracy</strong> chahiye aur long-context embedding model available ho (e.g., Jina AI ne yeh technique popularize ki hai)</li>
+</ul>
+<hr />
+<h2 id="how-to-choose-the-right-chunking-strategy-decision-guide">How to Choose the Right Chunking Strategy (Decision Guide)</h2>
+<table>
+<thead>
+<tr>
+<th>Your Situation</th>
+<th>Recommended Chunking</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Just starting out / prototype</td>
+<td>Fixed-Size or Recursive Chunking</td>
+</tr>
+<tr>
+<td>General-purpose documents (blogs, articles, reports)</td>
+<td>Recursive Character Chunking</td>
+</tr>
+<tr>
+<td>Need precise short answers (FAQ/Q&amp;A bot)</td>
+<td>Sentence-Based Chunking</td>
+</tr>
+<tr>
+<td>Document covers multiple topics/mixed content</td>
+<td>Semantic Chunking</td>
+</tr>
+<tr>
+<td>Well-structured docs (manuals, wikis, textbooks)</td>
+<td>Document-Based/Structural Chunking</td>
+</tr>
+<tr>
+<td>Important info often sits at chunk boundaries</td>
+<td>Sliding Window (add overlap to any method)</td>
+</tr>
+<tr>
+<td>High-stakes, complex documents, budget allows</td>
+<td>Agentic/LLM-Based Chunking</td>
+</tr>
+<tr>
+<td>Docs contain tables/code</td>
+<td>Table/Code-Aware Chunking</td>
+</tr>
+<tr>
+<td>Long docs where small chunks lose context for LLM</td>
+<td>Parent-Child Chunking</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>In practice:</strong> Most production RAG systems combine multiple strategies — e.g., <strong>Structural Chunking</strong> (split by sections) + <strong>Recursive Chunking</strong> (within each section) + <strong>Sliding Window overlap</strong> (for boundary safety).</p>
+</blockquote>
+<hr />
+<h2 id="important-parameters-to-tune-regardless-of-method">Important Parameters to Tune (Regardless of Method)</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+<th>Typical Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chunk Size</strong></td>
+<td>How big each chunk is (tokens/characters)</td>
+<td>200–1000 tokens (varies by use case)</td>
+</tr>
+<tr>
+<td><strong>Chunk Overlap</strong></td>
+<td>How much consecutive chunks overlap</td>
+<td>10–20% of chunk size</td>
+</tr>
+<tr>
+<td><strong>Separator Priority</strong></td>
+<td>Order of splitting rules (paragraph &gt; sentence &gt; word)</td>
+<td>Depends on method</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Tip:</strong> Chunk size choice depends on your embedding model's context limit AND your LLM's context window. Smaller chunks = more precise retrieval but may lose broader context. Bigger chunks = more context but risk of irrelevant info mixing in (hurts Precision).</p>
+</blockquote>
+<hr />
+<h2 id="how-chunking-connects-to-evaluation-link-to-previous-notes">How Chunking Connects to Evaluation (Link to Previous Notes)</h2>
+<p>Bad chunking directly hurts your retrieval metrics:
+- <strong>Poor chunking → Low Precision</strong> (irrelevant text bundled in with relevant text)
+- <strong>Poor chunking → Low Recall</strong> (important info split across chunks, none of them fully "relevant")
+- <strong>Poor chunking → Low NDCG</strong> (even if relevant chunk retrieved, its content is incomplete/messy)</p>
+<blockquote>
+<p>Isiliye chunking ko RAG pipeline ka <strong>foundation step</strong> mana jata hai — agar yeh galat hui, toh BM25, embeddings, reranking — sab kuch iske upar hi struggle karega.</p>
+</blockquote>
+<hr />
+<h2 id="one-line-memory-trick">One-Line Memory Trick</h2>
+<ul>
+<li><strong>Fixed-Size</strong> → "Bas ginti karke kaato"</li>
+<li><strong>Recursive</strong> → "Pehle bada tod, phir chhota — jab tak fit na ho"</li>
+<li><strong>Sentence-Based</strong> → "Sentence adhoora mat chhodo"</li>
+<li><strong>Semantic</strong> → "Topic badle toh chunk badlo"</li>
+<li><strong>Structural</strong> → "Document ki apni structure follow karo"</li>
+<li><strong>Sliding Window</strong> → "Thoda overlap rakho, context na tootay"</li>
+<li><strong>Agentic</strong> → "LLM khud decide kare kahan todna hai"</li>
+<li><strong>Table/Code-Aware</strong> → "Tables/code ko mat todo, poora rakho"</li>
+<li><strong>Parent-Child</strong> → "Match chhote se, jawab bade se do"</li>
+<li><strong>Late-Chunking</strong> → "Pehle Embedding bnao, fir chunks me toro"</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

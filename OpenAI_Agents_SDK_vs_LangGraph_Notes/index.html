@@ -1,0 +1,2509 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/OpenAI_Agents_SDK_vs_LangGraph_Notes/">
+      
+      
+        <link rel="prev" href="../Observability_LangSmith_Langfuse_Notes/">
+      
+      
+        <link rel="next" href="../Overfitting-vs-Underfitting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>OpenAI Agents SDK vs LangGraph — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#openai-agents-sdk-vs-langgraph-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              OpenAI Agents SDK vs LangGraph — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is OpenAI Agents SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts-in-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Concepts in OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-openai-agents-sdk-works-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How OpenAI Agents SDK Works (Example)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How OpenAI Agents SDK Works (Example)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-single-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Single Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-agent-with-handoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Agent with Handoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-what-is-langgraph-quick-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. What is LangGraph (Quick Recap)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-philosophy-difference-opinionated-simplicity-vs-flexible-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Philosophy Difference — "Opinionated Simplicity" vs "Flexible Control"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Philosophy Difference — &#34;Opinionated Simplicity&#34; vs &#34;Flexible Control&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai-agents-sdk-opinionated-simplicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI Agents SDK — "Opinionated Simplicity"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langgraph-flexible-explicit-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LangGraph — "Flexible, Explicit Control"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-when-to-use-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. When to Use OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-when-to-use-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. When to Use LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-can-they-be-used-togetherinterchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Can They Be Used Together/Interchanged?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Decision Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is OpenAI Agents SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-concepts-in-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Concepts in OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-openai-agents-sdk-works-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How OpenAI Agents SDK Works (Example)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How OpenAI Agents SDK Works (Example)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-single-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Single Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-agent-with-handoffs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Agent with Handoffs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-what-is-langgraph-quick-recap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. What is LangGraph (Quick Recap)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-side-by-side-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Side-by-Side Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-philosophy-difference-opinionated-simplicity-vs-flexible-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Philosophy Difference — "Opinionated Simplicity" vs "Flexible Control"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Philosophy Difference — &#34;Opinionated Simplicity&#34; vs &#34;Flexible Control&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai-agents-sdk-opinionated-simplicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI Agents SDK — "Opinionated Simplicity"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langgraph-flexible-explicit-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LangGraph — "Flexible, Explicit Control"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-when-to-use-openai-agents-sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. When to Use OpenAI Agents SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-when-to-use-langgraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. When to Use LangGraph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-can-they-be-used-togetherinterchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Can They Be Used Together/Interchanged?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-decision-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Decision Guide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="openai-agents-sdk-vs-langgraph-complete-notes">OpenAI Agents SDK vs LangGraph — Complete Notes</h1>
+<blockquote>
+<p><strong>OpenAI Agents SDK</strong> = OpenAI ka apna <strong>lightweight, minimal framework</strong> hai agents banane ke liye — simple Python-first design ke saath.
+<strong>LangGraph</strong> = Zyada <strong>flexible, graph-based</strong> framework hai jo complex, custom control flow (loops, branches, multi-agent) ke liye deep control deta hai.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>What is OpenAI Agents SDK</li>
+<li>Core Concepts in OpenAI Agents SDK</li>
+<li>How OpenAI Agents SDK Works (Example)</li>
+<li>What is LangGraph (Quick Recap)</li>
+<li>Side-by-Side Comparison</li>
+<li>Philosophy Difference — "Opinionated Simplicity" vs "Flexible Control"</li>
+<li>When to Use OpenAI Agents SDK</li>
+<li>When to Use LangGraph</li>
+<li>Can They Be Used Together/Interchanged?</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-what-is-openai-agents-sdk">1. What is OpenAI Agents SDK</h2>
+<p><strong>Simple Meaning:</strong> OpenAI Agents SDK ek <strong>lightweight, production-ready framework</strong> hai jo OpenAI ne specifically <strong>multi-agent workflows</strong> banane ke liye release kiya — iska focus <strong>simplicity aur minimal abstractions</strong> pe hai (bahut kam "magic"/hidden complexity).</p>
+<blockquote>
+<p>Yeh OpenAI ke pehle ke experimental project <strong>"Swarm"</strong> ka <strong>production-grade successor</strong> hai — Swarm ek research/educational prototype tha, Agents SDK usko production-ready banata hai.</p>
+</blockquote>
+<h3 id="core-philosophy">Core Philosophy</h3>
+<ul>
+<li><strong>Minimal core concepts</strong> — sirf handful of primitives seekhne padte hain (bahut kam learning curve)</li>
+<li><strong>Python-first</strong> (aur ab TypeScript/JS support bhi hai) — feels like writing normal Python code, not a heavy framework</li>
+<li><strong>Provider-agnostic</strong> — sirf OpenAI models tak limited nahi, dusre LLM providers (via compatible APIs) ke saath bhi use ho sakta hai</li>
+</ul>
+<hr />
+<h2 id="2-core-concepts-in-openai-agents-sdk">2. Core Concepts in OpenAI Agents SDK</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Simple Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agent</strong></td>
+<td>Ek LLM + instructions + tools + (optional) handoffs — ek self-contained "worker"</td>
+</tr>
+<tr>
+<td><strong>Handoffs</strong></td>
+<td>Ek agent, task ko <strong>doosre specialized agent ko transfer</strong> kar sakta hai (jaise LangGraph ka multi-agent routing)</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>Functions jo agent call kar sakta hai (same concept jo humne Tool Calling notes me dekha)</td>
+</tr>
+<tr>
+<td><strong>Guardrails</strong></td>
+<td>Built-in input/output validation checks (jo humne Guardrails notes me dekha, yahan SDK-native support hai)</td>
+</tr>
+<tr>
+<td><strong>Sessions</strong></td>
+<td>Conversation memory/state automatically manage karne ka built-in mechanism</td>
+</tr>
+<tr>
+<td><strong>Runner</strong></td>
+<td>Woh component jo agent ko actually <strong>execute</strong> karta hai (agent loop chalata hai jab tak final answer na mile)</td>
+</tr>
+<tr>
+<td><strong>Tracing</strong></td>
+<td>Built-in observability — automatically traces generate hote hain (jaise humne LangSmith/Langfuse notes me dekha)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-how-openai-agents-sdk-works-example">3. How OpenAI Agents SDK Works (Example)</h2>
+<h3 id="basic-single-agent">Basic Single Agent</h3>
+<pre><code class="language-python">from agents import Agent, Runner
+
+agent = Agent(
+    name=&quot;Customer Support Agent&quot;,
+    instructions=&quot;You help customers with billing questions.&quot;,
+    tools=[check_billing_status]  # a Python function decorated as a tool
+)
+
+result = Runner.run_sync(agent, &quot;What's my current bill?&quot;)
+print(result.final_output)
+</code></pre>
+<h3 id="multi-agent-with-handoffs">Multi-Agent with Handoffs</h3>
+<pre><code class="language-python">billing_agent = Agent(
+    name=&quot;Billing Agent&quot;,
+    instructions=&quot;Handle billing-related questions.&quot;
+)
+
+technical_agent = Agent(
+    name=&quot;Technical Support Agent&quot;,
+    instructions=&quot;Handle technical issues.&quot;
+)
+
+triage_agent = Agent(
+    name=&quot;Triage Agent&quot;,
+    instructions=&quot;Determine if the query is about billing or technical issues, and hand off accordingly.&quot;,
+    handoffs=[billing_agent, technical_agent]   # &lt;-- this is the key concept
+)
+
+result = Runner.run_sync(triage_agent, &quot;My internet isn't working&quot;)
+# Triage agent automatically hands off to technical_agent
+</code></pre>
+<blockquote>
+<p>Notice: <strong>Handoffs</strong> yahan ek <strong>first-class, simple concept</strong> hai — bas ek list me doosre agents specify kar do, aur Runner khud manage karta hai ki control kab transfer hoga.</p>
+</blockquote>
+<hr />
+<h2 id="4-what-is-langgraph-quick-recap">4. What is LangGraph (Quick Recap)</h2>
+<blockquote>
+<p>(Humari pichli detailed notes me poora cover ho chuka hai — yahan sirf comparison ke liye recap)</p>
+</blockquote>
+<p>LangGraph ek <strong>graph-based framework</strong> hai jisme aap explicitly define karte ho:
+- <strong>State</strong> (shared data schema, with Reducers)
+- <strong>Nodes</strong> (individual steps/functions)
+- <strong>Edges</strong> (fixed ya conditional — routing logic)
+- Aap <strong>poora control flow khud design</strong> karte ho — loops, branches, parallel paths, sab kuch explicit hota hai.</p>
+<hr />
+<h2 id="5-side-by-side-comparison">5. Side-by-Side Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>OpenAI Agents SDK</th>
+<th>LangGraph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core Abstraction</strong></td>
+<td>Agent + Handoffs (simple, high-level)</td>
+<td>State + Nodes + Edges (graph, low-level control)</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>✅ Low — few concepts to learn</td>
+<td>❌ Steeper — need to understand graphs, state, reducers</td>
+</tr>
+<tr>
+<td><strong>Control Flow Flexibility</strong></td>
+<td>🟡 Moderate — handoffs cover common patterns, but less granular control</td>
+<td>✅ Very High — full custom loops, conditions, parallel branches possible</td>
+</tr>
+<tr>
+<td><strong>Multi-Agent Support</strong></td>
+<td>✅ Built-in via Handoffs (simple pattern)</td>
+<td>✅ Supported, but you build the routing/architecture yourself (Supervisor, Network, etc. — pichli notes)</td>
+</tr>
+<tr>
+<td><strong>Memory/Sessions</strong></td>
+<td>✅ Built-in Sessions feature</td>
+<td>🟡 Requires setting up Checkpointer explicitly</td>
+</tr>
+<tr>
+<td><strong>Tracing/Observability</strong></td>
+<td>✅ Built-in tracing out of the box</td>
+<td>🟡 Requires integrating LangSmith/Langfuse separately</td>
+</tr>
+<tr>
+<td><strong>Guardrails</strong></td>
+<td>✅ Native, built-in concept</td>
+<td>🟡 You implement guardrails yourself (as separate nodes/checks)</td>
+</tr>
+<tr>
+<td><strong>Provider Lock-in</strong></td>
+<td>Originally OpenAI-focused, but now supports other providers too</td>
+<td>Fully provider-agnostic — works with any LLM (Claude, OpenAI, open-source, etc.)</td>
+</tr>
+<tr>
+<td><strong>Ecosystem/Integrations</strong></td>
+<td>Smaller, newer, growing</td>
+<td>Very large — part of LangChain ecosystem, huge number of integrations</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Quick-to-build, straightforward multi-agent apps</td>
+<td>Complex, highly custom, production-grade workflows needing fine control</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-philosophy-difference-opinionated-simplicity-vs-flexible-control">6. Philosophy Difference — "Opinionated Simplicity" vs "Flexible Control"</h2>
+<blockquote>
+<p>Yeh sabse important conceptual difference hai:</p>
+</blockquote>
+<h3 id="openai-agents-sdk-opinionated-simplicity">OpenAI Agents SDK — "Opinionated Simplicity"</h3>
+<ul>
+<li>SDK khud decide karta hai ki agent loop kaise chalega, handoffs kaise kaam karenge.</li>
+<li>Aapko <strong>kam decisions lene padte hain</strong> — bas Agent define karo, tools do, handoffs specify karo — baaki SDK handle kar leta hai.</li>
+<li>Trade-off: Agar aapko kuch <strong>bahut custom/unusual control flow</strong> chahiye (jaise complex conditional loops, unusual state merging), SDK utna flexible nahi hai.</li>
+</ul>
+<h3 id="langgraph-flexible-explicit-control">LangGraph — "Flexible, Explicit Control"</h3>
+<ul>
+<li>Aap <strong>har cheez explicitly define</strong> karte ho — state schema, har node, har edge (including conditions).</li>
+<li>Zyada <strong>verbose/complex</strong> to set up, lekin <strong>kisi bhi tarah ka control flow</strong> design kar sakte ho — koi limitation nahi.</li>
+<li>Trade-off: Zyada code likhna padta hai, zyada seekhna padta hai, lekin unlimited flexibility milti hai.</li>
+</ul>
+<blockquote>
+<p>Analogy: OpenAI Agents SDK ek <strong>automatic transmission car</strong> jaisa hai — drive karna aasan hai, most situations handle ho jati hain, lekin bahut specific/unusual driving styles ke liye utna control nahi milta. LangGraph ek <strong>manual transmission car</strong> jaisa hai — seekhna thoda mushkil hai, lekin aap <strong>exactly</strong> control kar sakte ho ki gear kab badalna hai, kaise drive karna hai — full control.</p>
+</blockquote>
+<hr />
+<h2 id="7-when-to-use-openai-agents-sdk">7. When to Use OpenAI Agents SDK</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quick prototyping of a multi-agent app</td>
+<td>Minimal setup, fast to get running</td>
+</tr>
+<tr>
+<td>Simple triage/handoff patterns (e.g., support bot routing to specialists)</td>
+<td>Handoffs are a natural fit, no extra engineering needed</td>
+</tr>
+<tr>
+<td>Want built-in tracing/guardrails without extra integration</td>
+<td>These come out-of-the-box</td>
+</tr>
+<tr>
+<td>Team prefers simplicity over granular control</td>
+<td>Less to learn, less boilerplate code</td>
+</tr>
+<tr>
+<td>Primarily using OpenAI models</td>
+<td>Native, first-party support</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-when-to-use-langgraph">8. When to Use LangGraph</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Need complex, custom control flow (unusual loops, conditions, parallel branches)</td>
+<td>Full graph-level control available</td>
+</tr>
+<tr>
+<td>Building with non-OpenAI models (Claude, open-source, etc.) as primary need</td>
+<td>Fully provider-agnostic by design</td>
+</tr>
+<tr>
+<td>Need deep integration with the broader LangChain ecosystem (tons of pre-built integrations)</td>
+<td>LangGraph is part of that ecosystem</td>
+</tr>
+<tr>
+<td>Production system requiring fine-grained state management (custom reducers, complex merging logic)</td>
+<td>LangGraph's explicit State/Reducer system handles this well</td>
+</tr>
+<tr>
+<td>Building genuinely novel/complex multi-agent architectures (hierarchical, network patterns)</td>
+<td>More primitives available to construct these from scratch</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-can-they-be-used-togetherinterchanged">9. Can They Be Used Together/Interchanged?</h2>
+<ul>
+<li><strong>Not typically "together" in the same pipeline</strong> — they're <strong>alternative choices</strong> for building the same kind of thing (agent orchestration).</li>
+<li>However, you <strong>can</strong> use OpenAI's models <em>inside</em> a LangGraph application (LangGraph doesn't care which LLM provider you use), and conceptually you could even use LangChain's tools within an OpenAI Agents SDK setup with some glue code — but this isn't the common/intended pattern.</li>
+<li><strong>Practical reality:</strong> Teams usually pick <strong>one framework</strong> for their agent orchestration layer, based on the tradeoffs above, rather than mixing both in one project.</li>
+</ul>
+<hr />
+<h2 id="10-common-mistakes">10. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Choosing LangGraph for a simple triage-style bot</td>
+<td>Unnecessary complexity for a simple use case</td>
+<td>Consider OpenAI Agents SDK's Handoffs pattern for simpler needs</td>
+</tr>
+<tr>
+<td>Choosing OpenAI Agents SDK for a highly custom, complex workflow</td>
+<td>You may hit its flexibility limits and need to "fight" the framework</td>
+<td>Use LangGraph when you know you need fine-grained custom control</td>
+</tr>
+<tr>
+<td>Assuming OpenAI Agents SDK only works with OpenAI models</td>
+<td>Limits your provider options unnecessarily</td>
+<td>Check current SDK docs — provider support has been expanding</td>
+</tr>
+<tr>
+<td>Not evaluating built-in features (tracing, guardrails) before adding third-party tools</td>
+<td>Redundant tooling, wasted integration effort</td>
+<td>Check what's already built into your chosen framework first</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-cheat-sheet">11. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>OpenAI Agents SDK</strong> → "Simple, opinionated, batteries-included — Agent + Handoffs"</li>
+<li><strong>LangGraph</strong> → "Flexible, explicit, graph-based — State + Nodes + Edges, full control"</li>
+</ul>
+<h3 id="quick-decision-guide">Quick Decision Guide</h3>
+<pre><code>Want simplicity, fast setup, built-in tracing/guardrails → OpenAI Agents SDK
+Want maximum flexibility, custom control flow, provider-agnostic → LangGraph
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"OpenAI Agents SDK trades some flexibility for simplicity and built-in production features. LangGraph trades some simplicity for complete, granular control over your agent's flow. Choose based on how custom your workflow truly needs to be."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2656 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/AI_Agents_Fundamentals_Notes/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../API_Design_Cost_Optimixation_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>AI Agents Fundamentals — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai-agents-fundamentals-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AI Agents Fundamentals — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-an-ai-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is an AI Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agent-vs-chain-the-core-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Agent vs Chain — The Core Difference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Agent vs Chain — The Core Difference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-key-components-of-an-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key Components of an Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-react-pattern-reasoning-acting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The ReAct Pattern (Reasoning + Acting)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. The ReAct Pattern (Reasoning + Acting)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-react-works-well" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why ReAct Works Well
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agent-loop-step-by-step-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Agent Loop — Step-by-Step Execution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Agent Loop — Step-by-Step Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stopping-conditions-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stopping Conditions (Important!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-planning-in-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Planning in Agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Planning in Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planning-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning Approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-planning-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Planning Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-types-of-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Types of Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-agent-architectures-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Agent Architectures Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-challenges-with-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Challenges with Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Real-World Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-an-ai-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is an AI Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-agent-vs-chain-the-core-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Agent vs Chain — The Core Difference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Agent vs Chain — The Core Difference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-key-components-of-an-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key Components of an Agent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-react-pattern-reasoning-acting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. The ReAct Pattern (Reasoning + Acting)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. The ReAct Pattern (Reasoning + Acting)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-react-works-well" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why ReAct Works Well
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-agent-loop-step-by-step-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Agent Loop — Step-by-Step Execution
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Agent Loop — Step-by-Step Execution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stopping-conditions-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stopping Conditions (Important!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-planning-in-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Planning in Agents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Planning in Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planning-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning Approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-planning-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Planning Breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-types-of-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Types of Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-agent-architectures-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Agent Architectures Comparison
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-challenges-with-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Challenges with Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Real-World Examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ai-agents-fundamentals-complete-notes">AI Agents Fundamentals — Complete Notes</h1>
+<blockquote>
+<p><strong>AI Agent</strong> = Ek LLM-powered system jo khud <strong>decide</strong> kar sakta hai ki kya karna hai, kaunsa tool use karna hai, aur kab tak kaam karte rehna hai — bina har step pe human ke bataye.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>What is an AI Agent</li>
+<li>Agent vs Chain — The Core Difference</li>
+<li>Key Components of an Agent</li>
+<li>The ReAct Pattern (Reasoning + Acting)</li>
+<li>Agent Loop — Step-by-Step Execution</li>
+<li>Planning in Agents</li>
+<li>Types of Agents</li>
+<li>Agent Architectures Comparison</li>
+<li>Challenges with Agents</li>
+<li>Real-World Examples</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-what-is-an-ai-agent">1. What is an AI Agent</h2>
+<p><strong>Simple Meaning:</strong> Agent ek aisa system hai jisme LLM sirf ek <strong>static response generate nahi karta</strong>, balki:
+- Situation ko <strong>assess</strong> karta hai
+- Decide karta hai <strong>kya action lena hai</strong> (tool call, search, calculation, etc.)
+- Action ka <strong>result dekhta hai</strong>
+- Result ke hisaab se <strong>agla decision</strong> leta hai
+- Yeh loop tab tak chalta hai jab tak task <strong>complete</strong> na ho jaye</p>
+<blockquote>
+<p>Analogy: Socho ek normal LLM response ek <strong>calculator</strong> jaisa hai — ek input do, ek output milta hai, bas. Agent ek <strong>assistant/employee</strong> jaisa hai — usse ek goal do ("yeh report complete karo"), aur wo khud decide karta hai ki kya research karni hai, kaunsa tool use karna hai, kab dobara try karna hai, aur kab kaam "done" maan lena hai.</p>
+</blockquote>
+<hr />
+<h2 id="2-agent-vs-chain-the-core-difference">2. Agent vs Chain — The Core Difference</h2>
+<p>Yeh sabse important concept hai jo clearly samajhna chahiye:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Chain</th>
+<th>Agent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flow</strong></td>
+<td><strong>Fixed, predetermined</strong> sequence of steps</td>
+<td><strong>Dynamic</strong> — LLM khud decide karta hai next step kya hoga</td>
+</tr>
+<tr>
+<td><strong>Decision-Making</strong></td>
+<td>Developer ne pehle hi decide kar diya hai flow</td>
+<td>LLM real-time me decide karta hai</td>
+</tr>
+<tr>
+<td><strong>Predictability</strong></td>
+<td>✅ Highly predictable</td>
+<td>❌ Less predictable (but more flexible)</td>
+</tr>
+<tr>
+<td><strong>Example</strong></td>
+<td>"Retrieve documents → Summarize → Translate" (fixed order, hamesha yehi hoga)</td>
+<td>"User ka goal poora karo" — LLM khud decide karega ki search karna hai, calculator use karna hai, ya directly answer dena hai</td>
+</tr>
+<tr>
+<td><strong>Complexity Handling</strong></td>
+<td>Simple, well-defined tasks ke liye best</td>
+<td>Complex, open-ended, multi-step tasks ke liye best</td>
+</tr>
+</tbody>
+</table>
+<h3 id="simple-example">Simple Example</h3>
+<p><strong>Chain (Fixed Flow):</strong></p>
+<pre><code>Input → Retrieve Documents → Summarize → Output
+</code></pre>
+<p>(Hamesha yehi 3 steps honge, chahe query kuch bhi ho)</p>
+<p><strong>Agent (Dynamic Flow):</strong></p>
+<pre><code>Input: &quot;What's the weather in Tokyo and should I bring an umbrella?&quot;
+
+Agent's Internal Decision Process:
+Step 1: &quot;I need current weather data&quot; → decides to call weather_tool
+Step 2: Gets weather result → &quot;It's raining&quot;
+Step 3: &quot;I now have enough info to answer&quot; → generates final answer
+</code></pre>
+<p>(Agar query different hoti, agent <strong>alag tools/steps</strong> choose karta — yehi flexibility hai)</p>
+<blockquote>
+<p><strong>One-line distinction:</strong> Chain me <strong>developer</strong> decide karta hai flow kya hoga. Agent me <strong>LLM khud</strong> decide karta hai flow kya hoga, real-time me.</p>
+</blockquote>
+<hr />
+<h2 id="3-key-components-of-an-agent">3. Key Components of an Agent</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM (Brain)</strong></td>
+<td>Reasoning aur decision-making karta hai</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>External functions jo agent call kar sakta hai (search, calculator, database, API)</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>Conversation history/context yaad rakhna (agle topic me detail se)</td>
+</tr>
+<tr>
+<td><strong>Planning Module</strong></td>
+<td>Complex task ko chhote steps me todna</td>
+</tr>
+<tr>
+<td><strong>Instructions/System Prompt</strong></td>
+<td>Agent ka goal, constraints, aur behavior define karta hai</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-the-react-pattern-reasoning-acting">4. The ReAct Pattern (Reasoning + Acting)</h2>
+<p><strong>Simple Meaning:</strong> ReAct ek <strong>prompting pattern</strong> hai jisme model <strong>"Thought → Action → Observation"</strong> cycle follow karta hai — pehle sochta hai, phir action leta hai, phir result dekhta hai, phir wapas sochta hai.</p>
+<h3 id="the-cycle">The Cycle</h3>
+<pre><code>Thought: Mujhe kya karna chahiye is problem ko solve karne ke liye?
+Action: [Tool ko call karo]
+Observation: [Tool ka result dekho]
+Thought: Ab mujhe kya pata chala? Kya aur info chahiye?
+Action: [Agar zaroorat ho toh doosra tool call karo]
+Observation: [Naya result]
+...
+Thought: Ab mere paas final answer dene layak info hai.
+Final Answer: [Answer do]
+</code></pre>
+<h3 id="example">Example</h3>
+<p><strong>Query:</strong> "What is the population of the capital of France, divided by 2?"</p>
+<pre><code>Thought: I need to find the capital of France first.
+Action: search(&quot;capital of France&quot;)
+Observation: &quot;Paris is the capital of France.&quot;
+
+Thought: Now I need the population of Paris.
+Action: search(&quot;population of Paris&quot;)
+Observation: &quot;Paris has a population of about 2.1 million.&quot;
+
+Thought: I now need to divide this by 2.
+Action: calculator(2100000 / 2)
+Observation: &quot;1,050,000&quot;
+
+Thought: I now have all the information needed.
+Final Answer: The population of Paris divided by 2 is approximately 1,050,000.
+</code></pre>
+<h3 id="why-react-works-well">Why ReAct Works Well</h3>
+<ul>
+<li>✅ Model ka reasoning <strong>transparent/traceable</strong> hota hai — aap dekh sakte ho model kya soch raha hai (debugging aasan).</li>
+<li>✅ Complex, multi-step problems ko naturally break karta hai.</li>
+<li>✅ Tool use ke saath seamlessly integrate hota hai.</li>
+</ul>
+<hr />
+<h2 id="5-agent-loop-step-by-step-execution">5. Agent Loop — Step-by-Step Execution</h2>
+<p>Har agent internally ek <strong>loop</strong> follow karta hai jab tak task complete na ho:</p>
+<pre><code>1. Receive Goal/Task
+2. Observe current state (context, previous results)
+3. Reason/Think — &quot;What should I do next?&quot;
+4. Decide — Take an action (call a tool) OR finish with final answer
+5. Execute action (if any)
+6. Observe result of action
+7. Go back to Step 3 (repeat until done)
+8. Return final answer
+</code></pre>
+<h3 id="stopping-conditions-important">Stopping Conditions (Important!)</h3>
+<p>Agent ka loop <strong>kab rukega</strong>, yeh decide karna zaroori hai:
+- LLM khud decide kare ki "task complete hai" (natural stopping)
+- <strong>Maximum iteration limit</strong> (e.g., "max 10 steps", taaki infinite loop na ho)
+- <strong>Timeout</strong> (e.g., "30 seconds se zyada mat lena")
+- Human intervention/approval milne tak rukna</p>
+<hr />
+<h2 id="6-planning-in-agents">6. Planning in Agents</h2>
+<p><strong>Simple Meaning:</strong> Complex task ko agent <strong>chhote, manageable sub-tasks</strong> me todta hai, phir unhe ek-ek karke solve karta hai.</p>
+<h3 id="planning-approaches">Planning Approaches</h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Kya Hota Hai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Single-Path Planning</strong></td>
+<td>Agent ek hi plan banata hai aur usko step-by-step execute karta hai</td>
+</tr>
+<tr>
+<td><strong>Tree-of-Thought Planning</strong></td>
+<td>Agent multiple possible plans/paths explore karta hai, phir best choose karta hai</td>
+</tr>
+<tr>
+<td><strong>Re-planning</strong></td>
+<td>Agar beech me kuch galat ho jaye ya naya info mile, agent apna plan <strong>update/revise</strong> karta hai</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-planning-breakdown">Example — Planning Breakdown</h3>
+<pre><code>Goal: &quot;Write a research report on renewable energy trends in 2026&quot;
+
+Agent's Plan:
+1. Search for latest renewable energy statistics
+2. Search for major policy changes in 2026
+3. Search for key companies/innovations
+4. Synthesize findings into structured sections
+5. Write introduction and conclusion
+6. Compile final report
+</code></pre>
+<hr />
+<h2 id="7-types-of-agents">7. Types of Agents</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Simple Reflex Agent</strong></td>
+<td>Sirf current input ke basis pe react karta hai, koi memory/planning nahi</td>
+</tr>
+<tr>
+<td><strong>Tool-Using Agent</strong></td>
+<td>External tools (search, calculator, APIs) call kar sakta hai</td>
+</tr>
+<tr>
+<td><strong>Planning Agent</strong></td>
+<td>Complex tasks ko sub-tasks me todkar sequentially solve karta hai</td>
+</tr>
+<tr>
+<td><strong>Multi-Agent System</strong></td>
+<td>Multiple specialized agents mil ke ek complex task solve karte hain (agle topics me detail)</td>
+</tr>
+<tr>
+<td><strong>Autonomous Agent</strong></td>
+<td>Minimal human supervision ke saath, long-running tasks continuously perform karta hai</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-agent-architectures-comparison">8. Agent Architectures Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Architecture</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ReAct</strong></td>
+<td>General-purpose reasoning + tool use, most common starting point</td>
+</tr>
+<tr>
+<td><strong>Plan-and-Execute</strong></td>
+<td>Jab pehle se clear plan banana zaroori ho complex tasks ke liye (plan pehle banate hain, phir execute karte hain, without re-thinking at every single step)</td>
+</tr>
+<tr>
+<td><strong>Reflexion/Self-Refine</strong></td>
+<td>Jab agent ko apna output khud review/improve karna ho</td>
+</tr>
+<tr>
+<td><strong>Multi-Agent (Supervisor)</strong></td>
+<td>Jab task itna complex ho ki specialized roles (researcher, coder, reviewer) chahiye</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-challenges-with-agents">9. Challenges with Agents</h2>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unpredictability</strong></td>
+<td>Agent kabhi-kabhi unexpected/wrong path le sakta hai</td>
+</tr>
+<tr>
+<td><strong>Infinite Loops</strong></td>
+<td>Agar stopping condition sahi na ho, agent baar-baar same action repeat kar sakta hai</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>Har reasoning step ek LLM call hai — complex tasks me bahut saare calls ho sakte hain (expensive)</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>Multiple steps/tool calls ki wajah se response slow ho sakta hai</td>
+</tr>
+<tr>
+<td><strong>Error Propagation</strong></td>
+<td>Agar ek step me galti hui, aage ke saare steps bhi galat ho sakte hain</td>
+</tr>
+<tr>
+<td><strong>Debugging Difficulty</strong></td>
+<td>Multi-step dynamic flow ko debug karna chain ke comparison me mushkil hai</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-real-world-examples">10. Real-World Examples</h2>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>What the Agent Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Coding Agent (e.g., Claude Code)</strong></td>
+<td>Code likhta hai, run karta hai, errors dekh ke fix karta hai, dobara test karta hai</td>
+</tr>
+<tr>
+<td><strong>Research Agent</strong></td>
+<td>Multiple sources search karta hai, information synthesize karta hai, report banata hai</td>
+</tr>
+<tr>
+<td><strong>Customer Support Agent</strong></td>
+<td>User ka issue samajhta hai, relevant knowledge base search karta hai, ticket create karta hai agar zaroorat ho</td>
+</tr>
+<tr>
+<td><strong>Travel Planning Agent</strong></td>
+<td>Flights search karta hai, hotels compare karta hai, budget ke hisaab se recommend karta hai</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-common-mistakes">11. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No stopping condition/max iterations</td>
+<td>Agent infinite loop me phas sakta hai</td>
+<td>Always set max steps/timeout</td>
+</tr>
+<tr>
+<td>Giving agent too many tools without clear descriptions</td>
+<td>Agent confuse ho jata hai kaunsa tool kab use karna hai</td>
+<td>Clear, distinct tool descriptions do</td>
+</tr>
+<tr>
+<td>Not logging/tracing agent steps</td>
+<td>Debugging impossible ho jati hai jab kuch galat ho</td>
+<td>Use observability tools (LangSmith, etc.) to trace every step</td>
+</tr>
+<tr>
+<td>Using an agent when a simple chain would do</td>
+<td>Unnecessary complexity, cost, and unpredictability</td>
+<td>Use agents only when dynamic decision-making is truly needed</td>
+</tr>
+<tr>
+<td>No error handling for failed tool calls</td>
+<td>Agent crashes or gives bad output</td>
+<td>Build retry logic and graceful fallback responses</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-cheat-sheet">12. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Chain</strong> → "Fixed route, developer ne decide kiya"</li>
+<li><strong>Agent</strong> → "Dynamic route, LLM khud decide karta hai"</li>
+<li><strong>ReAct</strong> → "Socho → Action lo → Dekho → Phir socho"</li>
+<li><strong>Planning</strong> → "Bade kaam ko chhote steps me todo"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>Goal Given → Agent Reasons (Thought) → Takes Action (Tool Call) 
+→ Observes Result → Reasons Again → ... → Final Answer
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"Use a Chain when the path is known. Use an Agent when the LLM needs to figure out the path itself."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

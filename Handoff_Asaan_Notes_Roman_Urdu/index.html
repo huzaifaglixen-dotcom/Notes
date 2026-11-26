@@ -1,0 +1,2483 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Handoff_Asaan_Notes_Roman_Urdu/">
+      
+      
+        <link rel="prev" href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/">
+      
+      
+        <link rel="next" href="../Handoff_in_OpenAI_API_Study_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#handoff-in-openai-api-asaan-alfaz-mein-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sabse-pehle-handoff-hai-kya-cheez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 🧭 Sabse Pehle - Handoff Hai Kya Cheez?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 🧭 Sabse Pehle - Handoff Hai Kya Cheez?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example-bank-wala-scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏦 Real-World Example: Bank Wala Scene
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ye-kaam-kaise-karta-hai-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⚙️ Ye Kaam Kaise Karta Hai - Step by Step
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ⚙️ Ye Kaam Kaise Karta Hai - Step by Step">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-har-agent-ke-pass-ek-list-hoti-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Har agent ke pass ek list hoti hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-system-khud-b-khud-in-agents-ko-function-bana-deta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: System khud-b-khud in agents ko "function" bana deta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-model-faisla-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Model faisla karta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-yahan-asli-jadu-hota-hai-ek-agent-object-return-hota-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Yahan asli jadu hota hai - ek Agent object return hota hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-runner-agent-switch-kar-deta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Runner agent switch kar deta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-poori-chat-history-saath-jati-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Poori chat history saath jati hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-naya-agent-ab-seedha-user-se-baat-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Naya agent ab seedha user se baat karta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poora-flow-ek-nazar-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Poora Flow Ek Nazar Mein:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-do-concepts-ka-farak-handoff-vs-agent-as-a-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🔍 Do Concepts Ka Farak - Handoff vs Agent-as-a-Tool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 🔍 Do Concepts Ka Farak - Handoff vs Agent-as-a-Tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pehle-dono-ki-definition-samjho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Pehle Dono Ki Definition Samjho
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ek-aur-example-samajhne-ke-liye" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏢 Ek Aur Example Samajhne Ke Liye
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#farak-ek-table-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Farak Ek Table Mein
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chota-sa-example-dono-ka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Chota Sa Example Dono Ka
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-purane-agent-ka-kya-hota-hai-back-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 🧠 Purane Agent Ka Kya Hota Hai + Back Handoff
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 🧠 Purane Agent Ka Kya Hota Hai + Back Handoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handoff-ke-baad-purane-agent-ka-kya-hota-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff ke baad purane agent ka kya hota hai?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-handoff-kya-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 Back Handoff Kya Hai?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-code-ka-blueprint-bilkul-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 💻 Code Ka Blueprint - Bilkul Simple
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 💻 Code Ka Blueprint - Bilkul Simple">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yahan-ho-kya-raha-hai-line-by-line-samjho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 Yahan Ho Kya Raha Hai - Line by Line Samjho
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-handoff-add-karna-ho-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 Back Handoff Add Karna Ho To:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap-sab-ek-nazar-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Recap - Sab Ek Nazar Mein
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sabse-pehle-handoff-hai-kya-cheez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 🧭 Sabse Pehle - Handoff Hai Kya Cheez?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 🧭 Sabse Pehle - Handoff Hai Kya Cheez?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#real-world-example-bank-wala-scene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏦 Real-World Example: Bank Wala Scene
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ye-kaam-kaise-karta-hai-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⚙️ Ye Kaam Kaise Karta Hai - Step by Step
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ⚙️ Ye Kaam Kaise Karta Hai - Step by Step">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-har-agent-ke-pass-ek-list-hoti-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Har agent ke pass ek list hoti hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-system-khud-b-khud-in-agents-ko-function-bana-deta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: System khud-b-khud in agents ko "function" bana deta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-model-faisla-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Model faisla karta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-yahan-asli-jadu-hota-hai-ek-agent-object-return-hota-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Yahan asli jadu hota hai - ek Agent object return hota hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-runner-agent-switch-kar-deta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Runner agent switch kar deta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-poori-chat-history-saath-jati-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Poori chat history saath jati hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-naya-agent-ab-seedha-user-se-baat-karta-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Naya agent ab seedha user se baat karta hai
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poora-flow-ek-nazar-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Poora Flow Ek Nazar Mein:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-do-concepts-ka-farak-handoff-vs-agent-as-a-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 🔍 Do Concepts Ka Farak - Handoff vs Agent-as-a-Tool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 🔍 Do Concepts Ka Farak - Handoff vs Agent-as-a-Tool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pehle-dono-ki-definition-samjho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📖 Pehle Dono Ki Definition Samjho
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ek-aur-example-samajhne-ke-liye" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏢 Ek Aur Example Samajhne Ke Liye
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#farak-ek-table-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 Farak Ek Table Mein
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chota-sa-example-dono-ka" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💬 Chota Sa Example Dono Ka
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-purane-agent-ka-kya-hota-hai-back-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 🧠 Purane Agent Ka Kya Hota Hai + Back Handoff
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 🧠 Purane Agent Ka Kya Hota Hai + Back Handoff">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#handoff-ke-baad-purane-agent-ka-kya-hota-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handoff ke baad purane agent ka kya hota hai?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-handoff-kya-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 Back Handoff Kya Hai?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-code-ka-blueprint-bilkul-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 💻 Code Ka Blueprint - Bilkul Simple
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 💻 Code Ka Blueprint - Bilkul Simple">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yahan-ho-kya-raha-hai-line-by-line-samjho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔑 Yahan Ho Kya Raha Hai - Line by Line Samjho
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-handoff-add-karna-ho-to" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔙 Back Handoff Add Karna Ho To:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-recap-sab-ek-nazar-mein" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📌 Quick Recap - Sab Ek Nazar Mein
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="handoff-in-openai-api-asaan-alfaz-mein-notes">🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes</h1>
+<p><em>(Jaise koi dost tumhe samjha raha ho)</em></p>
+<hr />
+<h2 id="1-sabse-pehle-handoff-hai-kya-cheez">1. 🧭 Sabse Pehle - Handoff Hai Kya Cheez?</h2>
+<p>Dekho, jab tum AI Agents banate ho OpenAI ke sath, to kabhi kabhi ek agent akela sab kaam nahi kar sakta. Jaise agar tum ek customer support bot bana rahe ho, to wo bot refund bhi handle kare, billing bhi, technical issues bhi - ye sab ek hi agent se karwana mushkil ho jata hai kyunki har kaam ke liye alag knowledge aur instructions chahiye hoti hain.</p>
+<p>To iska solution kya hai? Tum multiple agents banate ho - har agent ka apna specific kaam. Aur <strong>Handoff</strong> wo mechanism hai jisse ek agent doosre agent ko conversation "sonp" deta hai, poori tarah se.</p>
+<blockquote>
+<p><strong>Simple definition:</strong> Handoff = ek AI agent ka poori tarah se conversation ka control doosre (zyada specialist) agent ko de dena.</p>
+</blockquote>
+<h3 id="real-world-example-bank-wala-scene">🏦 Real-World Example: Bank Wala Scene</h3>
+<p>Socho tum bank gaye ho. Reception par jo banda baitha hai (ye hua <strong>Agent 1 — Triage Agent</strong>), wo tumhari baat sunta hai:</p>
+<ul>
+<li>Tum bolte ho: <em>"Mere account mein kuch galat transaction hai, dispute karna hai"</em></li>
+<li>Reception wala samajhta hai: <em>"Arre ye to fraud department ka case hai, mera kaam nahi"</em></li>
+<li>Wo tumhe seedha <strong>Fraud Department (Agent 2 — Specialist Agent)</strong> bhej deta hai</li>
+<li>Aur sirf bhejta nahi - <strong>saath mein tumhari file bhi de deta hai</strong> taake tumhe dobara apni problem explain na karni pare</li>
+</ul>
+<p>Ab us waqt ke baad tum seedha fraud department wale se baat karoge. <strong>Reception wala beech mein nahi aayega, poori tarah se side ho jayega.</strong></p>
+<p>✅ Yehi Handoff hai - bas AI ki duniya mein. Full transfer, sirf refer nahi kiya.</p>
+<hr />
+<h2 id="2-ye-kaam-kaise-karta-hai-step-by-step">2. ⚙️ Ye Kaam Kaise Karta Hai - Step by Step</h2>
+<p>Chalo dheere dheere samajhte hain, koi mushkil lafz nahi:</p>
+<h3 id="step-1-har-agent-ke-pass-ek-list-hoti-hai">Step 1: Har agent ke pass ek list hoti hai</h3>
+<p>Jab tum ek agent banate ho, tum usko batate ho ke "agar zarurat pare to tum inn agents ko handoff kar sakte ho". Ye list <code>handoffs</code> parameter mein di jati hai.</p>
+<p>Jaise Triage Agent (jo sabse pehle user se baat karta hai) ke pass list hogi: Refund Agent, Billing Agent, waghera.</p>
+<h3 id="step-2-system-khud-b-khud-in-agents-ko-function-bana-deta-hai">Step 2: System khud-b-khud in agents ko "function" bana deta hai</h3>
+<p>Ye sabse interesting part hai. OpenAI ka model sirf <strong>functions/tools call karna</strong> janta hai - usko "agent" ka concept directly nahi pata. To SDK (jo framework hai) chupke se har agent ko ek function ki tarah present kar deta hai LLM ke saamne.</p>
+<p>Jaise Refund Agent ban jata hai <code>transfer_to_refund_agent</code> naam ka ek function.</p>
+<h3 id="step-3-model-faisla-karta-hai">Step 3: Model faisla karta hai</h3>
+<p>Jab user kuch bolta hai jaise "mujhe refund chahiye", to Triage Agent ka andar wala model (jo dimaag hai) sochta hai:</p>
+<p><em>"Ye to Refund Agent ka kaam hai"</em></p>
+<p>Aur wo bilkul aise hi decide karta hai jaise wo koi normal function call kar raha ho, jaise weather check karne wala function.</p>
+<h3 id="step-4-yahan-asli-jadu-hota-hai-ek-agent-object-return-hota-hai">Step 4: Yahan asli jadu hota hai - ek Agent object return hota hai</h3>
+<p>Normal function call mein tumhe data milta hai - jaise number, text, waghera. Lekin handoff mein jo cheez return hoti hai wo hai <strong>poora ka poora doosra Agent</strong> (uska code wala object).</p>
+<p>System ye dekh leta hai ke <em>"arre ye to normal result nahi, ye to ek naya agent hai"</em> aur samajh jata hai ke ab control switch karna hai.</p>
+<h3 id="step-5-runner-agent-switch-kar-deta-hai">Step 5: Runner agent switch kar deta hai</h3>
+<p>"Runner" wo cheez hai jo pura system chalata hai - poora orchestration. Jaise hi wo dekhta hai ke agent return hua hai, wo turant purane agent ko rok deta hai aur naye agent ko active kar deta hai. <strong>Purana agent ab kuch nahi bolega.</strong></p>
+<h3 id="step-6-poori-chat-history-saath-jati-hai">Step 6: Poori chat history saath jati hai</h3>
+<p>Ye bohot important point hai - jo bhi baat cheet ab tak hui thi user aur pehle agent ke beech, wo saari <strong>by default naye agent ko de di jati hai</strong>. Isliye naya agent ko dobara se sawal nahi puchna parta "aap kya keh rahe the pehle". Bilkul waise jaise bank mein file saath chali gayi thi.</p>
+<p>Agar developer chahe to isko customize bhi kar sakta hai - matlab pura history na de kar sirf zaroori hissa de, isko <code>input_filter</code> kehte hain.</p>
+<h3 id="step-7-naya-agent-ab-seedha-user-se-baat-karta-hai">Step 7: Naya agent ab seedha user se baat karta hai</h3>
+<p>Ab Refund Agent hi user se baat karega, jaise wo hamesha se hi is conversation mein tha.</p>
+<h3 id="poora-flow-ek-nazar-mein">📋 Poora Flow Ek Nazar Mein:</h3>
+<pre><code>User bolta hai kuch → Triage Agent sunta hai → LLM sochta hai &quot;specialist chahiye&quot;
+→ transfer_to_refund_agent() call hota hai → Refund Agent object return hota hai
+→ Runner dekhta hai &quot;arre agent hai&quot; → Control switch → Refund Agent ko poori history milti hai
+→ Refund Agent ab seedha user se baat karta hai
+</code></pre>
+<hr />
+<h2 id="3-do-concepts-ka-farak-handoff-vs-agent-as-a-tool">3. 🔍 Do Concepts Ka Farak - Handoff vs Agent-as-a-Tool</h2>
+<p>Ye wala part thora zyada dhyan se samjho kyunki log yahan ghalti karte hain, bohot confuse hote hain.</p>
+<h3 id="pehle-dono-ki-definition-samjho">📖 Pehle Dono Ki Definition Samjho</h3>
+<p><strong>🤝 Handoff:</strong>
+Control <strong>poori tarah</strong> doosre agent ko chala jata hai. Jaise reception wale ka example - wo poori tarah se side ho jata hai, ab tum seedha specialist se baat karte ho.</p>
+<p><strong>🛠️ Agent-as-a-Tool:</strong>
+Ek manager agent hai jo control apne pass hi rakhta hai, bas doosre agent ko istemal karta hai jaise <strong>ek tool/function ki tarah</strong> - kaam karwata hai, jawab leta hai, aur khud hi final answer deta hai user ko.</p>
+<h3 id="ek-aur-example-samajhne-ke-liye">🏢 Ek Aur Example Samajhne Ke Liye</h3>
+<p>Socho tumne kisi company ke manager se baat ki. Tumne pucha <em>"mera contract check karo ke usme koi masla to nahi"</em>.</p>
+<ul>
+<li>Manager khud contract nahi parhta - wo apne <strong>legal expert</strong> ko bolta hai "zara ye dekho"</li>
+<li>Legal expert check kar ke manager ko jawab batata hai</li>
+<li>Lekin <strong>tumhari manager se hi baat hoti rehti hai</strong>, legal expert tumse seedha kabhi baat nahi karta</li>
+<li>Manager hi tumhe wapis aake batata hai <em>"haan sab theek hai"</em> ya <em>"ye masla hai"</em></li>
+</ul>
+<p>Yahan control <strong>kabhi transfer nahi hota</strong> - manager hamesha in-charge rehta hai. Ye hai Agent-as-a-Tool.</p>
+<h3 id="farak-ek-table-mein">📊 Farak Ek Table Mein</h3>
+<table>
+<thead>
+<tr>
+<th>Cheez</th>
+<th>🤝 Handoff</th>
+<th>🛠️ Agent-as-a-Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Control kiske pass</strong></td>
+<td>Naye agent ke pass poori tarah chala jata hai</td>
+<td>Manager agent hamesha apne pass rakhta hai</td>
+</tr>
+<tr>
+<td><strong>Memory / Context Load</strong></td>
+<td>Poori chat history naye agent ko milti hai - thora zyada load</td>
+<td>Sub-agent ko sirf wohi specific info milti hai jo zaroori hai - halka load</td>
+</tr>
+<tr>
+<td><strong>User se baat kon karta hai</strong></td>
+<td>User seedha naye agent se baat karta hai (Direct)</td>
+<td>User hamesha manager se hi baat karta hai (Indirect), sub-agent nazar hi nahi aata</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>Har agent ka kaam simple hota hai, lekin track karna mushkil hota hai ke "abhi control kiske pass hai"</td>
+<td>Manager ka logic thora complex hota hai, lekin sab kuch ek hi jagah se control hota hai - samajhna aasan</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chota-sa-example-dono-ka">💬 Chota Sa Example Dono Ka</h3>
+<p><strong>Handoff wala example:</strong></p>
+<pre><code>User: &quot;Mera $49 ka charge galat lag raha hai, refund chahiye&quot;
+Triage Agent: [andar hi andar Refund Agent ko call karta hai]
+Refund Agent: &quot;Ji bataiye, kaunsa transaction hai jo aap dispute karna chahte hain?&quot;
+</code></pre>
+<p>👉 Dekho - ab Refund Agent seedha baat kar raha hai, Triage Agent gayab ho gaya poori tarah.</p>
+<p><strong>Agent-as-a-Tool wala example:</strong></p>
+<pre><code>User: &quot;Ye contract check karo, koi masla to nahi&quot;
+Manager Agent: [andar hi andar Compliance checker ko bolta hai check karne]
+   → Compliance checker jawab deta hai: &quot;3 clauses mein masla hai&quot;
+Manager Agent: &quot;Maine check kiya, overall theek hai lekin 3 clauses mein 
+                thora masla ho sakta hai, batao kya karna hai&quot;
+</code></pre>
+<p>👉 Dekho - user ko pata bhi nahi chala ke koi Compliance Agent bhi tha beech mein. Sirf Manager se baat hui.</p>
+<hr />
+<h2 id="4-purane-agent-ka-kya-hota-hai-back-handoff">4. 🧠 Purane Agent Ka Kya Hota Hai + Back Handoff</h2>
+<h3 id="handoff-ke-baad-purane-agent-ka-kya-hota-hai">Handoff ke baad purane agent ka kya hota hai?</h3>
+<p>Bohot logon ka sawal hota hai - "jo pehla agent tha, uska kya hua?"</p>
+<ul>
+<li>Uska turn <strong>turant khatam</strong> ho jata hai - ab wo kuch process nahi karta</li>
+<li>Wo delete nahi hota, bas "background" mein chala jata hai - jaise wo <strong>mic chor deta hai</strong></li>
+<li>Uska code (instructions, tools) wesa hi maujood rehta hai - bas active nahi hai abhi</li>
+<li>Poori conversation history (handoff se pehle wali) <strong>preserve rehti hai</strong> aur naye agent ko chali jati hai (jab tak <code>input_filter</code> na lagaya ho)</li>
+</ul>
+<h3 id="back-handoff-kya-hai">🔙 Back Handoff Kya Hai?</h3>
+<p>Agar zarurat pare to purana agent dobara bulaya ja sakta hai - iske liye <strong>Back Handoff</strong> ka concept hai.</p>
+<p><strong>Back Handoff</strong> ka matlab hai - specialist agent (jaise Refund Agent) apna kaam khatam karne ke baad <strong>wapis Triage Agent ko control de deta hai</strong>. Bilkul wahi mechanism jo forward handoff mein tha - bas ulta:</p>
+<ul>
+<li>Refund Agent ka LLM sochta hai "mera kaam ho gaya, ab wapis bhej do"</li>
+<li>Wo <code>transfer_to_triage_agent</code> jaisa function call karta hai</li>
+<li>Original Agent (Triage) ka object return hota hai</li>
+<li>Runner phir se control switch kar deta hai - wapis Triage Agent ke pass</li>
+</ul>
+<p><strong>Practical use:</strong> Billing Agent ne refund solve kar diya, ab agar user ka koi aur (unrelated) sawal ho to Billing Agent usse wapis Triage Agent ke pass bhej deta hai - bilkul jaise bank mein specialist tumhe wapis reception bhej deta hai.</p>
+<p>⚠️ <strong>Zaroori baat:</strong> Ye automatic nahi hota. Agar tum chahte ho ke Refund Agent wapis Triage Agent ko bhej sake, to tumhe Refund Agent ke <code>handoffs</code> list mein <strong>Triage Agent ko explicitly daalna parega</strong>. Warna wo wapis nahi ja sakta - dono taraf ka rasta khud-b-khud nahi khulta.</p>
+<hr />
+<h2 id="5-code-ka-blueprint-bilkul-simple">5. 💻 Code Ka Blueprint - Bilkul Simple</h2>
+<p>Chalo ab code dekhte hain, Python style mein (OpenAI Agents SDK / Swarm jaisa):</p>
+<pre><code class="language-python">from agents import Agent, Runner
+
+# 🧑‍💼 Refund wala specialist
+refund_agent = Agent(
+    name=&quot;Refund Agent&quot;,
+    instructions=&quot;Tum refund requests handle karte ho, dosti se baat karo&quot;,
+)
+
+# 🧑‍💼 Billing wala specialist
+billing_agent = Agent(
+    name=&quot;Billing Agent&quot;,
+    instructions=&quot;Tum billing disputes handle karte ho&quot;,
+)
+
+# 🧑‍💻 Triage - jo sabse pehle user se milta hai
+triage_agent = Agent(
+    name=&quot;Triage Agent&quot;,
+    instructions=(
+        &quot;Tum sabse pehle user ki baat sunte ho. &quot;
+        &quot;Agar refund chahiye to Refund Agent ko bhej do. &quot;
+        &quot;Agar billing ka masla hai to Billing Agent ko bhej do.&quot;
+    ),
+    handoffs=[refund_agent, billing_agent],  # 👈 ye list hai possible handoffs ki
+)
+
+# ▶️ Conversation run karo
+result = Runner.run_sync(
+    triage_agent,
+    &quot;Mujhse double charge ho gaya, refund chahiye&quot;
+)
+
+print(result.final_output)
+</code></pre>
+<h3 id="yahan-ho-kya-raha-hai-line-by-line-samjho">🔑 Yahan Ho Kya Raha Hai - Line by Line Samjho</h3>
+<ol>
+<li><code>triage_agent</code> ko user ka message milta hai</li>
+<li>Uska LLM sochta hai: <em>"ye to Refund Agent ka case hai"</em> → andar hi andar <code>transfer_to_refund_agent</code> call karta hai</li>
+<li>SDK is call ko resolve karta hai <strong><code>refund_agent</code> object mein</strong> (koi text nahi, poora agent object)</li>
+<li><code>Runner</code> dekh leta hai ke Agent return hua hai → <strong>active agent switch kar deta hai</strong></li>
+<li><code>refund_agent</code> ko poori chat history milti hai aur ab wo hi final jawab banata hai user ke liye</li>
+</ol>
+<h3 id="back-handoff-add-karna-ho-to">🔙 Back Handoff Add Karna Ho To:</h3>
+<pre><code class="language-python">refund_agent = Agent(
+    name=&quot;Refund Agent&quot;,
+    instructions=&quot;Refund handle karo, agar refund ka masla nahi to Triage ko wapis bhej do&quot;,
+    handoffs=[triage_agent],  # 👈 ye line wapis jane ka rasta khol deti hai
+)
+</code></pre>
+<p>Bas itni si baat hai - is line ke bina Refund Agent kabhi wapis Triage Agent ko nahi bhej sakta.</p>
+<hr />
+<h2 id="quick-recap-sab-ek-nazar-mein">📌 Quick Recap - Sab Ek Nazar Mein</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Ek Line Mein Samjho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Handoff</strong></td>
+<td>Poora control specialist agent ko chala jata hai - bilkul jaise bank tumhe doosre department bhej deta hai</td>
+</tr>
+<tr>
+<td><strong>Mechanism</strong></td>
+<td>Function/tool call ke zariye hota hai; Agent object return hone se switch trigger hota hai</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>Poori chat history default mein pass hoti hai (customize kar sakte ho <code>input_filter</code> se)</td>
+</tr>
+<tr>
+<td><strong>Agent-as-Tool</strong></td>
+<td>Manager hamesha in-charge rehta hai; sub-agent bas data deta hai, user se seedha baat nahi karta</td>
+</tr>
+<tr>
+<td><strong>Back Handoff</strong></td>
+<td>Same mechanism ulta - lekin explicitly <code>handoffs</code> list mein dono taraf add karna zaroori hai</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3154 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/Ai-Engineer-Core-Concepts/">
+      
+      
+        <link rel="prev" href="../Advanced_RAG_Architectures_Notes/">
+      
+      
+        <link rel="next" href="../Ai-Engineer-Roadmap/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>Core AI Engineering Concepts — Complete Guide - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-ai-engineering-concepts-complete-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Core AI Engineering Concepts — Complete Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tokens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-context-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Context Window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-why-rag-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why RAG Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-real-world-rag-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Real-World RAG Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Chunking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-chunking-strategies-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Chunking Strategies (Advanced)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-vector-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Vector Databases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-similarity-search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Similarity Search Algorithms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-top-k-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Top-K Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-relevance-filtering-reranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Relevance Filtering / Reranking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-system-user-assistant-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. System, User &amp; Assistant Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-temperature-top-p-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Temperature, Top-P &amp; Sampling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-fine-tuning-vs-rag-vs-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Fine-tuning vs RAG vs Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-function-calling-tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Function Calling / Tool Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. AI Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-memory-in-ai-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Memory in AI Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-hallucinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Hallucinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-guardrails-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Guardrails &amp; Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Evaluation Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-streaming-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Streaming Responses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-latency-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Latency &amp; Cost Optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-quantization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Quantization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-multi-modal-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Multi-Modal Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-popular-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Popular Frameworks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-model-context-protocol-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Model Context Protocol (MCP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-quick-summary-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Quick Summary Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Tokens
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-context-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Context Window
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-why-rag-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why RAG Exists
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-real-world-rag-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Real-World RAG Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-chunking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Chunking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-chunking-strategies-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Chunking Strategies (Advanced)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-vector-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Vector Databases
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-similarity-search-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Similarity Search Algorithms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-top-k-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Top-K Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-relevance-filtering-reranking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Relevance Filtering / Reranking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-system-user-assistant-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. System, User &amp; Assistant Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-temperature-top-p-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Temperature, Top-P &amp; Sampling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-fine-tuning-vs-rag-vs-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Fine-tuning vs RAG vs Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-function-calling-tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Function Calling / Tool Use
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-ai-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. AI Agents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-memory-in-ai-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Memory in AI Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-hallucinations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Hallucinations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-guardrails-safety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Guardrails &amp; Safety
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-evaluation-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Evaluation Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-streaming-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Streaming Responses
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-latency-cost-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Latency &amp; Cost Optimization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-quantization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Quantization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-multi-modal-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Multi-Modal Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-popular-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Popular Frameworks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-model-context-protocol-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Model Context Protocol (MCP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-quick-summary-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Quick Summary Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="core-ai-engineering-concepts-complete-guide">Core AI Engineering Concepts — Complete Guide</h1>
+<p>A foundational guide to the key concepts every AI Engineer must understand — tokens, context windows, RAG, embeddings, chunking, vector databases, prompting, agents, evaluation, and more.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#1-tokens">Tokens</a></li>
+<li><a href="#2-context-window">Context Window</a></li>
+<li><a href="#3-why-rag-exists">Why RAG Exists</a></li>
+<li><a href="#4-embeddings">Embeddings</a></li>
+<li><a href="#5-real-world-rag-flow">Real-World RAG Flow</a></li>
+<li><a href="#6-chunking">Chunking</a></li>
+<li><a href="#7-chunking-strategies-advanced">Chunking Strategies (Advanced)</a></li>
+<li><a href="#8-vector-databases">Vector Databases</a></li>
+<li><a href="#9-similarity-search-algorithms">Similarity Search Algorithms</a></li>
+<li><a href="#10-top-k-retrieval">Top-K Retrieval</a></li>
+<li><a href="#11-relevance-filtering--reranking">Relevance Filtering / Reranking</a></li>
+<li><a href="#12-prompt-engineering">Prompt Engineering</a></li>
+<li><a href="#13-system-user--assistant-roles">System, User &amp; Assistant Roles</a></li>
+<li><a href="#14-temperature-top-p--sampling">Temperature, Top-P &amp; Sampling</a></li>
+<li><a href="#15-fine-tuning-vs-rag-vs-prompt-engineering">Fine-tuning vs RAG vs Prompt Engineering</a></li>
+<li><a href="#16-function-calling--tool-use">Function Calling / Tool Use</a></li>
+<li><a href="#17-ai-agents">AI Agents</a></li>
+<li><a href="#18-memory-in-ai-systems">Memory in AI Systems</a></li>
+<li><a href="#19-hallucinations">Hallucinations</a></li>
+<li><a href="#20-guardrails--safety">Guardrails &amp; Safety</a></li>
+<li><a href="#21-evaluation-metrics">Evaluation Metrics</a></li>
+<li><a href="#22-streaming-responses">Streaming Responses</a></li>
+<li><a href="#23-latency--cost-optimization">Latency &amp; Cost Optimization</a></li>
+<li><a href="#24-quantization">Quantization</a></li>
+<li><a href="#25-multi-modal-models">Multi-Modal Models</a></li>
+<li><a href="#26-popular-frameworks">Popular Frameworks</a></li>
+<li><a href="#27-model-context-protocol-mcp">Model Context Protocol (MCP)</a></li>
+<li><a href="#28-quick-summary-table">Quick Summary Table</a></li>
+</ol>
+<hr />
+<h2 id="1-tokens">1. Tokens</h2>
+<p>An LLM does not process words — it processes <strong>tokens</strong>. A token can be a whole word, part of a word, or even punctuation.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Input</th>
+<th>Token Split</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>I love Flutter</code></td>
+<td>Splits into 3–4 tokens</td>
+</tr>
+<tr>
+<td><code>ProfilerLife Appointment Booking System</code></td>
+<td>Splits into multiple tokens</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The more tokens involved:</strong>
+- The higher the cost (models charge per token — input + output)
+- The longer the processing time
+- The more context is consumed</p>
+<p><strong>Extra detail:</strong> Roughly, <strong>1 token ≈ 4 characters ≈ ¾ of a word</strong> in English. Different tokenizers (e.g., <code>tiktoken</code> for OpenAI models) split text differently, so token count varies model to model.</p>
+<p>This is why understanding token management is essential for every AI Engineer.</p>
+<hr />
+<h2 id="2-context-window">2. Context Window</h2>
+<p>Suppose a model's context window is <strong>128k tokens</strong>.</p>
+<p>If you feed it:
+- 1 PDF
+- 100 chat messages
+- 20 pages of instructions</p>
+<p>...all of this combined consumes the context window.</p>
+<p><strong>Once the context is full:</strong>
+- Older information may get dropped (truncated)
+- Response quality can degrade
+- In multi-turn chats, this is why long conversations start to "forget" earlier messages</p>
+<p>This exact problem is what <strong>RAG</strong> is designed to solve.</p>
+<blockquote>
+<p><strong>Note:</strong> A bigger context window doesn't always mean better answers — models can suffer from the <strong>"lost in the middle"</strong> problem, where information placed in the middle of a very long context gets less attention than information at the start or end.</p>
+</blockquote>
+<hr />
+<h2 id="3-why-rag-exists">3. Why RAG Exists</h2>
+<p>Suppose you're building an AI chatbot that answers questions about ProfilerLife's documentation.</p>
+<p><strong>❌ Wrong Approach</strong></p>
+<p>Paste the entire documentation into the prompt.</p>
+<p>Problems:
+- Expensive
+- Slow
+- Hits context limits</p>
+<p><strong>✅ Better Approach</strong></p>
+<pre><code>User Question
+     ↓
+Search Relevant Docs
+     ↓
+Send Only Relevant Content to the Model
+     ↓
+Generate Answer
+</code></pre>
+<p>This is <strong>RAG (Retrieval-Augmented Generation)</strong> — the approach powering most chatbots and AI assistants in the industry today.</p>
+<hr />
+<h2 id="4-embeddings">4. Embeddings</h2>
+<p>Now for one of the most important concepts.</p>
+<p>A computer doesn't inherently understand that:
+- <code>car</code>
+- <code>automobile</code>
+- <code>vehicle</code></p>
+<p>...all carry the same meaning.</p>
+<p><strong>Embeddings</strong> solve this problem.</p>
+<blockquote>
+<p><strong>Embedding</strong> = converting text into numbers (a vector) that captures its meaning.</p>
+</blockquote>
+<p><strong>Example (simplified):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>car</code></td>
+<td><code>[0.82, 0.15, 0.91]</code></td>
+</tr>
+<tr>
+<td><code>vehicle</code></td>
+<td><code>[0.80, 0.17, 0.89]</code></td>
+</tr>
+<tr>
+<td><code>apple</code></td>
+<td><code>[0.05, 0.93, 0.12]</code></td>
+</tr>
+</tbody>
+</table>
+<p>Notice:
+- The vectors for <code>car</code> and <code>vehicle</code> are similar.
+- The vector for <code>apple</code> is quite different.</p>
+<p>This is what allows a system to perform <strong>semantic search</strong>.</p>
+<p><strong>Example:</strong> A user searches for <code>"car insurance"</code>, and the database contains <code>"vehicle coverage"</code> — a match can still be found. This is the magic of embeddings.</p>
+<p><strong>How similarity is measured:</strong> once text is turned into vectors, we need a way to compare them — this is done using <strong>cosine similarity</strong> (measures the angle between two vectors) or sometimes <strong>dot product</strong> / <strong>Euclidean distance</strong>. Real embedding models (e.g., OpenAI <code>text-embedding-3</code>, Google <code>text-embedding-004</code>, open-source <code>BGE</code>, <code>E5</code>) produce vectors with hundreds or thousands of dimensions, not just 3.</p>
+<hr />
+<h2 id="5-real-world-rag-flow">5. Real-World RAG Flow</h2>
+<pre><code>PDF Documents
+     ↓
+Chunking
+     ↓
+Embeddings
+     ↓
+Vector Database
+     ↓
+User Question
+     ↓
+Question Embedding
+     ↓
+Similarity Search
+     ↓
+Relevant Chunks
+     ↓
+LLM
+     ↓
+Final Answer
+</code></pre>
+<p>Every AI Engineer should have a solid understanding of this flow.</p>
+<hr />
+<h2 id="6-chunking">6. Chunking</h2>
+<p>Suppose you have a 100-page PDF.</p>
+<p>If you generate a single embedding for the entire PDF:
+- Search accuracy suffers
+- Finding relevant information becomes difficult</p>
+<p>To solve this, the document is split into smaller pieces called <strong>chunks</strong>.</p>
+<p><strong>Example:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Pages</th>
+<th>Chunk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Page 1–3</td>
+<td>Chunk A</td>
+</tr>
+<tr>
+<td>Page 4–6</td>
+<td>Chunk B</td>
+</tr>
+<tr>
+<td>Page 7–9</td>
+<td>Chunk C</td>
+</tr>
+</tbody>
+</table>
+<p>Each chunk then gets its own embedding.</p>
+<p>When a user asks:</p>
+<blockquote>
+<p>"How does the provider claim flow work?"</p>
+</blockquote>
+<p>The system doesn't process the entire PDF — it retrieves <strong>only the relevant chunks</strong>.</p>
+<hr />
+<h2 id="7-chunking-strategies-advanced">7. Chunking Strategies (Advanced)</h2>
+<p>How you chunk a document has a big impact on retrieval quality. Common strategies:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How it works</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fixed-size chunking</strong></td>
+<td>Split every N tokens/characters</td>
+<td>Simple text, quick prototypes</td>
+</tr>
+<tr>
+<td><strong>Overlapping chunks</strong></td>
+<td>Each chunk shares some tokens with the next (e.g., 500 tokens, 50 overlap)</td>
+<td>Prevents cutting a sentence/idea in half</td>
+</tr>
+<tr>
+<td><strong>Sentence/paragraph-based</strong></td>
+<td>Split at natural sentence or paragraph boundaries</td>
+<td>Preserves meaning better</td>
+</tr>
+<tr>
+<td><strong>Semantic chunking</strong></td>
+<td>Split based on where the <em>meaning</em> shifts (using embeddings)</td>
+<td>High-accuracy RAG systems</td>
+</tr>
+<tr>
+<td><strong>Recursive chunking</strong></td>
+<td>Try splitting by paragraph first, then sentence, then character, as needed</td>
+<td>Long, structurally varied documents</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key tradeoff:</strong>
+- <strong>Too small chunks</strong> → lose context, answers feel incomplete
+- <strong>Too large chunks</strong> → dilute relevance, waste tokens, hurt retrieval precision</p>
+<hr />
+<h2 id="8-vector-databases">8. Vector Databases</h2>
+<p>Once chunks are converted into embeddings, they need to be stored somewhere that supports <strong>fast similarity search</strong> across millions of vectors. This is a <strong>vector database</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Vector DB</th>
+<th>Type</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pinecone</strong></td>
+<td>Managed cloud</td>
+<td>Popular, easy to scale</td>
+</tr>
+<tr>
+<td><strong>Chroma</strong></td>
+<td>Open-source, local</td>
+<td>Great for prototypes</td>
+</tr>
+<tr>
+<td><strong>FAISS</strong> (Meta)</td>
+<td>Library, not a full DB</td>
+<td>Extremely fast, in-memory</td>
+</tr>
+<tr>
+<td><strong>Weaviate</strong></td>
+<td>Open-source/cloud</td>
+<td>Supports hybrid search</td>
+</tr>
+<tr>
+<td><strong>Qdrant</strong></td>
+<td>Open-source/cloud</td>
+<td>Rust-based, high performance</td>
+</tr>
+<tr>
+<td><strong>pgvector</strong></td>
+<td>PostgreSQL extension</td>
+<td>Good if already using Postgres</td>
+</tr>
+</tbody>
+</table>
+<p>A vector DB stores:
+- The embedding vector
+- The original text (or a reference to it)
+- Metadata (source, page number, date, tags — used for filtering)</p>
+<hr />
+<h2 id="9-similarity-search-algorithms">9. Similarity Search Algorithms</h2>
+<p>Searching millions of vectors one-by-one (brute force) is too slow. Vector DBs use <strong>Approximate Nearest Neighbor (ANN)</strong> algorithms to make this fast:</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HNSW</strong> (Hierarchical Navigable Small World)</td>
+<td>Builds a graph structure for fast approximate search — most widely used</td>
+</tr>
+<tr>
+<td><strong>IVF</strong> (Inverted File Index)</td>
+<td>Groups vectors into clusters, searches only relevant clusters</td>
+</tr>
+<tr>
+<td><strong>LSH</strong> (Locality Sensitive Hashing)</td>
+<td>Hashes similar vectors into the same "bucket"</td>
+</tr>
+</tbody>
+</table>
+<p>These trade a small amount of accuracy for a huge gain in speed — essential when working with millions/billions of vectors.</p>
+<hr />
+<h2 id="10-top-k-retrieval">10. Top-K Retrieval</h2>
+<p>Real RAG systems typically use a setting like:</p>
+<pre><code>top_k = 3
+</code></pre>
+<p>This means if <code>Top-K = 3</code>, the system retrieves the <strong>3 most similar chunks</strong> to the user's question, for example:</p>
+<ol>
+<li>Doc 3</li>
+<li>Doc 1</li>
+<li>Doc 2</li>
+</ol>
+<p><strong>Higher top_k</strong> → more context, but more tokens/cost and possible noise.
+<strong>Lower top_k</strong> → cheaper/faster, but risk of missing relevant info.</p>
+<hr />
+<h2 id="11-relevance-filtering-reranking">11. Relevance Filtering / Reranking</h2>
+<p>After retrieval, one more step often follows — <strong>reranking</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Doc 3</td>
+<td>Very Relevant</td>
+</tr>
+<tr>
+<td>Doc 1</td>
+<td>Somewhat Relevant</td>
+</tr>
+<tr>
+<td>Doc 2</td>
+<td>Weak Relevance</td>
+</tr>
+</tbody>
+</table>
+<p>Initial vector search (bi-encoder) is fast but approximate. A <strong>reranker</strong> (cross-encoder model, e.g., Cohere Rerank, BGE-reranker) re-scores the top candidates more precisely by looking at the query and each chunk together.</p>
+<p>The system then sends only the <strong>best-ranked documents</strong> to the model for the final answer.</p>
+<hr />
+<h2 id="12-prompt-engineering">12. Prompt Engineering</h2>
+<p>The practice of designing inputs to get the best possible output from an LLM. Key techniques:</p>
+<ul>
+<li><strong>Be specific and clear</strong> — vague prompts give vague answers</li>
+<li><strong>Few-shot prompting</strong> — give 2–3 examples of input/output before the real task</li>
+<li><strong>Chain-of-thought</strong> — ask the model to "think step by step" for complex reasoning</li>
+<li><strong>Role prompting</strong> — "You are a senior Python developer..." sets behavior/tone</li>
+<li><strong>Output formatting</strong> — explicitly ask for JSON, markdown, bullet points, etc.</li>
+<li><strong>Negative examples</strong> — telling the model what <em>not</em> to do</li>
+</ul>
+<pre><code>Example (few-shot):
+
+Classify sentiment as Positive/Negative/Neutral.
+
+Text: &quot;The food was amazing!&quot; → Positive
+Text: &quot;It was okay, nothing special.&quot; → Neutral
+Text: &quot;Worst service ever.&quot; → Negative
+Text: &quot;I'll definitely come back again.&quot; → ?
+</code></pre>
+<hr />
+<h2 id="13-system-user-assistant-roles">13. System, User &amp; Assistant Roles</h2>
+<p>Every conversation with an LLM is structured as a list of messages with roles:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>system</strong></td>
+<td>Sets the model's behavior, persona, and rules (usually invisible to the end user)</td>
+</tr>
+<tr>
+<td><strong>user</strong></td>
+<td>The actual question/input from the person</td>
+</tr>
+<tr>
+<td><strong>assistant</strong></td>
+<td>The model's response (also used to show prior turns for context)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">messages = [
+    {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a helpful medical assistant. Never give a diagnosis.&quot;},
+    {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;I have a headache, what should I do?&quot;}
+]
+</code></pre>
+<p>The <strong>system prompt</strong> is one of the most powerful tools in AI engineering — it controls tone, restrictions, and behavior across the whole conversation.</p>
+<hr />
+<h2 id="14-temperature-top-p-sampling">14. Temperature, Top-P &amp; Sampling</h2>
+<p>These parameters control <strong>how random/creative</strong> the model's output is.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>temperature</strong> (0–2)</td>
+<td>Low (0–0.3) → focused, deterministic. High (0.7–1.5) → creative, varied</td>
+</tr>
+<tr>
+<td><strong>top_p</strong> (nucleus sampling)</td>
+<td>Model only considers tokens whose cumulative probability adds up to <code>p</code> (e.g., 0.9)</td>
+</tr>
+<tr>
+<td><strong>top_k (sampling)</strong></td>
+<td>Model only considers the top <code>k</code> most likely next tokens</td>
+</tr>
+<tr>
+<td><strong>max_tokens</strong></td>
+<td>Limits the length of the generated response</td>
+</tr>
+<tr>
+<td><strong>frequency/presence penalty</strong></td>
+<td>Reduces repetition of words/phrases</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ Don't confuse <strong>top_k (sampling)</strong> here with <strong>top_k (retrieval)</strong> from RAG — same name, completely different concept.</p>
+</blockquote>
+<p><strong>Rule of thumb:</strong>
+- Factual/coding tasks → low temperature (0–0.3)
+- Creative writing/brainstorming → higher temperature (0.7–1.0)</p>
+<hr />
+<h2 id="15-fine-tuning-vs-rag-vs-prompt-engineering">15. Fine-tuning vs RAG vs Prompt Engineering</h2>
+<p>Three different ways to make an LLM better at your specific task — often confused.</p>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>What it does</th>
+<th>When to use</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt Engineering</strong></td>
+<td>Just write better instructions</td>
+<td>Quick wins, simple tasks</td>
+<td>Free/cheapest</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>Feed relevant external knowledge at query time</td>
+<td>Need up-to-date or private/custom data</td>
+<td>Medium (embedding + storage cost)</td>
+</tr>
+<tr>
+<td><strong>Fine-tuning</strong></td>
+<td>Retrain the model on your own examples to change its behavior/style</td>
+<td>Need a consistent tone/format, or domain-specific behavior baked in</td>
+<td>Expensive, needs data + compute</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> Fine-tuning teaches the model <em>how to respond</em> (style, format, behavior). RAG gives the model <em>what to know</em> (facts, current data). Most production systems use RAG, not fine-tuning, to keep knowledge updated.</p>
+<hr />
+<h2 id="16-function-calling-tool-use">16. Function Calling / Tool Use</h2>
+<p>LLMs can't browse the web, do math reliably, or access live data on their own — <strong>tool use (function calling)</strong> solves this.</p>
+<p><strong>How it works:</strong>
+1. You describe available tools/functions to the model (name, parameters, description)
+2. The model decides <em>when</em> a tool is needed and outputs a structured call (e.g., JSON) instead of plain text
+3. Your code executes the actual function
+4. The result is sent back to the model
+5. The model uses that result to generate the final answer</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;get_weather&quot;,
+  &quot;parameters&quot;: { &quot;city&quot;: &quot;Lahore&quot; }
+}
+</code></pre>
+<p><strong>Real examples:</strong> searching the web, querying a database, calling a calculator, booking an appointment, sending an email.</p>
+<hr />
+<h2 id="17-ai-agents">17. AI Agents</h2>
+<p>An <strong>agent</strong> is an LLM that can <strong>reason, plan, and take actions</strong> using tools — in a loop — rather than just answering in one shot.</p>
+<p><strong>Typical agent loop:</strong></p>
+<pre><code>Observe (user request + context)
+     ↓
+Think (reason about what to do next)
+     ↓
+Act (call a tool/function)
+     ↓
+Observe (tool result)
+     ↓
+Repeat until task is done
+     ↓
+Final Answer
+</code></pre>
+<p>This is often called the <strong>ReAct pattern</strong> (Reason + Act). Agents can chain multiple tool calls together to complete complex, multi-step tasks (e.g., "find flights, compare prices, and book the cheapest one").</p>
+<hr />
+<h2 id="18-memory-in-ai-systems">18. Memory in AI Systems</h2>
+<p>LLMs are <strong>stateless</strong> by default — they don't remember past conversations unless you explicitly provide that history. AI systems handle memory in a few ways:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Short-term memory</strong></td>
+<td>The current conversation's message history, resent every request</td>
+</tr>
+<tr>
+<td><strong>Long-term memory</strong></td>
+<td>Persisted facts/preferences about the user stored in a database and retrieved when relevant</td>
+</tr>
+<tr>
+<td><strong>Episodic memory</strong></td>
+<td>Summaries of past conversations/sessions</td>
+</tr>
+<tr>
+<td><strong>Vector memory</strong></td>
+<td>Past interactions stored as embeddings, retrieved via similarity search (similar to RAG)</td>
+</tr>
+</tbody>
+</table>
+<p>Since context windows are limited, long conversations often get <strong>summarized</strong> periodically to save space while keeping important details.</p>
+<hr />
+<h2 id="19-hallucinations">19. Hallucinations</h2>
+<p>When a model generates information that <strong>sounds confident but is factually wrong or made up</strong>.</p>
+<p><strong>Why it happens:</strong>
+- The model is predicting the most <em>likely</em> next token, not verifying truth
+- No access to real-time/private data unless given via RAG or tools
+- Ambiguous or misleading prompts</p>
+<p><strong>How to reduce it:</strong>
+- Use RAG to ground answers in real documents
+- Lower temperature for factual tasks
+- Ask the model to cite sources/say "I don't know" when unsure
+- Add verification/fact-checking steps (another LLM call or human review)</p>
+<hr />
+<h2 id="20-guardrails-safety">20. Guardrails &amp; Safety</h2>
+<p>Techniques used to keep AI systems safe, on-topic, and aligned with intended use:</p>
+<ul>
+<li><strong>Input validation</strong> — filtering harmful/irrelevant user input before it reaches the model</li>
+<li><strong>Output filtering</strong> — checking the model's response before showing it to the user (e.g., blocking PII leaks, toxic content)</li>
+<li><strong>System prompt restrictions</strong> — explicitly telling the model what it must not do</li>
+<li><strong>Rate limiting</strong> — preventing abuse/prompt injection attacks</li>
+<li><strong>Prompt injection defense</strong> — ensuring untrusted content (e.g., a scraped webpage) can't hijack the model's instructions</li>
+</ul>
+<hr />
+<h2 id="21-evaluation-metrics">21. Evaluation Metrics</h2>
+<p>How AI engineers measure if a system (especially RAG/LLM apps) is actually performing well:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Retrieval Precision/Recall</strong></td>
+<td>Did we retrieve the right chunks?</td>
+</tr>
+<tr>
+<td><strong>Faithfulness</strong></td>
+<td>Does the answer stay true to the retrieved context (no hallucination)?</td>
+</tr>
+<tr>
+<td><strong>Relevance</strong></td>
+<td>Is the final answer actually relevant to the question?</td>
+</tr>
+<tr>
+<td><strong>Latency</strong></td>
+<td>How long does the response take?</td>
+</tr>
+<tr>
+<td><strong>BLEU / ROUGE</strong></td>
+<td>Compare generated text to a reference text (common in summarization/translation)</td>
+</tr>
+<tr>
+<td><strong>Human evaluation</strong></td>
+<td>Manual review — still the gold standard for subjective quality</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="22-streaming-responses">22. Streaming Responses</h2>
+<p>Instead of waiting for the entire response to be generated, the model can <strong>stream tokens one-by-one</strong> as they're produced — this is why ChatGPT-style apps show text appearing word-by-word.</p>
+<p><strong>Benefits:</strong>
+- Better perceived speed/UX
+- User can start reading before generation finishes
+- Can be stopped early if needed (saves cost)</p>
+<pre><code class="language-python">for chunk in response_stream:
+    print(chunk.text, end=&quot;&quot;)
+</code></pre>
+<hr />
+<h2 id="23-latency-cost-optimization">23. Latency &amp; Cost Optimization</h2>
+<p>Practical techniques AI engineers use in production:</p>
+<ul>
+<li><strong>Caching</strong> — store responses to repeated/common queries (e.g., <code>lru_cache</code>, Redis)</li>
+<li><strong>Smaller/faster models</strong> for simple tasks, larger models only when needed (model routing)</li>
+<li><strong>Batching requests</strong> where possible</li>
+<li><strong>Reducing token usage</strong> — shorter prompts, smaller top_k, better chunking</li>
+<li><strong>Prompt caching</strong> — reusing a static portion of a prompt (e.g., system prompt) to avoid reprocessing it every call</li>
+<li><strong>Async/parallel calls</strong> for independent tasks (e.g., multiple tool calls at once)</li>
+</ul>
+<hr />
+<h2 id="24-quantization">24. Quantization</h2>
+<p>A technique to make models smaller and faster by reducing the <strong>precision</strong> of their internal numbers (weights).</p>
+<table>
+<thead>
+<tr>
+<th>Precision</th>
+<th>Size</th>
+<th>Speed</th>
+<th>Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FP32 (full)</td>
+<td>Largest</td>
+<td>Slowest</td>
+<td>Highest</td>
+</tr>
+<tr>
+<td>FP16 / BF16</td>
+<td>Half</td>
+<td>Faster</td>
+<td>Very close to FP32</td>
+</tr>
+<tr>
+<td>INT8</td>
+<td>Quarter</td>
+<td>Much faster</td>
+<td>Slight quality drop</td>
+</tr>
+<tr>
+<td>INT4</td>
+<td>Even smaller</td>
+<td>Fastest</td>
+<td>Noticeable quality drop (task-dependent)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why it matters:</strong> quantization lets large models run on smaller/cheaper hardware (even laptops/phones) with a manageable tradeoff in accuracy.</p>
+<hr />
+<h2 id="25-multi-modal-models">25. Multi-Modal Models</h2>
+<p>Models that can understand/generate more than just text:</p>
+<table>
+<thead>
+<tr>
+<th>Modality</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Text + Image</strong></td>
+<td>Describe an image, answer questions about a chart/photo</td>
+</tr>
+<tr>
+<td><strong>Text + Audio</strong></td>
+<td>Speech-to-text, voice assistants</td>
+</tr>
+<tr>
+<td><strong>Text + Video</strong></td>
+<td>Summarize/analyze video content</td>
+</tr>
+<tr>
+<td><strong>Text-to-Image</strong></td>
+<td>Generate images from text prompts</td>
+</tr>
+</tbody>
+</table>
+<p>Multi-modal embeddings work the same way as text embeddings — different data types are converted into vectors that live in a shared "meaning space," enabling cross-modal search (e.g., searching images using a text query).</p>
+<hr />
+<h2 id="26-popular-frameworks">26. Popular Frameworks</h2>
+<p>Tools that make building RAG pipelines and agents faster (instead of writing everything from scratch):</p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LangChain</strong></td>
+<td>Chains, RAG pipelines, agents, tool integrations</td>
+</tr>
+<tr>
+<td><strong>LlamaIndex</strong></td>
+<td>Focused heavily on data indexing/retrieval for RAG</td>
+</tr>
+<tr>
+<td><strong>Haystack</strong></td>
+<td>Production-grade RAG/search pipelines</td>
+</tr>
+<tr>
+<td><strong>CrewAI / AutoGen</strong></td>
+<td>Multi-agent orchestration frameworks</td>
+</tr>
+<tr>
+<td><strong>LangGraph</strong></td>
+<td>Building stateful, graph-based agent workflows</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="27-model-context-protocol-mcp">27. Model Context Protocol (MCP)</h2>
+<p>A standardized protocol (introduced by Anthropic) that lets AI models connect to external tools, data sources, and apps in a consistent way — instead of every app building its own custom integration.</p>
+<p><strong>Why it matters:</strong> it allows an LLM-based assistant to plug into things like file systems, databases, or third-party apps (calendars, project trackers, etc.) through a common interface, making tool integrations more standardized and reusable across different AI applications.</p>
+<hr />
+<h2 id="28-quick-summary-table">28. Quick Summary Table</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>One-line takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tokens</td>
+<td>The real unit of cost/length for LLMs</td>
+</tr>
+<tr>
+<td>Context Window</td>
+<td>Limited "memory" per request</td>
+</tr>
+<tr>
+<td>RAG</td>
+<td>Retrieve relevant info instead of stuffing everything into the prompt</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>Turn text into meaning-preserving numbers</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>Break large documents into searchable pieces</td>
+</tr>
+<tr>
+<td>Vector DB</td>
+<td>Stores embeddings for fast similarity search</td>
+</tr>
+<tr>
+<td>Top-K</td>
+<td>How many chunks to retrieve</td>
+</tr>
+<tr>
+<td>Reranking</td>
+<td>Re-score retrieved chunks for better precision</td>
+</tr>
+<tr>
+<td>Prompt Engineering</td>
+<td>Better instructions = better outputs</td>
+</tr>
+<tr>
+<td>Temperature/Top-P</td>
+<td>Controls randomness/creativity</td>
+</tr>
+<tr>
+<td>Fine-tuning</td>
+<td>Changes model behavior/style permanently</td>
+</tr>
+<tr>
+<td>Function Calling</td>
+<td>Lets the model use external tools</td>
+</tr>
+<tr>
+<td>Agents</td>
+<td>LLMs that reason + act in a loop</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>How systems remember past context</td>
+</tr>
+<tr>
+<td>Hallucination</td>
+<td>Confident but wrong output</td>
+</tr>
+<tr>
+<td>Guardrails</td>
+<td>Keep the system safe and on-topic</td>
+</tr>
+<tr>
+<td>Evaluation</td>
+<td>How you know the system actually works</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>Smaller/faster models, small quality tradeoff</td>
+</tr>
+<tr>
+<td>Multi-modal</td>
+<td>Understanding text, images, audio, video together</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>Yeh guide RAG pipelines, AI engineering interviews, aur system design discussions ke liye ek complete conceptual foundation deta hai.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

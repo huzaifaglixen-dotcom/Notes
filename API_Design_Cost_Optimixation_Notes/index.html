@@ -1,0 +1,3024 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/API_Design_Cost_Optimixation_Notes/">
+      
+      
+        <link rel="prev" href="../AI_Agents_Fundamentals_Notes/">
+      
+      
+        <link rel="next" href="../Advanced_RAG_Architectures_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>API Design & Cost Optimization for LLM Apps — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-design-cost-optimization-for-llm-apps-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-streaming-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Streaming Responses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Streaming Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-its-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It's Important
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Rate Limiting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Rate Limiting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-its-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It's Needed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-rate-limiting-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Rate Limiting Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-rate-limit-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Rate Limit Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Caching Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Caching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-exact-match-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Exact Match Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-semantic-caching-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Semantic Caching (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-caching-helps-most" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Caching Helps Most
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-caching-is-risky" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Caching is Risky
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prompt-caching-special-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prompt Caching (Special Case)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Prompt Caching (Special Case)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works-conceptual_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-token-usage-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Token Usage Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Token Usage Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Techniques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-model-selection-strategy-cost-vs-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Model Selection Strategy (Cost vs Quality)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Model Selection Strategy (Cost vs Quality)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-routing-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Routing (Advanced)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-yeh-significantly-cost-bacha-sakta-hai-bade-scale-pe-bina-quality-compromise-kiye-critical-tasks-pe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - Yeh significantly cost bacha sakta hai bade scale pe, bina quality compromise kiye critical tasks pe.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-batching-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Batching Requests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Batching Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Batching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-fallback-retry-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Fallback &amp; Retry Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Fallback &amp; Retry Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-monitoring-cost-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Monitoring Cost in Production
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Monitoring Cost in Production">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-alert-karo-agar-dailymonthly-cost-expected-budget-se-significantly-zyada-ho-jaye-taaki-bugs-jaise-infinite-agent-loops-pichli-agent-notes-yaad-karo-jaldi-pakde-jayein-before-they-cause-a-huge-bill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - Alert karo agar daily/monthly cost expected budget se significantly zyada ho jaye — taaki bugs (jaise infinite agent loops — pichli Agent notes yaad karo!) jaldi pakde jayein before they cause a huge bill.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM_Evaluation_Guardrails_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-streaming-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Streaming Responses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Streaming Responses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-its-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It's Important
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Rate Limiting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Rate Limiting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-its-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It's Needed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-rate-limiting-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Rate Limiting Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-rate-limit-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handling Rate Limit Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-caching-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Caching Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Caching Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-exact-match-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Exact Match Caching
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-semantic-caching-conceptual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example — Semantic Caching (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-caching-helps-most" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Caching Helps Most
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-caching-is-risky" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Caching is Risky
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-prompt-caching-special-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Prompt Caching (Special Case)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Prompt Caching (Special Case)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works-conceptual_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works (Conceptual)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-token-usage-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Token Usage Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Token Usage Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Techniques
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-model-selection-strategy-cost-vs-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Model Selection Strategy (Cost vs Quality)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Model Selection Strategy (Cost vs Quality)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-routing-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Routing (Advanced)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-yeh-significantly-cost-bacha-sakta-hai-bade-scale-pe-bina-quality-compromise-kiye-critical-tasks-pe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - Yeh significantly cost bacha sakta hai bade scale pe, bina quality compromise kiye critical tasks pe.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-batching-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Batching Requests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Batching Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use Batching
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-fallback-retry-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Fallback &amp; Retry Strategies
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Fallback &amp; Retry Strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Strategies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-monitoring-cost-in-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Monitoring Cost in Production
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Monitoring Cost in Production">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting Up Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-alert-karo-agar-dailymonthly-cost-expected-budget-se-significantly-zyada-ho-jaye-taaki-bugs-jaise-infinite-agent-loops-pichli-agent-notes-yaad-karo-jaldi-pakde-jayein-before-they-cause-a-huge-bill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        - Alert karo agar daily/monthly cost expected budget se significantly zyada ho jaye — taaki bugs (jaise infinite agent loops — pichli Agent notes yaad karo!) jaldi pakde jayein before they cause a huge bill.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-design-cost-optimization-for-llm-apps-complete-notes">API Design &amp; Cost Optimization for LLM Apps — Complete Notes</h1>
+<blockquote>
+<p>Yeh notes cover karte hain ki <strong>production-grade LLM applications</strong> kaise design ki jati hain — streaming, rate limiting, caching — aur <strong>cost ko kaise control/optimize</strong> kiya jata hai, jo AI Engineer ka ek daily concern hota hai.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why This Matters</li>
+<li>Streaming Responses</li>
+<li>Rate Limiting</li>
+<li>Caching Strategies</li>
+<li>Prompt Caching (Special Case)</li>
+<li>Token Usage Optimization</li>
+<li>Model Selection Strategy (Cost vs Quality)</li>
+<li>Batching Requests</li>
+<li>Fallback &amp; Retry Strategies</li>
+<li>Monitoring Cost in Production</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-this-matters">1. Why This Matters</h2>
+<p>LLM APIs <strong>traditional APIs se different</strong> hain kyunki:
+- Response <strong>turant nahi</strong> aata (LLM generation me time lagta hai — seconds tak)
+- Cost <strong>per-token</strong> based hota hai (traditional APIs usually free ya flat-rate hote hain)
+- High traffic me, <strong>rate limits</strong> aur <strong>cost explosion</strong> ka risk zyada hota hai</p>
+<blockquote>
+<p>Isliye AI Engineer ko sirf "LLM se accha answer kaise le" nahi, balki <strong>"is answer ko efficiently, affordably, aur reliably user tak kaise pahunchayein"</strong> bhi sochna padta hai.</p>
+</blockquote>
+<hr />
+<h2 id="2-streaming-responses">2. Streaming Responses</h2>
+<p><strong>Simple Meaning:</strong> Poore response ka wait karne ke bajaye, LLM ka output <strong>token-by-token (ya chunk-by-chunk)</strong> turant user ko dikhana shuru kar dena — jaise ChatGPT/Claude ki UI me text "type" hote hue dikhta hai.</p>
+<h3 id="why-its-important">Why It's Important</h3>
+<ul>
+<li><strong>Perceived Speed:</strong> User ko lagta hai response fast aa raha hai, chahe total generation time same ho.</li>
+<li><strong>Better UX:</strong> Lambe responses ke liye, poora paragraph ek saath wait karne se better hai ki text gradually aaye.</li>
+</ul>
+<h3 id="how-it-works-conceptual">How It Works (Conceptual)</h3>
+<pre><code class="language-python"># Without streaming — user waits for the ENTIRE response
+response = llm.generate(prompt)  # Blocks until fully complete
+print(response)
+
+# With streaming — tokens arrive incrementally
+for chunk in llm.generate_stream(prompt):
+    print(chunk, end=&quot;&quot;, flush=True)  # Display as it arrives
+</code></pre>
+<h3 id="when-to-use">When to Use</h3>
+<ul>
+<li>✅ Chatbots, conversational UIs (almost always should stream)</li>
+<li>✅ Long-form content generation (articles, reports)</li>
+<li>⚪ Not necessary for backend/programmatic use where you just need the final JSON result</li>
+</ul>
+<hr />
+<h2 id="3-rate-limiting">3. Rate Limiting</h2>
+<p><strong>Simple Meaning:</strong> Ek time period me, <strong>kitni requests</strong> ek user/system LLM API ko bhej sakta hai, uski limit set karna — taaki system overload na ho aur cost control me rahe.</p>
+<h3 id="why-its-needed">Why It's Needed</h3>
+<ul>
+<li>LLM providers (Anthropic, OpenAI) khud bhi rate limits enforce karte hain (requests per minute, tokens per minute).</li>
+<li>Aapke apne application me bhi rate limiting zaroori hai — taaki ek single user/bot poora system resources hijack na kar le, aur costs predictable rahein.</li>
+</ul>
+<h3 id="common-rate-limiting-strategies">Common Rate Limiting Strategies</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fixed Window</strong></td>
+<td>Ek fixed time window (e.g., "100 requests per minute") — window khatam hote hi reset</td>
+</tr>
+<tr>
+<td><strong>Sliding Window</strong></td>
+<td>Rolling time window — zyada smooth/fair distribution</td>
+</tr>
+<tr>
+<td><strong>Token Bucket</strong></td>
+<td>Har request ek "token" consume karta hai; tokens ek fixed rate se refill hote hain</td>
+</tr>
+<tr>
+<td><strong>Per-User Limits</strong></td>
+<td>Har user/API key ka apna alag limit</td>
+</tr>
+<tr>
+<td><strong>Priority Queuing</strong></td>
+<td>Important/paid users ko higher priority milti hai during high load</td>
+</tr>
+</tbody>
+</table>
+<h3 id="handling-rate-limit-errors">Handling Rate Limit Errors</h3>
+<pre><code class="language-python">import time
+
+def call_llm_with_retry(prompt, max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            return llm.generate(prompt)
+        except RateLimitError:
+            wait_time = 2 ** attempt  # Exponential backoff: 1s, 2s, 4s...
+            time.sleep(wait_time)
+    raise Exception(&quot;Max retries exceeded&quot;)
+</code></pre>
+<blockquote>
+<p><strong>Exponential Backoff</strong> ek common pattern hai — har retry ke beech wait time double karte jao, taaki API pe pressure na bane.</p>
+</blockquote>
+<hr />
+<h2 id="4-caching-strategies">4. Caching Strategies</h2>
+<p><strong>Simple Meaning:</strong> Agar <strong>same/similar request</strong> pehle bhi aa chuki hai, toh dobara LLM ko call karne ke bajaye, <strong>stored (cached) response</strong> wapas de do — isse cost aur latency dono bachte hain.</p>
+<h3 id="types-of-caching">Types of Caching</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Exact Match Caching</strong></td>
+<td>Agar exact same prompt/query dobara aaye, cached response return karo</td>
+</tr>
+<tr>
+<td><strong>Semantic Caching</strong></td>
+<td>Agar <strong>similar meaning wala</strong> query aaye (exact match nahi, but semantically close), phir bhi cached response use karo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-exact-match-caching">Example — Exact Match Caching</h3>
+<pre><code class="language-python">cache = {}
+
+def get_llm_response(prompt):
+    if prompt in cache:
+        return cache[prompt]  # Return cached, no LLM call needed
+
+    response = llm.generate(prompt)
+    cache[prompt] = response
+    return response
+</code></pre>
+<h3 id="example-semantic-caching-conceptual">Example — Semantic Caching (Conceptual)</h3>
+<pre><code class="language-python">def get_llm_response_semantic(prompt):
+    prompt_embedding = embed(prompt)
+
+    # Search cache for a similar previous query (using vector similarity)
+    similar_cached = search_cache_by_similarity(prompt_embedding, threshold=0.95)
+
+    if similar_cached:
+        return similar_cached.response  # Reuse cached answer
+
+    response = llm.generate(prompt)
+    save_to_cache(prompt_embedding, response)
+    return response
+</code></pre>
+<h3 id="when-caching-helps-most">When Caching Helps Most</h3>
+<ul>
+<li>FAQ-style bots (common repeated questions)</li>
+<li>High-traffic applications with overlapping user queries</li>
+<li>Static/rarely-changing information</li>
+</ul>
+<h3 id="when-caching-is-risky">When Caching is Risky</h3>
+<ul>
+<li>Personalized responses (different per user — caching could leak wrong info to wrong user)</li>
+<li>Time-sensitive information (weather, stock prices — cached response could be stale/wrong)</li>
+</ul>
+<hr />
+<h2 id="5-prompt-caching-special-case">5. Prompt Caching (Special Case)</h2>
+<p><strong>Simple Meaning:</strong> Modern LLM APIs (including Anthropic's) support <strong>caching parts of your prompt</strong> (especially long, repeated context like system prompts or large documents), so you don't pay full price to reprocess that same content on every request.</p>
+<h3 id="how-it-works-conceptual_1">How It Works (Conceptual)</h3>
+<pre><code>Request 1: [Long System Prompt + Document Context] + &quot;Question 1&quot;
+   → Full context processed, marked for caching
+
+Request 2 (same session/context): [SAME Long System Prompt + Document Context] + &quot;Question 2&quot;
+   → Cached portion reused at a MUCH lower cost — only &quot;Question 2&quot; is processed fresh
+</code></pre>
+<h3 id="why-this-matters">Why This Matters</h3>
+<ul>
+<li>RAG systems jinme <strong>same large document context</strong> baar-baar use hota hai (multi-turn conversations over the same document), prompt caching <strong>dramatically cost kam kar sakta hai</strong>.</li>
+<li>Especially useful for <strong>agents</strong> that repeatedly send the same tool definitions/system instructions in every turn.</li>
+</ul>
+<hr />
+<h2 id="6-token-usage-optimization">6. Token Usage Optimization</h2>
+<p><strong>Simple Meaning:</strong> Prompt aur response me <strong>kam tokens use karna</strong>, bina quality kharab kiye — directly cost kam karta hai (kyunki billing per-token hoti hai).</p>
+<h3 id="techniques">Techniques</h3>
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>How It Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Concise System Prompts</strong></td>
+<td>Unnecessarily lambe instructions avoid karo</td>
+</tr>
+<tr>
+<td><strong>Limit Retrieved Context</strong></td>
+<td>Sirf top-K most relevant chunks bhejo (reranking se help milti hai — pichli notes)</td>
+</tr>
+<tr>
+<td><strong>Truncate Long Conversations</strong></td>
+<td>Sliding window / summarization memory use karo (pichli Memory notes)</td>
+</tr>
+<tr>
+<td><strong>Set max_tokens appropriately</strong></td>
+<td>Response length ko explicitly limit karo jab lamba answer zaroori na ho</td>
+</tr>
+<tr>
+<td><strong>Use smaller models for simple tasks</strong></td>
+<td>Har task ke liye sabse bada/expensive model zaroori nahi (next section)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-model-selection-strategy-cost-vs-quality">7. Model Selection Strategy (Cost vs Quality)</h2>
+<p><strong>Simple Meaning:</strong> Har task ke liye <strong>sabse powerful (aur expensive) model</strong> use karna zaroori nahi — task ki complexity ke hisaab se <strong>right-sized model</strong> choose karo.</p>
+<h3 id="example-strategy">Example Strategy</h3>
+<pre><code>Simple Classification/Extraction Tasks → Smaller/Cheaper model (e.g., Haiku-tier)
+Standard Q&amp;A/Summarization → Mid-tier model (e.g., Sonnet-tier)
+Complex Reasoning/Critical Decisions → Larger/Premium model (e.g., Opus-tier)
+</code></pre>
+<h3 id="model-routing-advanced">Model Routing (Advanced)</h3>
+<ul>
+<li>Ek <strong>router</strong> (chhota classifier ya rule-based logic) decide karta hai ki incoming request ki complexity kya hai, aur uske hisaab se <strong>appropriate model</strong> ko route karta hai.</li>
+</ul>
+<pre><code>Simple query → Cheap/Fast model
+Complex query → Powerful/Expensive model
+</code></pre>
+<h2 id="-yeh-significantly-cost-bacha-sakta-hai-bade-scale-pe-bina-quality-compromise-kiye-critical-tasks-pe">- Yeh significantly cost bacha sakta hai bade scale pe, bina quality compromise kiye critical tasks pe.</h2>
+<h2 id="8-batching-requests">8. Batching Requests</h2>
+<p><strong>Simple Meaning:</strong> Multiple independent requests ko <strong>ek saath (batch me) process</strong> karna, individually ek-ek karke bhejne ke bajaye.</p>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li>Kuch providers <strong>batch APIs</strong> offer karte hain jo <strong>lower cost per request</strong> dete hain (trade-off: results turant nahi milte, thoda delay ke saath aate hain — asynchronous processing).</li>
+<li>Useful for <strong>non-real-time tasks</strong> — jaise "saari overnight processing karo 10,000 documents ki, result kal subah tak chahiye."</li>
+</ul>
+<h3 id="when-to-use-batching">When to Use Batching</h3>
+<ul>
+<li>✅ Bulk data processing (classification, summarization of many documents)</li>
+<li>✅ Non-urgent, offline analysis tasks</li>
+<li>❌ Real-time chatbot responses (user turant jawab chahta hai)</li>
+</ul>
+<hr />
+<h2 id="9-fallback-retry-strategies">9. Fallback &amp; Retry Strategies</h2>
+<p><strong>Simple Meaning:</strong> Agar primary LLM call <strong>fail ho jaye</strong> (timeout, rate limit, server error), system ke paas ek <strong>backup plan</strong> hona chahiye.</p>
+<h3 id="common-strategies">Common Strategies</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Retry with Backoff</strong></td>
+<td>Thoda wait karke dobara try karo (exponential backoff)</td>
+</tr>
+<tr>
+<td><strong>Fallback Model</strong></td>
+<td>Agar primary model (jaise Opus) unavailable ho, ek secondary model (jaise Sonnet) use karo</td>
+</tr>
+<tr>
+<td><strong>Fallback Response</strong></td>
+<td>Agar sab kuch fail ho jaye, ek generic "Sorry, try again later" message do (crash hone se better)</td>
+</tr>
+<tr>
+<td><strong>Circuit Breaker Pattern</strong></td>
+<td>Agar ek service baar-baar fail ho raha hai, thodi der ke liye usko call karna hi band kar do (system ko overload hone se bachane ke liye), phir dobara try karo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-monitoring-cost-in-production">10. Monitoring Cost in Production</h2>
+<p>(Yeh humari pichli <strong>Observability</strong> notes se directly connect hota hai)</p>
+<table>
+<thead>
+<tr>
+<th>What to Track</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cost per request</strong></td>
+<td>Understand unit economics of your application</td>
+</tr>
+<tr>
+<td><strong>Cost per user/session</strong></td>
+<td>Identify if certain usage patterns are disproportionately expensive</td>
+</tr>
+<tr>
+<td><strong>Token usage trends over time</strong></td>
+<td>Spot unexpected spikes (e.g., a bug causing huge prompts)</td>
+</tr>
+<tr>
+<td><strong>Cost by model tier</strong></td>
+<td>See if you're overusing expensive models where cheaper ones would suffice</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setting-up-alerts">Setting Up Alerts</h3>
+<h2 id="-alert-karo-agar-dailymonthly-cost-expected-budget-se-significantly-zyada-ho-jaye-taaki-bugs-jaise-infinite-agent-loops-pichli-agent-notes-yaad-karo-jaldi-pakde-jayein-before-they-cause-a-huge-bill">- Alert karo agar daily/monthly cost <strong>expected budget se</strong> significantly zyada ho jaye — taaki bugs (jaise infinite agent loops — pichli Agent notes yaad karo!) jaldi pakde jayein before they cause a huge bill.</h2>
+<h2 id="11-common-mistakes">11. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Not streaming for user-facing chat apps</td>
+<td>Poor perceived performance, users think app is slow</td>
+<td>Implement streaming for all conversational interfaces</td>
+</tr>
+<tr>
+<td>No rate limiting on your own API</td>
+<td>Single user/bot could overwhelm system and spike costs</td>
+<td>Implement per-user rate limits</td>
+</tr>
+<tr>
+<td>No caching for repeated/common queries</td>
+<td>Paying full LLM cost for identical requests repeatedly</td>
+<td>Implement exact-match or semantic caching</td>
+</tr>
+<tr>
+<td>Always using the most powerful (expensive) model</td>
+<td>Overpaying for tasks that a cheaper model could handle</td>
+<td>Use model routing based on task complexity</td>
+</tr>
+<tr>
+<td>No retry/fallback logic</td>
+<td>Users see errors when a transient issue occurs</td>
+<td>Implement retry with backoff + fallback models/responses</td>
+</tr>
+<tr>
+<td>Not monitoring cost trends</td>
+<td>Bill spikes go unnoticed until the invoice arrives</td>
+<td>Set up cost dashboards and alerts (via observability tools)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-cheat-sheet">12. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>Streaming</strong> → "Token-by-token dikhao, poora wait mat karwao"</li>
+<li><strong>Rate Limiting</strong> → "Ek time me kitni requests allowed hain, control karo"</li>
+<li><strong>Caching</strong> → "Same/similar sawal dobara pooche toh LLM mat bulao"</li>
+<li><strong>Prompt Caching</strong> → "Bada, repeated context sasta reprocess karo"</li>
+<li><strong>Model Routing</strong> → "Chhota kaam, chhota model — bada kaam, bada model"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>Request Comes In
+   → [Rate Limit Check]
+   → [Cache Check — return if cached]
+   → [Model Router — pick right-sized model]
+   → [Stream Response to User]
+   → [If Error: Retry with Backoff → Fallback if needed]
+   → [Log to Observability Tool — track cost/latency]
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"A great LLM app isn't just about generating good answers — it's about doing so reliably, quickly, and affordably at scale. Streaming, caching, rate limiting, and smart model selection are what separate a prototype from a production system."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>

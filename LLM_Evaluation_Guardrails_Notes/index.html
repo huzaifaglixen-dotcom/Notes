@@ -1,0 +1,2847 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://huzaifaAhmad9.github.io/AI-Engineer/LLM_Evaluation_Guardrails_Notes/">
+      
+      
+        <link rel="prev" href="../Hybrid_Search_Notes/">
+      
+      
+        <link rel="next" href="../LangChain_vs_LangGraph_Notes/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+      
+        <title>LLM Evaluation Metrics & Guardrails — Complete Notes - AI Engineer Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llm-evaluation-metrics-guardrails-complete-notes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Engineer Notes" class="md-header__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Engineer Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Engineer Notes" class="md-nav__button md-logo" aria-label="AI Engineer Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Engineer Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huzaifaAhmad9/AI-Engineer" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    huzaifaAhmad9/AI-Engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to AI Engineer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_Agents_Fundamentals_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Agents Fundamentals — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API_Design_Cost_Optimixation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Design &amp; Cost Optimization for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Advanced_RAG_Architectures_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced RAG Architectures — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Core-Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core AI Engineering Concepts — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Engineer-Roadmap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Engineer Roadmap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Ethics-and-Bias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Ethics &amp; Bias
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Hallucination-Deep-Dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hallucination in AI — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Learning-Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Learning Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Ai-Model-Deployment-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Model Deployment — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BM25_Algorithm_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Algorithm — Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Chunking_Types_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chunking in RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Computer-Vision-and-NLP-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computer Vision &amp; NLP — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Context-Engineering-Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🧩 Context Engineering — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cosine_Similarity-Complete-Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosine Similarity — Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Dependency_Aware_Retrieval_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔗 Dependency-Aware Retrieval — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Embeddings_Vector_Databases_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings &amp; Vector Databases — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Finetuning_vs_PromptEngineering_vs_RAG_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fine-tuning vs Prompt Engineering vs RAG — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Generative-Ai-vs-Ai-Agents-vs-Agentic-Ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Generative AI vs AI Agents vs Agentic AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_Asaan_Notes_Roman_Urdu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Asaan Alfaz Mein Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Handoff_in_OpenAI_API_Study_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🔄 Handoff in OpenAI API — Study Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Hybrid_Search_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Evaluation Metrics &amp; Guardrails — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-general-llm-evaluation-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why General LLM Evaluation is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-traditional-nlp-metrics-bleu-rouge-perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Traditional NLP Metrics (BLEU, ROUGE, Perplexity)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Traditional NLP Metrics (BLEU, ROUGE, Perplexity)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-bleu-bilingual-evaluation-understudy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 BLEU (Bilingual Evaluation Understudy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rouge-recall-oriented-understudy-for-gisting-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ROUGE (Recall-Oriented Understudy for Gisting Evaluation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Perplexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-why-traditional-metrics-fall-short-for-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why Traditional Metrics Fall Short for LLMs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-llm-as-judge-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. LLM-as-Judge (Deep Dive)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. LLM-as-Judge (Deep Dive)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-evaluation-criteria-rubric" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Evaluation Criteria (Rubric)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-common-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two Common Approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveats-of-llm-as-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caveats of LLM-as-Judge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-human-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Human Evaluation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Human Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-task-specific-evaluation-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Task-Specific Evaluation Approaches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-what-are-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. What are Guardrails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-types-of-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Types of Guardrails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-input-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Input Guardrails
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Input Guardrails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-output-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Output Guardrails
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Output Guardrails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-checks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-implementing-guardrails-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Implementing Guardrails — Approaches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Implementing Guardrails — Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-conceptual-llm-based-output-guardrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Conceptual — LLM-based Output Guardrail)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-popular-guardrail-toolsframeworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Popular Guardrail Tools/Frameworks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangChain_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LangGraph_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph — Complete Notes (Every Core Concept)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MCP_Model_Context_Protocol_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Machine-Learning-Types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Machine Learning Types — Supervised, Unsupervised &amp; Reinforcement Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Mcp-Model-Context-Protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP (Model Context Protocol) — From Scratch to Advanced
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Memory_In_Agents_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory in Agents — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Multi_Agent_Systems_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Neural-Networks-Deep-Learning-Basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Neural Networks &amp; Deep Learning — Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Observability_LangSmith_Langfuse_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Observability for LLM Apps — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OpenAI_Agents_SDK_vs_LangGraph_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Agents SDK vs LangGraph — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Overfitting-vs-Underfitting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overfitting vs Underfitting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pretraining-vs-Finetuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-training vs Fine-tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Prompt_Engineering_Complete_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering — Complete Notes (A to Z)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python_Concepts-for-AI-Engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Concepts for AI Engineering — Complete Recap Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Query_Transformation_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Transformation — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Complete_Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG (Retrieval-Augmented Generation) — Complete Guide (Beginner to Advanced)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Generation_Metrics_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Generation Metrics — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RAG_Retrieval_Evaluation_Metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG Evaluation — Retrieval Metrics Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reranking_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tokens-and-Context-Window/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens &amp; Context Window — Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Tool_Calling_Function_Calling_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool Calling / Function Calling — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformers-How-Llms-Work/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformers — How ChatGPT/Claude Actually Work Inside
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Types-of-Ai-Narrow-General-Super/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types of AI — Narrow AI, General AI &amp; Super AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi_agent_systems/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🤖 Multi-Agent Systems — Complete Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python_notes_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🐍 Python Complete Notes for Beginners (3–6 Months Experience)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-general-llm-evaluation-is-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why General LLM Evaluation is Needed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-traditional-nlp-metrics-bleu-rouge-perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Traditional NLP Metrics (BLEU, ROUGE, Perplexity)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Traditional NLP Metrics (BLEU, ROUGE, Perplexity)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-bleu-bilingual-evaluation-understudy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 BLEU (Bilingual Evaluation Understudy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rouge-recall-oriented-understudy-for-gisting-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ROUGE (Recall-Oriented Understudy for Gisting Evaluation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Perplexity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-why-traditional-metrics-fall-short-for-llms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Why Traditional Metrics Fall Short for LLMs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-llm-as-judge-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. LLM-as-Judge (Deep Dive)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. LLM-as-Judge (Deep Dive)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-evaluation-criteria-rubric" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Evaluation Criteria (Rubric)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#two-common-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two Common Approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caveats-of-llm-as-judge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caveats of LLM-as-Judge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-human-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Human Evaluation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Human Evaluation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-task-specific-evaluation-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Task-Specific Evaluation Approaches
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-what-are-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. What are Guardrails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-types-of-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Types of Guardrails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-input-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Input Guardrails
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Input Guardrails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-output-guardrails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Output Guardrails
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Output Guardrails">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-checks_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-flow_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-implementing-guardrails-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Implementing Guardrails — Approaches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. Implementing Guardrails — Approaches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-conceptual-llm-based-output-guardrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example (Conceptual — LLM-based Output Guardrail)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-popular-guardrail-toolsframeworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Popular Guardrail Tools/Frameworks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-common-mistakes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Common Mistakes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cheat Sheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. Cheat Sheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-line-memory-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Line Memory Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-recap-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Recap Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golden-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Golden Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="llm-evaluation-metrics-guardrails-complete-notes">LLM Evaluation Metrics &amp; Guardrails — Complete Notes</h1>
+<blockquote>
+<p>Yeh notes cover karte hain <strong>poore LLM application</strong> (sirf RAG nahi) ko evaluate karne ke general metrics, aur <strong>Guardrails</strong> — jo production me model ko safe, controlled, aur reliable banate hain.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li>Why General LLM Evaluation is Needed</li>
+<li>Traditional NLP Metrics (BLEU, ROUGE, Perplexity)</li>
+<li>Why Traditional Metrics Fall Short for LLMs</li>
+<li>LLM-as-Judge (Deep Dive)</li>
+<li>Human Evaluation</li>
+<li>Task-Specific Evaluation Approaches</li>
+<li>What are Guardrails</li>
+<li>Types of Guardrails</li>
+<li>Input Guardrails</li>
+<li>Output Guardrails</li>
+<li>Implementing Guardrails — Approaches</li>
+<li>Popular Guardrail Tools/Frameworks</li>
+<li>Common Mistakes</li>
+<li>Cheat Sheet</li>
+</ol>
+<hr />
+<h2 id="1-why-general-llm-evaluation-is-needed">1. Why General LLM Evaluation is Needed</h2>
+<p>RAG-specific metrics (Faithfulness, Context Precision, etc. — pichli notes) sirf <strong>RAG systems</strong> ke liye hain. Lekin <strong>kisi bhi LLM application</strong> (chatbot, summarizer, code generator, classifier) ko evaluate karne ke liye <strong>broader metrics</strong> chahiye hote hain — quality, safety, consistency check karne ke liye.</p>
+<blockquote>
+<p>Bina evaluation ke, aapko pata hi nahi chalega ki aapka LLM app <strong>production me acche se kaam kar raha hai ya nahi</strong> — yeh sirf "lagta hai theek hai" pe nahi chal sakta, systematic measurement chahiye.</p>
+</blockquote>
+<hr />
+<h2 id="2-traditional-nlp-metrics-bleu-rouge-perplexity">2. Traditional NLP Metrics (BLEU, ROUGE, Perplexity)</h2>
+<p>Yeh purane, pre-LLM era ke metrics hain — abhi bhi kuch jagah use hote hain, especially translation/summarization ke liye.</p>
+<h3 id="21-bleu-bilingual-evaluation-understudy">2.1 BLEU (Bilingual Evaluation Understudy)</h3>
+<p><strong>Simple Meaning:</strong> Machine-generated text (translation) ki, <strong>reference (human-written) text</strong> ke saath <strong>n-gram overlap</strong> (kitne consecutive words match karte hain) check karta hai.</p>
+<ul>
+<li>Mostly <strong>machine translation</strong> ke liye use hota hai.</li>
+<li>Higher BLEU = zyada word-overlap with reference translation.</li>
+</ul>
+<h3 id="22-rouge-recall-oriented-understudy-for-gisting-evaluation">2.2 ROUGE (Recall-Oriented Understudy for Gisting Evaluation)</h3>
+<p><strong>Simple Meaning:</strong> BLEU jaisa hi hai, lekin <strong>summarization</strong> ke liye zyada common hai — check karta hai ki generated summary me, reference summary ke <strong>kitne important words/phrases</strong> cover hue.</p>
+<ul>
+<li><strong>ROUGE-N</strong>: n-gram overlap</li>
+<li><strong>ROUGE-L</strong>: Longest common subsequence match</li>
+</ul>
+<h3 id="23-perplexity">2.3 Perplexity</h3>
+<p><strong>Simple Meaning:</strong> Model ko apni <strong>prediction confidence</strong> measure karta hai — "model ko yeh next word predict karne me kitna surprise/confusion hua?"</p>
+<pre><code>Lower Perplexity = Model was more confident/certain about its predictions
+Higher Perplexity = Model was more &quot;surprised&quot;/uncertain
+</code></pre>
+<ul>
+<li>Zyadatar <strong>model training/research</strong> ke context me use hota hai, application-level evaluation me kam.</li>
+</ul>
+<hr />
+<h2 id="3-why-traditional-metrics-fall-short-for-llms">3. Why Traditional Metrics Fall Short for LLMs</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Exact word overlap ≠ good quality</strong></td>
+<td>LLM ka answer factually correct aur well-written ho sakta hai, lekin reference text se different words use kare — BLEU/ROUGE isko "bad" score de dega</td>
+</tr>
+<tr>
+<td><strong>No understanding of meaning</strong></td>
+<td>Yeh metrics sirf <strong>surface-level word matching</strong> karte hain, actual meaning/correctness nahi samajhte</td>
+</tr>
+<tr>
+<td><strong>Open-ended tasks problematic</strong></td>
+<td>Chatbot response, creative writing, jaise tasks ke liye "ek hi correct reference" hota hi nahi — bahut saare valid answers ho sakte hain</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Isi wajah se, <strong>modern LLM evaluation</strong> zyada <strong>LLM-as-Judge</strong> aur <strong>semantic similarity</strong> based approaches pe shift ho gaya hai (traditional metrics se zyada meaningful).</p>
+</blockquote>
+<hr />
+<h2 id="4-llm-as-judge-deep-dive">4. LLM-as-Judge (Deep Dive)</h2>
+<blockquote>
+<p>Yeh concept humne RAG Generation Metrics notes me bhi dekha tha — yahan general application ke context me detail se samajhte hain.</p>
+</blockquote>
+<p><strong>Simple Meaning:</strong> Ek <strong>powerful LLM</strong> (jaise Claude/GPT) ko <strong>judge/evaluator</strong> ki tarah use karna — usse doosre LLM ke output ko <strong>score/rate</strong> karwana based on defined criteria.</p>
+<h3 id="common-evaluation-criteria-rubric">Common Evaluation Criteria (Rubric)</h3>
+<table>
+<thead>
+<tr>
+<th>Criteria</th>
+<th>What It Checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Helpfulness</strong></td>
+<td>Kya response user ki actual need address karta hai?</td>
+</tr>
+<tr>
+<td><strong>Correctness</strong></td>
+<td>Kya facts/information sahi hai?</td>
+</tr>
+<tr>
+<td><strong>Coherence</strong></td>
+<td>Kya response logically well-structured aur samajhne layak hai?</td>
+</tr>
+<tr>
+<td><strong>Safety</strong></td>
+<td>Kya response harmful/inappropriate content se free hai?</td>
+</tr>
+<tr>
+<td><strong>Instruction Following</strong></td>
+<td>Kya model ne diye gaye constraints (length, format, tone) follow kiye?</td>
+</tr>
+<tr>
+<td><strong>Conciseness</strong></td>
+<td>Kya response unnecessarily lamba/verbose toh nahi hai?</td>
+</tr>
+</tbody>
+</table>
+<h3 id="two-common-approaches">Two Common Approaches</h3>
+<p><strong>A) Absolute Scoring (Rubric-Based)</strong></p>
+<pre><code>Prompt to Judge LLM: &quot;Rate this response from 1-10 on helpfulness and correctness. 
+Response: [output]
+Question: [original question]&quot;
+</code></pre>
+<p><strong>B) Pairwise Comparison (A/B Testing)</strong></p>
+<pre><code>Prompt to Judge LLM: &quot;Which response better answers the question — Response A or Response B?
+Question: [original question]
+Response A: [output 1]
+Response B: [output 2]&quot;
+</code></pre>
+<ul>
+<li>✅ Pairwise comparison usually <strong>zyada reliable</strong> hota hai absolute scoring se — kyunki relative judgment karna easier hai LLMs ke liye bhi (jaise insaan ke liye bhi "yeh better hai ya woh" decide karna, "1-10 me score do" se easier hota hai).</li>
+</ul>
+<h3 id="caveats-of-llm-as-judge">Caveats of LLM-as-Judge</h3>
+<ul>
+<li>Judge LLM khud biased ho sakta hai (e.g., lamba response ko better maan sakta hai, chahe woh actually zyada helpful na ho — "verbosity bias")</li>
+<li>Periodically <strong>human validation</strong> zaroori hai judge ki accuracy confirm karne ke liye.</li>
+</ul>
+<hr />
+<h2 id="5-human-evaluation">5. Human Evaluation</h2>
+<p><strong>Simple Meaning:</strong> Actual insaan responses ko manually review/rate karte hain.</p>
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✅ Sabse accurate/reliable "ground truth"</td>
+<td>❌ Slow, expensive, doesn't scale well</td>
+</tr>
+<tr>
+<td>✅ Nuance aur context samajh sakta hai jo automated metrics miss kar sakte hain</td>
+<td>❌ Subjective — different evaluators alag rating de sakte hain</td>
+</tr>
+</tbody>
+</table>
+<h3 id="best-practice">Best Practice</h3>
+<ul>
+<li><strong>Hybrid approach:</strong> LLM-as-Judge se bulk evaluation karo (scale ke liye), aur <strong>periodically human review</strong> karo (accuracy validate karne ke liye) — dono ko combine karna best practice hai.</li>
+</ul>
+<hr />
+<h2 id="6-task-specific-evaluation-approaches">6. Task-Specific Evaluation Approaches</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Evaluation Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classification</strong></td>
+<td>Accuracy, Precision, Recall, F1-Score (traditional ML metrics apply directly)</td>
+</tr>
+<tr>
+<td><strong>Summarization</strong></td>
+<td>ROUGE (basic check) + LLM-as-Judge (for quality/coherence)</td>
+</tr>
+<tr>
+<td><strong>Code Generation</strong></td>
+<td>Does the code actually run/pass tests? (Execution-based evaluation — most reliable)</td>
+</tr>
+<tr>
+<td><strong>Chatbot/Conversational</strong></td>
+<td>LLM-as-Judge on helpfulness, coherence + user feedback (thumbs up/down)</td>
+</tr>
+<tr>
+<td><strong>RAG Systems</strong></td>
+<td>Faithfulness, Answer Relevance, Context Precision/Recall (pichli notes)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-what-are-guardrails">7. What are Guardrails</h2>
+<p><strong>Simple Meaning:</strong> Guardrails wo <strong>safety checks/filters</strong> hain jo LLM application ke <strong>input aur output</strong> dono pe lagaye jate hain, taaki system <strong>safe, on-topic, aur controlled</strong> rahe — chahe user kuch bhi try kare, ya model kuch bhi generate kare.</p>
+<blockquote>
+<p>Analogy: Socho ek <strong>highway pe guardrails</strong> (road ke kinare wali physical rails) — wo car ko sadak se bahar/khai me girne se rokte hain. AI Guardrails bhi bilkul isi tarah, LLM ke input/output ko "off track" jaane se rokte hain.</p>
+</blockquote>
+<hr />
+<h2 id="8-types-of-guardrails">8. Types of Guardrails</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Input Guardrails</strong></td>
+<td>User se aane wale harmful/malicious/off-topic input ko catch karna</td>
+</tr>
+<tr>
+<td><strong>Output Guardrails</strong></td>
+<td>Model ke generated response ko check/filter karna, bhejne se pehle</td>
+</tr>
+<tr>
+<td><strong>Topical Guardrails</strong></td>
+<td>Conversation ko ek specific domain/topic tak restrict karna</td>
+</tr>
+<tr>
+<td><strong>Safety Guardrails</strong></td>
+<td>Harmful, toxic, biased content ko rokna</td>
+</tr>
+<tr>
+<td><strong>Factual/Hallucination Guardrails</strong></td>
+<td>Response ko verify karna ki woh factually grounded hai</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-input-guardrails">9. Input Guardrails</h2>
+<p><strong>Simple Meaning:</strong> User ka message process hone se <strong>pehle</strong> hi check karna.</p>
+<h3 id="common-checks">Common Checks</h3>
+<ul>
+<li><strong>Prompt Injection Detection:</strong> Kya user "ignore previous instructions" jaisa attempt kar raha hai?</li>
+<li><strong>PII (Personal Identifiable Information) Detection:</strong> Kya user ne accidentally sensitive info (credit card number, SSN) share kar diya?</li>
+<li><strong>Topic Relevance:</strong> Kya query bot ke intended scope ke andar hai? (e.g., ek customer support bot ko "write me a poem" jaisa off-topic request na milna chahiye)</li>
+<li><strong>Toxicity/Harmful Intent Check:</strong> Kya user harmful/illegal content maang raha hai?</li>
+</ul>
+<h3 id="example-flow">Example Flow</h3>
+<pre><code>User Input → [Input Guardrail Check] → 
+   IF flagged: Reject/redirect (&quot;I can't help with that&quot;)
+   IF clean: Pass to LLM for processing
+</code></pre>
+<hr />
+<h2 id="10-output-guardrails">10. Output Guardrails</h2>
+<p><strong>Simple Meaning:</strong> LLM ka response, <strong>user ko bhejne se pehle</strong> check karna.</p>
+<h3 id="common-checks_1">Common Checks</h3>
+<ul>
+<li><strong>Hallucination Check:</strong> (RAG systems me) Kya response context se grounded hai?</li>
+<li><strong>Toxicity/Bias Check:</strong> Kya response me koi harmful/offensive content hai?</li>
+<li><strong>Format Validation:</strong> Kya output required format (JSON, specific structure) me hai?</li>
+<li><strong>PII Leakage Check:</strong> Kya response me accidentally koi sensitive info leak ho rahi hai (jaise training data se)?</li>
+<li><strong>Brand/Tone Consistency:</strong> Kya response company ke brand voice guidelines follow karta hai?</li>
+</ul>
+<h3 id="example-flow_1">Example Flow</h3>
+<pre><code>LLM Output → [Output Guardrail Check] →
+   IF fails check (e.g., hallucination detected): 
+      Regenerate response OR return fallback message
+   IF passes: Send to user
+</code></pre>
+<hr />
+<h2 id="11-implementing-guardrails-approaches">11. Implementing Guardrails — Approaches</h2>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rule-Based Filters</strong></td>
+<td>Simple keyword/regex matching (e.g., block messages containing certain banned words)</td>
+</tr>
+<tr>
+<td><strong>Classifier Models</strong></td>
+<td>Small, fast ML models trained specifically to detect toxicity, PII, prompt injection, etc.</td>
+</tr>
+<tr>
+<td><strong>LLM-Based Guardrails</strong></td>
+<td>Use another LLM call to check/validate input or output against criteria</td>
+</tr>
+<tr>
+<td><strong>Structured Output Validation</strong></td>
+<td>Enforce JSON schema validation — reject/retry if output doesn't match expected structure</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-conceptual-llm-based-output-guardrail">Example (Conceptual — LLM-based Output Guardrail)</h3>
+<pre><code class="language-python">def check_output_safety(response: str) -&gt; bool:
+    check_prompt = f&quot;&quot;&quot;
+    Does the following response contain any harmful, toxic, or inappropriate content?
+    Response: {response}
+    Answer only 'YES' or 'NO'.
+    &quot;&quot;&quot;
+    result = judge_llm.invoke(check_prompt)
+    return result.strip() == &quot;NO&quot;  # True means it's safe
+
+if not check_output_safety(llm_response):
+    llm_response = &quot;I'm sorry, I can't provide that response. Let me try again.&quot;
+</code></pre>
+<hr />
+<h2 id="12-popular-guardrail-toolsframeworks">12. Popular Guardrail Tools/Frameworks</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Guardrails AI</strong></td>
+<td>Open-source framework for validating/structuring LLM outputs</td>
+</tr>
+<tr>
+<td><strong>NeMo Guardrails (NVIDIA)</strong></td>
+<td>Define conversational rails/boundaries declaratively</td>
+</tr>
+<tr>
+<td><strong>LlamaGuard (Meta)</strong></td>
+<td>Open-source safety classifier model specifically for content moderation</td>
+</tr>
+<tr>
+<td><strong>Presidio (Microsoft)</strong></td>
+<td>PII detection and redaction</td>
+</tr>
+<tr>
+<td><strong>Custom LLM-based checks</strong></td>
+<td>Often simplest and most flexible — just another prompt to a judge LLM</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-common-mistakes">13. Common Mistakes</h2>
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Problem</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Using only traditional NLP metrics (BLEU/ROUGE) for LLM evaluation</td>
+<td>Doesn't capture true quality/correctness for open-ended tasks</td>
+<td>Use LLM-as-Judge + task-specific approaches</td>
+</tr>
+<tr>
+<td>No input guardrails</td>
+<td>Vulnerable to prompt injection, off-topic abuse</td>
+<td>Implement input validation before processing</td>
+</tr>
+<tr>
+<td>No output guardrails</td>
+<td>Risk of harmful/hallucinated content reaching users</td>
+<td>Implement output checks before sending response</td>
+</tr>
+<tr>
+<td>Relying 100% on automated evaluation without any human spot-check</td>
+<td>Automated judges can have blind spots/biases</td>
+<td>Periodically validate with human review</td>
+</tr>
+<tr>
+<td>Over-restrictive guardrails</td>
+<td>Legitimate user queries get blocked, bad user experience</td>
+<td>Balance safety with usability — test with real user queries</td>
+</tr>
+<tr>
+<td>Not logging guardrail triggers</td>
+<td>Can't improve the system over time</td>
+<td>Log when/why guardrails triggered, review periodically</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-cheat-sheet">14. Cheat Sheet</h2>
+<h3 id="one-line-memory-tricks">One-Line Memory Tricks</h3>
+<ul>
+<li><strong>BLEU/ROUGE</strong> → "Kitne words match karte hain reference se (surface-level)"</li>
+<li><strong>Perplexity</strong> → "Model kitna confident tha apni prediction me"</li>
+<li><strong>LLM-as-Judge</strong> → "Ek smart LLM se doosre LLM ka kaam check karwana"</li>
+<li><strong>Guardrails</strong> → "Highway ki rails — input/output ko off-track jaane se rokna"</li>
+<li><strong>Input Guardrails</strong> → "User se aane wali cheez check karo"</li>
+<li><strong>Output Guardrails</strong> → "Model se jaane wali cheez check karo"</li>
+</ul>
+<h3 id="quick-recap-flow">Quick Recap Flow</h3>
+<pre><code>User Input → [Input Guardrails: injection/PII/topic check] 
+    → LLM Processing 
+    → [Output Guardrails: safety/hallucination/format check] 
+    → Final Response to User
+</code></pre>
+<h3 id="golden-rule">Golden Rule</h3>
+<blockquote>
+<p><strong>"Evaluate with methods that understand meaning (LLM-as-Judge, task-specific checks), not just surface word-overlap — and always wrap your LLM with guardrails on both ends: what goes in, and what comes out."</strong></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "content.code.copy", "navigation.expand", "toc.follow"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
